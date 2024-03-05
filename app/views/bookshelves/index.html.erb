@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Bookshelves</h1>
+
+<div id="bookshelves">
+  <% @bookshelves.each do |bookshelf| %>
+    <%= render bookshelf %>
+    <p>
+      <%= link_to "Show this bookshelf", bookshelf %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New bookshelf", new_bookshelf_path %>

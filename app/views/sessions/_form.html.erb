@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@session) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :book %>
+    <%= f.association :user %>
+    <%= f.input :capacity %>
+    <%= f.input :start_time %>
+    <%= f.input :video_link %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
