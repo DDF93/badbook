@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_195837) do
     t.string "author"
     t.string "genre"
     t.text "description"
-    t.date "date"
+    t.integer "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
