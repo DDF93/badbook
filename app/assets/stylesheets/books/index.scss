@@ -1,0 +1,26 @@
+.book-section {
+  margin-bottom: 40px;
+
+  .section-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+  }
+
+  .book-tile {
+    flex: 0 0 calc(100% / 15);
+    margin-right: 10px;
+    scroll-snap-align: start;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
