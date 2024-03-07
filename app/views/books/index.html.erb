@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Books</h1>
-
-<div id="books">
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
-  <% end %>
+<div class="book-section">
+  <h2 class="section-header">Upcoming Badbook Club Sessions</h2>
+  <div class="carousel">
+    <!-- carousel -->
+    <%= render partial: 'book_tile', collection: @bookclub_books %>
+  </div>
 </div>
 
-<%= link_to "New book", new_book_path %>
+<div class="book-section">
+  <h2 class="section-header">Bestselling Wicked Tales</h2>
+  <div class="carousel">
+    <!-- carousel -->
+    <%= render partial: 'book_tile', collection: @wicked_books %>
+  </div>
+</div>
