@@ -15,6 +15,7 @@ initial_books.each do |book_id|
     description = book_json.dig("volumeInfo", "description")
 
     Book.create(
+      google_id: book_id,
       title: title,
       author: authors,
       date: published_date,
