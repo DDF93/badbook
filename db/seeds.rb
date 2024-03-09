@@ -9,10 +9,6 @@
 #   )
 # end
 
-require 'json'
-require 'open-uri'
-
-
 all_id = []
 all_genres = []
 api_key = "e0e7828ad3b849f7a4ba1e9471903762"
