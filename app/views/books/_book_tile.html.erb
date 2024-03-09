@@ -1,13 +1,7 @@
-<div class="book-tile" style="background-image: url('<%= book.image_url %>');">
-  <div class="tile-overlay"></div>
-  <div class="tile-content">
-    <div class="top-buttons">
-      <div class="add-button">+</div>
-      <div class="check-button">&#10003;</div>
-    </div>
-    <div class="book-info">
-      <h3 class="book-title"><%= book.title %></h3>
-      <p class="book-author"><%= book.author %></p>
-    </div>
+<div class="book-card">
+  <img src="<%= book.image_url %>" alt="Book Cover" class="book-cover">
+  <div class="book-details">
+    <h3 class="book-title"><%= book.title %></h3>
+    <p class="book-author">by <%= book.author %></p>
   </div>
 </div>
