@@ -1,0 +1,31 @@
+.btn-explore {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid $button-border-color; // Thin outline
+  border-radius: 20px; // Rounded corners
+  background-color: transparent; // No fill
+  color: $button-color; // Text color
+  font-family: Arial, sans-serif; // Font
+  font-size: 16px; // Font size
+  cursor: pointer; // Cursor style
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; // Smooth transition
+
+  &:hover {
+    background-color: $button-hover-bg; // Background color on hover
+    color: $button-hover-color; // Text color on hover
+    border-color: $button-hover-bg; // Border color on hover
+  }
+}
+
+.btn-sign-up {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid $button-border-color; // Thin outline
+  border-radius: 20px; // Rounded corners
+  background-color: $pink; // No fill
+  color: $button-color; // Text color
+  font-family: Arial, sans-serif; // Font
+  font-size: 16px; // Font size
+  cursor: pointer; // Cursor style
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; // Smooth transition
+}

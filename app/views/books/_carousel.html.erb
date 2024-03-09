@@ -9,12 +9,14 @@
 <div class="carousel-box">
   <div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
     <div class="carousel-inner">
+
       <% books.each_slice(6).with_index do |books_slice, index| %>
+
         <div class="carousel-item <%= 'active' if index.zero? %>">
           <div class="row justify-content-center">
             <% books_slice.each do |book| %>
               <div class="col-md-2 each-book">
-                <%= render 'book_tile', book: book %>
+                <%= render 'books/book_tile', book: book %>
               </div>
             <% end %>
           </div>

@@ -1,1 +1,10 @@
-// Specific CSS for your home-page
+.homepage-bg {
+  background-image: url('/assets/badbook-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.strike-through {
+  text-decoration: line-through;
+  text-decoration-color: $pink;
+}
