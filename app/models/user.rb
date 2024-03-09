@@ -3,4 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :bookshelves
+  after_create :create_default_bookshelf
+
+  private
+
+  def create_default_bookshelf
+    bookshelves.create(name: 'Read Books')
+  end
 end

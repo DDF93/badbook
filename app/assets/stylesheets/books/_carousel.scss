@@ -1,31 +1,37 @@
-.carousel-container {
-  .carousel-section {
-    margin: 20px 0;
+#bookCarousel {
+  .carousel-container {
+    overflow: hidden;
   }
 
-  .carousel {
-    position: relative;
-    overflow: hidden;
+  .carousel-inner {
+    display: flex;
+  }
 
-    .carousel-books {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
+  .carousel-item {
+    transition: transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
 
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      z-index: 10;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 10px;
-      user-select: none;
+  .row {
+    gap: 20px;
+    justify-content: center;
+  }
 
-      &.right {
-        right: 0;
-      }
+  .each-book {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    filter: alpha(opacity=50);
+    opacity: .5;
+
+    &:hover {
+      filter: alpha(opacity=90);
+      opacity: .9;
     }
   }
 }
