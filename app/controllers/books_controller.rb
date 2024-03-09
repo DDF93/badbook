@@ -7,6 +7,10 @@ class BooksController < ApplicationController
     read_books_shelf = current_user.bookshelves.find_by(name: 'Read Books')
     @read_books = read_books_shelf.present? ? read_books_shelf.books.to_a : []
   end
+  
+  def show
+    @book = Book.find(params[:id])
+  end
 
   def mark_as_read
     @read_books << @book
@@ -16,8 +20,8 @@ class BooksController < ApplicationController
     end
   end
 
-  private
-    def set_book
-      @book = Book.find(params[:id])
-    end
+private
+  def set_book
+    @book = Book.find(params[:id])
+  end
 end
