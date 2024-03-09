@@ -1,51 +1,27 @@
-# 20.times do
-#   Book.create(
-#     title: Faker::Book.title,
-#     author: Faker::Book.author,
-#     genre: Faker::Book.genre,
-#     date: Faker::Date.between(from: 100.years.ago, to: Date.today),
-#     description: Faker::Lorem.paragraph,
-#     image_url: "https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-#   )
-# end
-
 require 'json'
 require 'open-uri'
 
+initial_books = ["I12oPwAACAAJ", "u7XrDwAAQBAJ", "xDtkEAAAQBAJ", "49nUEAAAQBAJ", "hIx4EAAAQBAJ", "tkZFEAAAQBAJ", "Es_PCwAAQBAJ",
+                 "hxL2qWMAgv8C", "jVB1DwAAQBAJ", "nNjTDwAAQBAJ", "wxBbEAAAQBAJ", "cpAREAAAQBAJ", "OyCtDwAAQBAJ", "iBg_EAAAQBAJ", "lGjFtMRqp_YC"]
 
-all_id = []
-all_genres = []
-api_key_1 = "e0e7828ad3b849f7a4ba1e9471903762"
-api_key_2 = "b790a2a9858a423ca5fbbdefffc411d6"
-api_key_3 = "12077ec056254932ba5ac0fb7c050a98"
+initial_books.each do |book_id|
+  begin
+    data = URI.open("https://www.googleapis.com/books/v1/volumes/#{book_id}").read
+    book_json = JSON.parse(data)
 
-
-  url = "https://api.bigbookapi.com/search-books?api-key=#{api_key_2}&genres=war&number=49"
-  user_serialized = URI.open(url).read
-  user = JSON.parse(user_serialized)
-  user["books"].each do |book|
-  book_id = book[0]["id"]
-  book_genre = book[0]["genres"]
-  all_genres << book_genre
-  all_id << book_id
-
-  end
-
-  number = 0
-
-
-  49.times do
-    genre_for_book = all_genres[number].join(", ")
-    url = "https://api.bigbookapi.com/#{all_id[number]}?api-key=#{api_key_2}"
-    user_serialized = URI.open(url).read
-    user = JSON.parse(user_serialized)
+    title = book_json.dig("volumeInfo", "title")
+    authors = book_json.dig("volumeInfo", "authors")&.join(", ")
+    published_date = book_json.dig("volumeInfo", "publishedDate")
+    description = book_json.dig("volumeInfo", "description")
 
     Book.create(
-      title: user["title"],
-      author: user["authors"][0]["name"],
-      genre: genre_for_book,
-      description: user["description"],
-      date: user["publish_date"].to_i,
-      image_url: user["image"])
-    number += 1
+      title: title,
+      author: authors,
+      date: published_date,
+      description: description,
+      image_url: book_json.dig("volumeInfo", "imageLinks", "thumbnail")
+    )
+  rescue StandardError => e
+    puts "Error occurred while processing book with ID #{book_id}: #{e.message}"
   end
+end

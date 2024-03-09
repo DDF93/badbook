@@ -28,10 +28,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_195837) do
     t.string "author"
     t.string "genre"
     t.text "description"
-    t.integer "date"
-    t.string "image_url"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "bookshelf_books", force: :cascade do |t|
