@@ -1,7 +1,15 @@
-<div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="carousel">
-  <div class="carousel-container">
+<style>
+  /* Custom CSS to adjust z-index of carousel control buttons */
+  .carousel-control-prev,
+  .carousel-control-next {
+    z-index: 10; /* Set a higher z-index value */
+  }
+</style>
+
+<div class="carousel-box">
+  <div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
     <div class="carousel-inner">
-      <% books.each_slice(5).with_index do |books_slice, index| %>
+      <% books.each_slice(6).with_index do |books_slice, index| %>
         <div class="carousel-item <%= 'active' if index.zero? %>">
           <div class="row justify-content-center">
             <% books_slice.each do |book| %>
@@ -13,5 +21,11 @@
         </div>
       <% end %>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
   </div>
 </div>
