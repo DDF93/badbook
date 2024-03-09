@@ -147,6 +147,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -175,6 +176,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    open-uri (0.4.1)
+      stringio
+      time
+      uri
     orm_adapter (0.5.0)
     pg (1.5.6)
     popper_js (2.11.8)
@@ -257,6 +262,8 @@ GEM
     stringio (3.1.0)
     thor (1.3.1)
     tilt (2.3.0)
+    time (0.3.0)
+      date
     timeout (0.4.1)
     turbo-rails (2.0.4)
       actionpack (>= 6.0.0)
@@ -264,6 +271,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -297,6 +305,8 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  json
+  open-uri
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)
