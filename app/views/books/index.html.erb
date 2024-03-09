@@ -1,15 +1,11 @@
-<div class="book-section">
-  <h2 class="section-header">Upcoming Badbook Club Sessions</h2>
-  <div class="carousel">
-    <!-- carousel -->
-    <%= render partial: 'book_tile', collection: @bookclub_books %>
-  </div>
-</div>
-
-<div class="book-section">
-  <h2 class="section-header">Bestselling Wicked Tales</h2>
-  <div class="carousel">
-    <!-- carousel -->
-    <%= render partial: 'book_tile', collection: @wicked_books %>
+<div class="carousel-container">
+  <h2>Featured Books</h2>
+  <div class="carousel" id="carousel-featured">
+    <div class="carousel-books">
+      <% @books.first(15).each do |book| %>
+        <%= render partial: "book_tile", locals: { book: book } %>
+      <% end %>
+    </div>
+    <div class="carousel-arrow right" onclick="scrollRight('carousel-featured')">&#10095;</div>
   </div>
 </div>
