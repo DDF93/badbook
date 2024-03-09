@@ -1,37 +1,24 @@
-#bookCarousel {
-  .carousel-container {
-    overflow: hidden;
-  }
+.carousel-box {
+  position: relative;
+  overflow: hidden; /* Ensures that the fading effect doesn't overflow outside the carousel-box */
+}
 
-  .carousel-inner {
-    display: flex;
-  }
+.carousel-box::before, .carousel-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300px; /* Adjust the width as necessary */
+  pointer-events: none;
+  z-index: 2; /* Ensure this is above your carousel items but below interactive elements if necessary */
+}
 
-  .carousel-item {
-    transition: transform 0.5s ease;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-  }
+.carousel-box::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(247, 241, 234, 1) 0%, rgba(247, 241, 234, 0.75) 50%, rgba(247, 241, 234, 0) 100%);
+}
 
-  .row {
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .each-book {
-    display: flex;
-    justify-content: center;
-    flex: 0 0 auto;
-  }
-
-  .carousel-control-prev, .carousel-control-next {
-    filter: alpha(opacity=50);
-    opacity: .5;
-
-    &:hover {
-      filter: alpha(opacity=90);
-      opacity: .9;
-    }
-  }
+.carousel-box::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(247, 241, 234, 1) 0%, rgba(247, 241, 234, 0.75) 75%, rgba(247, 241, 234, 0) 100%);
 }
