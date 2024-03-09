@@ -2,10 +2,22 @@
 
 <%= render 'carousel', books: @bookclub_collection %>
 
-<h2>Horror Books</h2>
-
-
-
-<%= render 'find_books' %>
+<h2 class="carousel-header">Horror Books</h2>
 
 <%= render 'carousel', books: @horror_books %>
+
+<h2 class="carousel-header">Romance Books</h2>
+
+<%= render 'carousel', books: @romance_books %>
+
+<h2 class="carousel-header">Crime Books</h2>
+
+<%= render 'carousel', books: @crime_books %>
+
+<h2 class="carousel-header">Vampire Books</h2>
+
+<%= render 'carousel', books: @vampire_books %>
+
+<h2 class="carousel-header">Humor Books</h2>
+
+<%= render 'carousel', books: @humor_books %>
