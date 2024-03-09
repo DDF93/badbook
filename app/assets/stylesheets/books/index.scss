@@ -12,12 +12,10 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 20px;
-  }
 
-  .book-tile {
-    flex: 0 0 calc(100% / 15);
-    margin-right: 10px;
-    scroll-snap-align: start;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &:last-child {
       margin-right: 0;
