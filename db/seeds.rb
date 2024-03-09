@@ -15,10 +15,12 @@ require 'open-uri'
 
 all_id = []
 all_genres = []
-api_key = "e0e7828ad3b849f7a4ba1e9471903762"
+api_key_1 = "e0e7828ad3b849f7a4ba1e9471903762"
+api_key_2 = "b790a2a9858a423ca5fbbdefffc411d6"
+api_key_3 = "12077ec056254932ba5ac0fb7c050a98"
 
 
-  url = "https://api.bigbookapi.com/search-books?api-key=#{api_key}&genres=food&number=49"
+  url = "https://api.bigbookapi.com/search-books?api-key=#{api_key_2}&genres=war&number=49"
   user_serialized = URI.open(url).read
   user = JSON.parse(user_serialized)
   user["books"].each do |book|
@@ -26,6 +28,7 @@ api_key = "e0e7828ad3b849f7a4ba1e9471903762"
   book_genre = book[0]["genres"]
   all_genres << book_genre
   all_id << book_id
+
   end
 
   number = 0
@@ -33,7 +36,7 @@ api_key = "e0e7828ad3b849f7a4ba1e9471903762"
 
   49.times do
     genre_for_book = all_genres[number].join(", ")
-    url = "https://api.bigbookapi.com/#{all_id[number]}?api-key=#{api_key}"
+    url = "https://api.bigbookapi.com/#{all_id[number]}?api-key=#{api_key_2}"
     user_serialized = URI.open(url).read
     user = JSON.parse(user_serialized)
 
