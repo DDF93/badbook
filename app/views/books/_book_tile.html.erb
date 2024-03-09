@@ -1,20 +1,14 @@
-<div class="book-tile">
-  <div class="tile-overlay"></div>
-  <div class="tile-content">
-    <div class="top-buttons">
-      <div class="add-button">
-        <!-- plus symbol for adding to a bookshelf -->
-      </div>
-      <div class="check-button">
-        <!-- check symbol for marking as read -->
-      </div>
-    </div>
-    <div class="book-info">
-      <h3 class="book-title">Dune</h3>
-      <p class="book-author">Frank Herbert</p>
-    </div>
+<div class="book-tile" style="width: 200px;">
+  <%= image_tag book.image_url, class: "img-fluid book-cover", alt: book.title %>
+  <% book_read = @read_books.include?(book) %>
+  <button class="read-status-btn <%= 'read' if book_read %>" data-book-id="<%= book.id %>" data-toggle="tooltip" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+    <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
+  </button>
+  <button class="add-btn" data-toggle="tooltip" title="Add to Bookshelf">
+    <i class="fa fa-plus"></i>
+  </button>
+  <div class="book-info">
+    <h5><%= book.title %></h5>
+    <p><%= book.author %></p>
   </div>
 </div>
-
-<!--<%= book.title %>-->
-<!--<%= book.author %>-->
