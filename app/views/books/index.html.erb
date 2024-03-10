@@ -1,16 +1,24 @@
 <h2 class="carousel-header">Upcoming Bookclubs</h2>
 <%= render 'carousel', books: @bookclub_collection %>
 
-<h2 class="carousel-header">Popular in Fiction This Week</h2>
-<%= render 'carousel', books: @bookclub_collection %>
+<h2 class="carousel-header">Horror Books</h2>
 
-<h2 class="carousel-header">Most Read in Crime</h2>
-<%= render 'carousel', books: @bookclub_collection %>
+<%= render 'carousel', books: @horror_books %>
 
-<h2 class="carousel-header">Bestsellers</h2>
-<%= render 'carousel', books: @bookclub_collection %>
+<h2 class="carousel-header">Romance Books</h2>
 
-<%# <h2 class="carousel-header">Best in Horror</h2>
-<%= render 'carousel', books: @horror_collection %>
+<%= render 'carousel', books: @romance_books %>
+
+<h2 class="carousel-header">Crime Books</h2>
+
+<%= render 'carousel', books: @crime_books %>
+
+<h2 class="carousel-header">Vampire Books</h2>
+
+<%= render 'carousel', books: @vampire_books %>
+
+<h2 class="carousel-header">Humor Books</h2>
+
+<%= render 'carousel', books: @humor_books %>
 
 <br><br><br>
