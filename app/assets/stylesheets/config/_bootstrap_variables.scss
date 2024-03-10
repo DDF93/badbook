@@ -15,15 +15,18 @@ $body-color: $dark-gray;
 $primary:    $pink;
 $success:    $pink;
 $info:       $blue;
-
 $danger:     $red;
 $warning:    $mid-cream;
 
 // Buttons & inputs' radius
-$border-radius:    25px;
-$border-radius-lg: 25px;
-$border-radius-sm: 25px;
+$border-radius:    50px;
+$border-radius-lg: 50px;
+$border-radius-sm: 50px;
 
-// Override other variables below!
-$carousel-control-prev-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#404040' style='width: 20px; height: 20px; border-radius: 50%; z-index: 100;'><circle cx='8' cy='8' r='7' fill='#404040'/><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z' fill='white'/></svg>");
-$carousel-control-next-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#404040' style='width: 20px; height: 20px; border-radius: 50%; z-index: 100;'><circle cx='8' cy='8' r='7' fill='#404040'/><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z' fill='white'/></svg>");
+// Carousel stuff
+$carousel-control-color: $dark-gray;
+$carousel-control-width: 100px;
+$carousel-control-opacity: 1;
+$carousel-control-hover-opacity: 0.5;
+$carousel-control-icon-width: 1.5rem;
+$carousel-transition-duration: 0.9s;

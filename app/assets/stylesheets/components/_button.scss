@@ -1,31 +1,52 @@
 .btn-explore {
   display: inline-block;
   padding: 10px 20px;
-  border: 1px solid $button-border-color; // Thin outline
-  border-radius: 20px; // Rounded corners
-  background-color: transparent; // No fill
-  color: $button-color; // Text color
-  font-family: Arial, sans-serif; // Font
-  font-size: 16px; // Font size
-  cursor: pointer; // Cursor style
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; // Smooth transition
+  border: 1px solid $button-border-color;
+  border-radius: 50px;
+  background-color: transparent;
+  color: $button-color;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
   &:hover {
-    background-color: $button-hover-bg; // Background color on hover
-    color: $button-hover-color; // Text color on hover
-    border-color: $button-hover-bg; // Border color on hover
+    background-color: $button-hover-bg;
+    color: $button-hover-color;
+    border-color: $button-hover-bg;
   }
 }
 
 .btn-sign-up {
   display: inline-block;
   padding: 10px 20px;
-  border: 1px solid $button-border-color; // Thin outline
-  border-radius: 20px; // Rounded corners
-  background-color: $pink; // No fill
-  color: $button-color; // Text color
-  font-family: Arial, sans-serif; // Font
-  font-size: 16px; // Font size
-  cursor: pointer; // Cursor style
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; // Smooth transition
+  border-radius: 50px;
+  background-color: $pink;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-color: $button-hover-bg;
+    color: $button-hover-color;
+    border-color: $button-hover-bg;
+  }
+}
+
+.btn-login {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid $light-cream;
+  border-radius: 50px;
+  background-color: transparent;
+  color: $light-cream;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-color: $pink;
+    color: white;
+    border-color: $pink;
+  }
 }

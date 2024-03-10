@@ -1,24 +1,7 @@
-.carousel-box {
-  position: relative;
-  overflow: hidden; /* Ensures that the fading effect doesn't overflow outside the carousel-box */
-}
+// .carousel-control-next-icon {
+//   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FF0000' viewBox='0 0 6 6'%3E%3Cpath d='M1.5 0l-1 1 2 2-2 2 1 1 3-3-3-3z'/%3E%3C/svg%3E");
+// }
 
-.carousel-box::before, .carousel-box::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 300px; /* Adjust the width as necessary */
-  pointer-events: none;
-  z-index: 2; /* Ensure this is above your carousel items but below interactive elements if necessary */
-}
-
-.carousel-box::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(247, 241, 234, 1) 0%, rgba(247, 241, 234, 0.75) 50%, rgba(247, 241, 234, 0) 100%);
-}
-
-.carousel-box::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(247, 241, 234, 1) 0%, rgba(247, 241, 234, 0.75) 75%, rgba(247, 241, 234, 0) 100%);
-}
+// .carousel-control-prev-icon {
+//   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FF0000' viewBox='0 0 6 6'%3E%3Cpath d='M4.5 0l-3 3 3 3 1-1-2-2 2-2-1-1z'/%3E%3C/svg%3E");
+// }
