@@ -18,8 +18,18 @@ def get_books_by_genre(genre)
     authors = id_json.dig("volumeInfo", "authors")&.join(", ")
     published_date = id_json.dig("volumeInfo", "publishedDate")
     description = id_json.dig("volumeInfo", "description")
-    image_url = book_json.dig("volumeInfo", "imageLinks", "thumbnail")
-
+    image_url = id_json.dig("volumeInfo", "imageLinks", "thumbnail")
+    pp image_url
+    book_add = {
+      google_id: book_id,
+      title: title,
+      author: authors,
+      date: published_date,
+      description: description,
+      image_url: image_url
+  }
+    books << book_add
+    # pp book_add[:description]
   end
   return books
 end
