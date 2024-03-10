@@ -25,7 +25,7 @@ private
   def set_book
     @book = Book.find(params[:id])
   end
-
+end
 #   def get_books_by_genre(genre)
 #     book_ids = []
 #     url = "https://www.googleapis.com/books/v1/volumes?q=subject:#{genre}&maxResults=20"

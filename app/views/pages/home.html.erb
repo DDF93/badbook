@@ -3,15 +3,22 @@
     <div>
       <h1 class="display-1 mb-4">Your virtual book club for <br> good <span class="strike-through">and bad</span> books.</h1>
       <p class="lead">
-        <button class="btn btn-primary btn-lg mt-4 me-2 btn-explore">Explore Books</button>
-        <button class="btn btn-success btn-lg mt-4 ms-2 btn-sign-up">Sign Up</button>
+        <button class="btn btn-primary btn-lg mt-4 me-2 btn-explore">EXPLORE BOOKS</button>
+        <button class="btn btn-success btn-lg mt-4 ms-2 btn-sign-up">SIGN UP</button>
       </p>
     </div>
   </div>
-
-  <h1 class="d-flex justify-content-center mt-2">Book club now in session</h1>
-
-  <div class="mt-4">
+  <div>
+    <h2 class="carousel-header">Bookclubs Now in Session</h2>
     <%= render 'books/carousel', books: @books %>
+  </div>
+  <br><br><br>
+</div>
+<div class="cta-box">
+  <div class="container">
+    <h1>Join the Discussion</h1>
+    <p>Review and discuss your latest reads with a like-minded community</p>
+    <button class="btn btn-primary btn-lg mt-4 me-2 btn-login">LOGIN</button>
+    <button class="btn btn-success btn-lg mt-4 ms-2 btn-sign-up">SIGN UP</button>
   </div>
 </div>

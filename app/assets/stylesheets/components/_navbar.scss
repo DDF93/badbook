@@ -1,12 +1,23 @@
-.navbar-lewagon {
+.navbar-badbook {
   justify-content: space-between;
-  background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-badbook .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-badbook .navbar-brand img {
   height: 25px;
+}
+
+.transparent-navbar {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+  border-bottom: none;
+}
+
+.solid-navbar {
+  background-color: $light-cream !important;
+  transition: background-color 0.3s ease-in-out;
+  border-bottom: 1px solid $dark-gray;
 }
