@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_sessions = Book.find(params[:id]).sessions
 
     clean_description = @book.description
                      .gsub(/\A"|"\Z/, '')
