@@ -1,5 +1,9 @@
 <div class="book-tile" style="width: 200px;">
-  <%= image_tag book[:image_url], class: "img-fluid book-cover", alt: book[:title] %>
+  <% if book[:image_url].present? %>
+    <%= image_tag book[:image_url], class: "img-fluid book-cover", alt: book[:title] %>
+  <% else %>
+    <p>No image available</p>
+  <% end %>
   <% book_read = @read_books.include?(book) %>
   <button class="read-status-btn <%= 'read' if book_read %>" data-book-id="<%= book[:id]%>" data-toggle="tooltip" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
     <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
