@@ -1,7 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<div class="book-show-page-container">
+  <div class="book-show-content-container">
+    <div class="book-show-book-cover">
+      <%= image_tag(@book.image_url, alt: @book.title, class: "img-fluid") %>
+    </div>
 
-<%= render 'book_tile', book: @book %>
+    <div class="book-show-book-info">
+      <h1 class="book-show-book-title"><%= @book.title %></h1>
+      <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
+      <div class="book-genre-tag">Sci-Fi</div>
+      <div class="book-description">
+        <% if @description_longer_than_250 %>
+          <p id="description-preview"><%= @preview_description %>...<a href="#" class="read-more">More</a></p>
+          <p id="full-description" style="display: none;"><%= @full_description %></p>
+        <% else %>
+          <p><%= @full_description %></p>
+        <% end %>
+      </div>
+    </div>
 
-<div>
-  <%= link_to "Back to books", books_path %>
+    <div class="sessions-panel">
+      <p>Placeholder</p>
+    </div>
+  </div>
+</div>
+
+<div class="reviews-section">
+  <h1>Reviews</h1>
+  <!-- Additional content such as individual reviews can go here -->
 </div>

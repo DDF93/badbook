@@ -1,0 +1,86 @@
+.book-show-page-container {
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.book-show-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.book-details-container {
+  display: flex;
+  align-items: flex-start;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.book-show-book-cover img {
+  width: auto;
+  min-width: 300px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.book-show-book-info {
+  flex-grow: 1;
+  margin-left: 40px;
+}
+
+.book-show-book-title {
+  font-weight: bold;
+  font-size: 38px;
+  margin-bottom: 5px;
+}
+
+.book-show-book-author {
+  font-size: 20px;
+}
+
+.book-genre-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid $dark-gray;
+  font-size: 16px;
+  border-radius: 30px;
+}
+
+.book-description {
+  margin-top: 20px;
+}
+
+.book-description p {
+  margin-bottom: 1em;
+  font-size: 16px;
+}
+
+.read-more {
+  color: $blue;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.sessions-panel {
+  flex: 1;
+  background-color: $mid-cream;
+  padding: 20px;
+  margin-left: 40px;
+  min-width: 450px;
+  height: 450px;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+
+.reviews-section {
+  background-color: white;
+  border-top: 1px solid $dark-gray;
+  padding: 60px 100px 60px 100px;
+  margin-top: 20px;
+}
+
+.reviews-section h1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
