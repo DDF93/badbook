@@ -15,6 +15,20 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+
+    clean_description = @book.description
+                     .gsub(/\A"|"\Z/, '')
+                     .gsub(/--Publisher's description\.\Z/, '')
+                     .gsub(/<\/?b>|<\/?i>|<\/?p>|<br>/, '')
+                     .strip
+
+    sentence_case_description = clean_description.downcase.capitalize
+    preview_characters = sentence_case_description[0...230]
+    description_longer_than_250_characters = sentence_case_description.length > 230
+
+    @preview_description = preview_characters
+    @full_description = sentence_case_description
+    @description_longer_than_250 = description_longer_than_250_characters
   end
 
   def mark_as_read
