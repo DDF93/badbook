@@ -1,38 +1,41 @@
 class AttendeesController < ApplicationController
   before_action :set_attendee, only: %i[ show edit update destroy ]
+  before_action :find_session
 
-  # GET /attendees or /attendees.json
   def index
     @attendees = Attendee.all
   end
 
-  # GET /attendees/1 or /attendees/1.json
   def show
   end
 
-  # GET /attendees/new
   def new
     @attendee = Attendee.new
   end
 
-  # GET /attendees/1/edit
   def edit
   end
 
-  # POST /attendees or /attendees.json
   def create
-    @attendee = Attendee.new(attendee_params)
+    if @session.attendees.count < @session.capacity
+      attendee = @session.attendees.build(user: current_user)
 
-    respond_to do |format|
-      if @attendee.save
-        format.html { redirect_to attendee_url(@attendee), notice: "Attendee was successfully created." }
-        format.json { render :show, status: :created, location: @attendee }
+      if attendee.save
+        redirect_to @session, notice: "You're now attending the session."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @attendee.errors, status: :unprocessable_entity }
+        redirect_to @session, alert: "Could not attend the session."
       end
+    else
+      redirect_to @session, alert: "Session is at full capacity."
     end
   end
+
+private
+
+def attendee_params
+  params.require(:attendee).permit(:user_id, :session_id)
+end
+
 
   # PATCH/PUT /attendees/1 or /attendees/1.json
   def update
@@ -58,13 +61,15 @@ class AttendeesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_attendee
       @attendee = Attendee.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def attendee_params
       params.require(:attendee).permit(:user_id, :session_id)
+    end
+
+    def find_session
+      @session = Session.find(params[:session_id])
     end
 end

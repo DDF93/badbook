@@ -34,6 +34,16 @@ class SessionsController < ApplicationController
     end
   end
 
+  def join
+    if @session.started? && @session.users.include?(current_user)
+      # Logic to let user join the session
+      # This could involve redirecting to a page where the session is conducted
+      # or simply rendering a view with session details.
+    else
+      redirect_to @session, alert: "You cannot join this session."
+    end
+  end
+
   # PATCH/PUT /sessions/1 or /sessions/1.json
   def update
     respond_to do |format|

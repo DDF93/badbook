@@ -36,7 +36,7 @@ def get_books_by_genre(genre)
     data = URI.open(url).read
   rescue OpenURI::HTTPError => e
     if e.message.include?('429')
-      sleep(5)  # Back off for 5 seconds before retrying
+      sleep(10)  # Back off for 5 seconds before retrying
       retry
     else
       # Handle other HTTP errors
@@ -58,7 +58,7 @@ def get_books_by_genre(genre)
       id_data = URI.open("https://www.googleapis.com/books/v1/volumes/#{book_id}").read
     rescue OpenURI::HTTPError => e
       if e.message.include?('429')
-        sleep(5)  # Back off for 5 seconds before retrying
+        sleep(10)  # Back off for 5 seconds before retrying
         retry
       else
         # Handle other HTTP errors
@@ -99,3 +99,24 @@ get_books_by_genre('Mystery')
 get_books_by_genre('Thriller')
 get_books_by_genre('Historical Fiction')
 
+# seed for sessions
+user = User.first
+book1 = Book.find_by(title: 'Dune')
+book2 = Book.find_by(title: 'Twilight')
+
+Session.create([
+  {
+    book_id: book1.id,
+    user_id: user.id,
+    capacity: 15,
+    start_time: 2.days.from_now,
+    video_link: 'http://example.com/session1'
+  },
+  {
+    book_id: book2.id,
+    user_id: user.id,
+    capacity: 15,
+    start_time: 1.week.from_now,
+    video_link: 'http://example.com/session2'
+  }
+])

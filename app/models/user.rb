@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :bookshelves
+  has_many :attendees
+  has_many :sessions, through: :attendees
   after_create :create_default_bookshelf
 
   private
