@@ -44,40 +44,63 @@ private
     @book = Book.find(params[:id])
   end
 
-def get_books_by_genre(genre)
-  book_ids = []
-  url = "https://www.googleapis.com/books/v1/volumes?q=subject:#{genre}&maxResults=20"
-  data = URI.open(url).read
-  book_json = JSON.parse(data)
+  def get_books_by_genre(genre)
+    book_ids = []
+    url = "https://www.googleapis.com/books/v1/volumes?q=subject:#{genre}&maxResults=20"
 
-  book_json["items"].each do |book|
-    book_ids << book["id"]
-  end
+    begin
+      data = URI.open(url).read
+    rescue OpenURI::HTTPError => e
+      if e.message.include?('429')
+        sleep(5)  # Back off for 5 seconds before retrying
+        retry
+      else
+        # Handle other HTTP errors
+        puts "HTTP Error: #{e.message}"
+        return []  # Return an empty array if there's an error
+      end
+    end
 
-  books = []
+    book_json = JSON.parse(data)
+    return [] unless book_json["items"]
 
-  book_ids.each do |book_id|
-    id_data = URI.open("https://www.googleapis.com/books/v1/volumes/#{book_id}").read
-    id_json = JSON.parse(id_data)
+    books = []
+    book_json["items"].each do |book|
+      book_ids << book["id"]
+    end
 
-    title = id_json.dig("volumeInfo", "title")
-    authors = id_json.dig("volumeInfo", "authors")&.join(", ")
-    published_date = id_json.dig("volumeInfo", "publishedDate")
-    description = id_json.dig("volumeInfo", "description")
-    image_url = id_json.dig("volumeInfo", "imageLinks", "thumbnail")
+    book_ids.each do |book_id|
+      begin
+        id_data = URI.open("https://www.googleapis.com/books/v1/volumes/#{book_id}").read
+      rescue OpenURI::HTTPError => e
+        if e.message.include?('429')
+          sleep(5)  # Back off for 5 seconds before retrying
+          retry
+        else
+          # Handle other HTTP errors
+          puts "HTTP Error: #{e.message}"
+          next  # Continue to the next book ID if there's an error
+        end
+      end
 
-    book_add = {
-      google_id: book_id,
-      title: title,
-      author: authors,
-      date: published_date,
-      description: description,
-      image_url: image_url
-    }
+      id_json = JSON.parse(id_data)
+      title = id_json.dig("volumeInfo", "title")
+      authors = id_json.dig("volumeInfo", "authors")&.join(", ")
+      published_date = id_json.dig("volumeInfo", "publishedDate")
+      description = id_json.dig("volumeInfo", "description")
+      image_url = id_json.dig("volumeInfo", "imageLinks", "thumbnail")
 
-    books << book_add
-  end
+      book_add = {
+        google_id: book_id,
+        title: title,
+        author: authors,
+        date: published_date,
+        description: description,
+        image_url: image_url
+      }
+      books << book_add
+    end
 
-  books
+    return books
   end
 end
