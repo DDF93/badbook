@@ -1,16 +1,25 @@
+<div class="centered-form">
+  <h1>Write a review for <%= @book.title %></h1>
 
-<%= simple_form_for(@review) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= simple_form_for([@book, @review]) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.association :book %>
-    <%= f.association :user %>
-    <%= f.input :rating %>
+    <div class="rating-input">
+      <%= f.label :rating, "Rating" %>
+      <div class="rating-dropdown">
+        <%= f.select :rating, options_for_select((1..5).map { |num| [raw("#{num} #{'&#9733;' * num}"), num] }), {}, { class: 'form-control' } %>
+      </div>
+    </div>
+    </br>
     <%= f.input :description %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Create Review", class: "bold-button" %>
   </div>
-<% end %>
+
+  <% end %>
+  <%= link_to "Back", book_path(@book) %>
+</div>

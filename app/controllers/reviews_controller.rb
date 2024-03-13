@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @book = Book.find(params[:book_id])
   end
 
   # GET /reviews/1/edit
@@ -22,16 +23,20 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
-
+    @book = Book.find(params[:book_id])
+    @review.book_id = @book.id
+    @review.user = current_user
+    
     respond_to do |format|
       if @review.save
-        format.html { redirect_to review_url(@review), notice: "Review was successfully created." }
+        format.html { redirect_to book_path(@book), notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /reviews/1 or /reviews/1.json

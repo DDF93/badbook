@@ -98,4 +98,3 @@ get_books_by_genre('Fantasy')
 get_books_by_genre('Mystery')
 get_books_by_genre('Thriller')
 get_books_by_genre('Historical Fiction')
-

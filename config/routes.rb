@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :reviews, only: [:edit, :update, :show, :destroy]
   resources :topics
   resources :attendees
   resources :sessions
   resources :bookshelf_books
   resources :bookshelves
-  resources :reviews
   devise_for :users
   root to: "pages#home"
   get 'books', to: 'books#index'
