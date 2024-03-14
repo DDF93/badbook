@@ -19,8 +19,30 @@
     </div>
 
     <div class="sessions-panel">
-      <p>Placeholder</p>
+      <header>
+        <h2>Sessions</h2>
+      </header>
+      <hr>
+
+      <% if @book_sessions.any? %>
+        <% @book_sessions.each do |session| %>
+          <div class="session-row">
+            <div class="session-time">
+              <%= session.start_time.strftime("%a %-d %b %l:%M%P").strip %>
+            </div>
+            <div class="session-capacity">
+              Capacity: <%= session.capacity %>
+            </div>
+            <div class="session-join">
+              <button class="join-button">Join</button>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No upcoming sessions.</p>
+      <% end %>
     </div>
+
   </div>
 </div>
 
