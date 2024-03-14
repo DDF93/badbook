@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: %i[ show edit update destroy ]
+  before_action :set_session, only: %i[ show edit update destroy rsvp ]
 
   # GET /sessions or /sessions.json
   def index
@@ -9,6 +9,18 @@ class SessionsController < ApplicationController
   # GET /sessions/1 or /sessions/1.json
   def show
   end
+
+  def rsvp
+    # Assuming you have current_user method defined by devise
+    @attendee = @session.attendees.build(user: current_user)
+
+    if @attendee.save
+      render json: { message: "RSVP successful" }, status: :ok
+    else
+      render json: { error: "Failed to RSVP" }, status: :unprocessable_entity
+    end
+  end
+
 
   # GET /sessions/new
   def new
