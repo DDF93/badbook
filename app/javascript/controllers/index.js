@@ -6,6 +6,10 @@ import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 
+// Register the above dropdown controller with Stimulus.
+import DropdownController from "./dropdown_controller.js"
+application.register("dropdown", DropdownController)
+
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
