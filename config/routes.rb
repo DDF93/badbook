@@ -3,10 +3,10 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
   resources :reviews, only: [:edit, :update, :show, :destroy]
-    resources :sessions, only: [:show] do
+  resources :sessions, only: [:show] do
       resources :attendees, only: [:create]
       post 'join', on: :member
-    end
+
   end
   resources :topics
   resources :bookshelf_books
