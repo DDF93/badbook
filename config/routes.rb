@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :sessions, only: [:show] do
       resources :attendees, only: [:create]
       post 'join', on: :member
-    end
   end
   resources :topics
   resources :bookshelf_books
