@@ -54,10 +54,25 @@
 
 .btn.btn-primary.btn-sm.add-review-link {
   font-size: 16px;
-  width: 200px;
+  width: 170px;
   margin: 0 auto;
 }
 
 .rating-dropdown  {
     margin-top: 0.5rem;
+}
+
+.actions {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-review-link-container {
+  margin-left: auto;
 }
