@@ -1,0 +1,13 @@
+.link-with-counter {
+  display: flex;
+  align-items: center;
+}
+
+.counter-pill {
+  background-color: $dark-gray;
+  color: $light-cream;
+  border-radius: 15px;
+  padding: 2px 8px;
+  font-size: 12px;
+  margin-left: 2px;
+}
