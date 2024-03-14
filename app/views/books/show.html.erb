@@ -19,12 +19,59 @@
     </div>
 
     <div class="sessions-panel">
-      <p>Placeholder</p>
+      <header>
+        <h2>Sessions</h2>
+      </header>
+      <hr>
+
+      <% if @book_sessions.any? %>
+        <% @book_sessions.each do |session| %>
+          <div class="session-row">
+            <div class="session-time">
+              <%= session.start_time.strftime("%a %-d %b %l:%M%P").strip %>
+            </div>
+            <div class="session-capacity">
+              Capacity: <%= session.capacity %>
+            </div>
+            <div class="session-join">
+              <button class="join-button">Join</button>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No upcoming sessions.</p>
+      <% end %>
     </div>
+
   </div>
 </div>
 
 <div class="reviews-section">
   <h1>Reviews</h1>
-  <!-- Additional content such as individual reviews can go here -->
+  <ul class="review-list">
+    <% @book.reviews.each do |review| %>
+      <li class="review-item">
+        <div class="review-header">
+          <%= review.user.email %>
+        </div>
+        <div class="rating-section">
+          <div class="rating-stars">
+            <% review.rating.times do %>
+              <i class="fas fa-star"></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="review-description">
+          <%= review.description %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  </br>
+  <div class="text-center mt-3">
+  <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
+    <i class="fas fa-plus"></i> Add a Review
+  <% end %>
+  </div>
+
 </div>
