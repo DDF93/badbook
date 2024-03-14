@@ -1,10 +1,26 @@
-<h1>Editing review</h1>
+<div class="centered-form"
+</br>
+  <h1>Edit your review </h1>
 
-<%= render "form", review: @review %>
+  <%= simple_form_for([@review]) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<br>
+  <div class="form-inputs">
+    <div class="rating-input">
+      <%= f.label :rating, "Rating" %>
+      <div class="rating-dropdown">
+        <%= f.select :rating, options_for_select((1..5).map { |num| [raw("#{num} #{'&#9733;' * num}"), num] }), {}, { class: 'form-control' } %>
+      </div>
+    </div>
+    </br>
+    <%= f.input :description %>
+  </div>
 
-<div>
-  <%= link_to "Show this review", @review %> |
-  <%= link_to "Back to reviews", reviews_path %>
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class: "bold-button" %>
+  </div>
+
+  <% end %>
+ <%= link_to "Back", book_path(@book) %>
 </div>
