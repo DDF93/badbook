@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
   def show
   end
 
+  def index
+    @sessions = Session.all
+  end
+
   def rsvp
     if current_user.attendees.exists?(session_id: @session.id)
       flash[:alert] = "You are already attending this session."
