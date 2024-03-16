@@ -16,6 +16,10 @@
   border-bottom: none;
 }
 
+.nav-link {
+  margin-left: 30px;
+}
+
 .solid-navbar {
   background-color: $light-cream !important;
   transition: background-color 0.3s ease-in-out;
