@@ -17,13 +17,13 @@
         <td class="session-capacity"><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
         <td class="session-capacity">
           <% if session.attendees.exists?(user_id: current_user.id) %>
-            <%= render "books/revoke_rsvp", session: session, book: @book %>
+            <%= render "books/revoke_rsvp", session: session, book: session.book %>
           <% elsif session.attendees.count >= session.capacity %>
             <span class="session-full">Full</span>
           <% elsif session.start_time <= (Time.now + 15.minutes) %>
-            <%= render "books/join_session", session: session, book: @book %>
+            <%= render "books/join_session", session: session, book: session.book %>
           <% else %>
-            <%= render "books/rsvp", session: session, book: @book %>
+            <%= render "books/rsvp", session: session, book: session.book %>
           <% end %>
         </td>
       </tr>
