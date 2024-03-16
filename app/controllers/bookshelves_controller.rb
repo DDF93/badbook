@@ -3,7 +3,7 @@ class BookshelvesController < ApplicationController
 
   # GET /bookshelves or /bookshelves.json
   def index
-    @bookshelves = Bookshelf.all
+    @bookshelves = Bookshelf.where(user_id: current_user.id)
   end
 
   # GET /bookshelves/1 or /bookshelves/1.json
