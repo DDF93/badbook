@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: %i[ show rsvp ]
 
-  # GET /sessions/1 or /sessions/1.json
+  def index
+    @sessions = Session.all
+  end
+
   def show
   end
 

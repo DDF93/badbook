@@ -19,7 +19,7 @@
   width: 90%;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
   background-color: $dark-gray;
   padding: 10px;
@@ -55,4 +55,42 @@
 #sessions-table .session-countdown, .session-start-time, .session-capacity {
   font-size: 0.9em;
   color: white;
+}
+
+// books/show stuff:
+
+.sessions-panel {
+  margin-left: 40px;
+  min-width: 450px;
+  height: 450px;
+  overflow: auto;
+  background-color: $mid-cream;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.sessions-panel-header {
+  font-size: 20px;
+}
+
+#books-sessions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+#books-sessions-table th, #books-sessions-table td {
+  text-align: left;
+  border-bottom: 1px solid #e0d1c0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#books-sessions-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#book-sessions-table .book-session-start-time, .book-session-capacity {
+  font-size: 0.9em;
 }
