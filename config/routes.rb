@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :books do
     resources :sessions, only: [:show] do
       resources :attendees, only: [:create]
       post 'join', on: :member
       post 'rsvp', on: :member  # Define route for RSVP action
+      delete 'rsvp', to: 'sessions#revoke_rsvp'
     end
     resources :reviews, only: [:new, :create]
   end

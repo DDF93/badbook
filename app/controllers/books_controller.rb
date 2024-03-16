@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:mark_as_read]
+  before_action :set_session, only: [:show]
 
   def index
     @romance_books = Book.where(genre: 'Romance')
@@ -19,7 +20,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @book_sessions = Book.find(params[:id]).sessions
+    @book_sessions = @book.sessions.includes(:attendees)
 
     clean_description = @book.description
                      .gsub(/\A"|"\Z/, '')
@@ -47,7 +48,11 @@ class BooksController < ApplicationController
 private
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:book_id])
+  end
+
+  def set_session
+    @session = Session.find(params[:id])
   end
 
 

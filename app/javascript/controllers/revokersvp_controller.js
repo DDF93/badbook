@@ -13,7 +13,7 @@ export default class extends Controller {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     fetch(`/books/${bookId}/sessions/${sessionId}/rsvp`, {
-      method: "POST",
+      method: "DELETE",  // Send a DELETE request
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": csrfToken
@@ -22,13 +22,13 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        console.log("RSVP successful");
-        // Update UI to reflect successful RSVP
-        this.showNotification("RSVP successful");
+        console.log("RSVP revoked successfully");
+        // Update UI to reflect successful RSVP revocation
+        this.showNotification("RSVP revoked successfully");
       } else {
-        console.error("Failed to RSVP");
+        console.error("Failed to revoke RSVP");
         // Handle error or update UI accordingly
-        this.showNotification("Failed to RSVP");
+        this.showNotification("Failed to revoke RSVP");
       }
     })
     .catch(error => {
