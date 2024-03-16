@@ -36,6 +36,7 @@
 .btn-rsvp {
   padding: 5px 10px;
   border-radius: 50px;
+  border: none;
   background-color: $pink;
   color: white;
   font-size: 14px;
@@ -45,6 +46,26 @@
     background-color: $dark-gray;
     color: white;
   }
+}
+
+.btn-rsvp-revoke {
+  padding: 5px 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: $light-cream;
+  color: $dark-gray;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-join-show {
+  padding: 5px 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: $green;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .btn-login {

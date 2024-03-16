@@ -1,8 +1,6 @@
 <div class="book-tile" style="width: 200px;">
   <% if book[:image_url].present? %>
-    <%= link_to book_path(book) do %>
-      <%= image_tag book[:image_url], class: "img-fluid book-cover", alt: book[:title] %>
-    <% end %>
+    <%= link_to image_tag(book[:image_url], class: "img-fluid book-cover", alt: book[:title]), book_path(book[:id]) %>
   <% else %>
     <p>No image available</p>
   <% end %>
