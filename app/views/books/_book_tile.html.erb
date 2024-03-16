@@ -12,7 +12,10 @@
   <%= render 'books/bookshelf_dropdown' %>
 
   <div class="book-info">
-    <div class="book-title"><%= book[:title] %></div>
+    <%= link_to book_path(book) do %>
+      <div class="book-title"><%= book[:title] %></div>
+    <% end %>
+
     <div class="book-author"><%= book[:author] %></div>
   </div>
 </div>

@@ -32,6 +32,8 @@ gem "open-uri"
 
 gem "faker"
 
+gem "pg_search"
+
 gem "rails_admin", "3.0"
 
 # Use Redis adapter to run Action Cable in production
