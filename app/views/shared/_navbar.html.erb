@@ -1,15 +1,31 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-badbook sticky-top transparent-navbar" id="navbar">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "badbook-logo.png" %>
-    <% end %>
+    <div class="d-flex align-items-center">
+
+      <%= link_to root_path, class: "navbar-brand mr-auto" do %>
+        <%= image_tag "badbook-logo.png" %>
+      <% end %>
+
+      <div class="d-flex align-items-center ml-3">
+        <%= form_with url: "/search", method: :get, class: "form-inline d-flex" do %>
+          <div class="d-flex">
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control mr-sm-2 me-2 search-input",
+                  placeholder: "Find your book"
+            %>
+            <%= submit_tag "Search", name: "", class: "btn btn-outline-success search-button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to "Books", books_path, class: "nav-link" %>
@@ -24,16 +40,16 @@
             <%= link_to "My Library", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "katniss.jpg", class: "avatar", alt: "dropdown menu" %>
-          </a>
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag "katniss.jpg", class: "avatar", alt: "dropdown menu" %>
+            </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
           <li class="nav-item active">
-              <%= link_to "Library", "#", class: "nav-link" %>
+            <%= link_to "Library", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Bookclubs", "#", class: "nav-link" %>
