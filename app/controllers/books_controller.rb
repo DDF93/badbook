@@ -42,6 +42,7 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: 'Book was successfully marked as read.' }
       format.json { head :no_content }
     end
+
   end
 
 private

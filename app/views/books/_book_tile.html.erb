@@ -1,6 +1,8 @@
 <div class="book-tile" style="width: 200px;">
   <% if book[:image_url].present? %>
-    <%= image_tag book[:image_url], class: "img-fluid book-cover", alt: book[:title] %>
+    <%= link_to book_path(book) do %>
+      <%= image_tag book[:image_url], class: "img-fluid book-cover", alt: book[:title] %>
+    <% end %>
   <% else %>
     <p>No image available</p>
   <% end %>
@@ -12,7 +14,10 @@
   <%= render 'books/bookshelf_dropdown' %>
 
   <div class="book-info">
-    <div class="book-title"><%= book[:title] %></div>
+    <%= link_to book_path(book) do %>
+      <div class="book-title"><%= book[:title] %></div>
+    <% end %>
+
     <div class="book-author"><%= book[:author] %></div>
   </div>
 </div>
