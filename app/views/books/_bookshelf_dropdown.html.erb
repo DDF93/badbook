@@ -5,9 +5,9 @@
 
   <div class="dropdown d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center d-none" data-dropdown-target="menu">
     <ul class="dropdown-menu position-static d-grid gap-1 p-2 mx-0 shadow w-220px position-absolute mt-5" data-bs-theme="light">
-      <li><a class="dropdown-item rounded-2" href="#">Action</a></li>
-      <li><a class="dropdown-item rounded-2" href="#">Another action</a></li>
-      <li><a class="dropdown-item rounded-2" href="#">Something else here</a></li>
+      <% Bookshelf.where(user_id: current_user).each do |shelf| %>
+        <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id%>" data-action="click->dropdown#addToBookshelf"><%= shelf.name %></a>
+      <% end %>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item rounded-2" href="#">Create a bookshelf</a></li>
     </ul>

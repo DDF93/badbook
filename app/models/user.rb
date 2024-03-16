@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bookshelves
   has_many :attendees
+  has_many :books, through: :bookshelves
   has_many :sessions, through: :attendees
   after_create :create_default_bookshelf
 

@@ -6,6 +6,24 @@ class BookshelvesController < ApplicationController
     @bookshelves = Bookshelf.where(user_id: current_user.id)
   end
 
+  def add_book_to_bookshelf
+    # Retrieve book_id and bookshelf_id from params
+    book_id = params[:book_id]
+    bookshelf_id = params[:bookshelf_id]
+
+    # Log the received parameters for debugging
+    Rails.logger.debug "Received book_id: #{book_id}, bookshelf_id: #{bookshelf_id}"
+
+    # Perform logic to add book to bookshelf
+    @bookshelf_book = BookshelfBook.new(book_id: book_id, bookshelf_id: bookshelf_id)
+    # You might want to check if the book and bookshelf exist and if the current user owns the bookshelf
+    if @bookshelf_book.save
+      render json: { message: "Book added to bookshelf successfully" }, status: :ok
+    else
+      render json: { error: "Failed to add book to bookshelf", errors: @bookshelf_book.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # GET /bookshelves/1 or /bookshelves/1.json
   def show
   end
@@ -67,4 +85,4 @@ class BookshelvesController < ApplicationController
     def bookshelf_params
       params.require(:bookshelf).permit(:name, :user_id)
     end
-end
+  end

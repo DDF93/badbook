@@ -4,12 +4,15 @@
   <% else %>
     <p>No image available</p>
   <% end %>
-  <% book_read = @read_books.include?(book) %>
-  <button class="read-status-btn <%= 'read' if book_read %>" data-book-id="<%= book[:id]%>" data-toggle="tooltip" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
-    <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
-  </button>
 
-  <%= render 'books/bookshelf_dropdown' %>
+  <% if user_signed_in? %> <!-- Check if user is logged in -->
+    <% book_read = @read_books.include?(book) %>
+    <button class="read-status-btn <%= 'read' if book_read %>" data-book-id="<%= book[:id]%>" data-toggle="tooltip" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+      <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
+    </button>
+
+    <%= render 'books/bookshelf_dropdown', book: book %>
+  <% end %> <!-- End user login check -->
 
   <div class="book-info">
     <div class="book-title"><%= book[:title] %></div>
