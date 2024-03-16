@@ -1,0 +1,28 @@
+<div class="sessions-panel">
+  <header>
+    <h2>Sessions</h2>
+  </header>
+  <hr>
+  <% if @book_sessions.any? %>
+    <% @book_sessions.each do |session| %>
+      <div class="session-row">
+        <div class="session-time">
+          <%= session.start_time.strftime("%a %-d %b %l:%M%P").strip %>
+        </div>
+        <div class="session-capacity">
+          <% if session.attendees.exists?(user_id: current_user.id) %>
+            <%= render "books/revoke_rsvp", session: session, book: @book %>
+          <% elsif session.attendees.count >= session.capacity %>
+            <span class="session-full">Full</span>
+          <% elsif session.start_time <= (Time.now + 15.minutes) %>
+            <%= render "books/join_session", session: session, book: @book %>
+          <% else %>
+            <%= render "books/rsvp", session: session, book: @book %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No upcoming sessions.</p>
+  <% end %>
+</div>

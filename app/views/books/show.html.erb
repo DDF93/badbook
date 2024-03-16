@@ -18,30 +18,9 @@
       </div>
     </div>
 
-    <div class="sessions-panel">
-      <header>
-        <h2>Sessions</h2>
-      </header>
-      <hr>
 
-      <% if @book_sessions.any? %>
-        <% @book_sessions.each do |session| %>
-          <div class="session-row">
-            <div class="session-time">
-              <%= session.start_time.strftime("%a %-d %b %l:%M%P").strip %>
-            </div>
-            <div class="session-capacity">
-              Capacity: <%= session.capacity %>
-            </div>
-            <div class="session-join">
-              <button class="join-button">Join</button>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p>No upcoming sessions.</p>
-      <% end %>
-    </div>
+        <%= render "books/sessions_panel"  %>
+
 
   </div>
 </div>
@@ -76,15 +55,17 @@
           <%= review.description %>
         </div>
         <div class="actions">
-          <%= link_to "Edit",
-            edit_review_path(review.id),
-            class: "edit-review-link"%>
-          |
-          <%= link_to "Delete",
-            review_path(review),
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-          %>
-        </div>
+          <% if current_user && current_user.id == review.user_id %>
+            <%= link_to "Edit",
+              edit_review_path(review.id),
+              class: "edit-review-link"%>
+            |
+            <%= link_to "Delete",
+              review_path(review),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+            %>
+          <% end %>
+          </div>
       </li>
     <% end %>
   </ul>
