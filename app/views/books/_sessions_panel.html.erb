@@ -10,7 +10,7 @@
               <%= session.start_time.strftime("%a %-d %b %l:%M%P").strip %>
             </div>
             <div class="session-capacity">
-              Capacity: <%= session.capacity %>
+              Capacity: <%= session.capacity %> 
             </div>
             <div class="session-join">
               <%= render "books/rsvp", session: session, book: @book %>
