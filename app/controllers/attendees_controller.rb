@@ -30,6 +30,16 @@ class AttendeesController < ApplicationController
     end
   end
 
+  def destroy
+    @session = Session.find(params[:session_id])
+    @attendee = @session.attendees.find_by(user_id: current_user.id)
+    if @attendee.destroy
+      render json: { message: "RSVP revoked successfully" }, status: :ok
+    else
+      render json: { error: "Failed to revoke RSVP" }, status: :unprocessable_entity
+    end
+  end
+
 private
 
 def attendee_params
