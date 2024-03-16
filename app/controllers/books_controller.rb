@@ -52,7 +52,8 @@ private
   end
 
   def set_session
-    @session = Session.find(params[:id])
+    @book = Book.find(params[:id])
+    @sessions = @book.sessions
   end
 
 
