@@ -1,14 +1,32 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Sessions</h1>
-
-<div id="sessions">
-  <% @sessions.each do |session| %>
-    <%= render session %>
-    <p>
-      <%= link_to "Show this session", session %>
-    </p>
-  <% end %>
+<div class="page-title-container">
+  <h1>Bookclubs</h1>
+  <p>Loved it? Loathed it? Join bookclubs to share your insights, challenge perspectives, and discover new interpretations.</p>
 </div>
 
-<%= link_to "New session", new_session_path %>
+<table id="sessions-table">
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td>
+          <span class="session-book-name"><%= link_to session.book.title, book_path(session.book) %></span>
+          <br>
+          <span class="book-author"><%= session.book.author %></span>
+        </td>
+        <td class="session-countdown"><%= session_countdown(session.start_time) %></td>
+        <td class="session-start-time">Starts <%= session.start_time.strftime("%a %d %b, %l:%M%p") %></td>
+        <td class="session-capacity"><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+        <td class="session-capacity">
+          <% if session.attendees.exists?(user_id: current_user.id) %>
+            <%= render "books/revoke_rsvp", session: session, book: session.book %>
+          <% elsif session.attendees.count >= session.capacity %>
+            <span class="session-full">Full</span>
+          <% elsif session.start_time <= (Time.now + 15.minutes) %>
+            <%= render "books/join_session", session: session, book: session.book %>
+          <% else %>
+            <%= render "books/rsvp", session: session, book: session.book %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

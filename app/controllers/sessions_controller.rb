@@ -1,22 +1,26 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: %i[ show edit update destroy ]
+  before_action :set_session, only: %i[ show rsvp ]
 
-  # GET /sessions or /sessions.json
   def index
     @sessions = Session.all
   end
 
-  # GET /sessions/1 or /sessions/1.json
   def show
   end
 
-  # GET /sessions/new
-  def new
-    @session = Session.new
-  end
-
-  # GET /sessions/1/edit
-  def edit
+  def rsvp
+    if current_user.attendees.exists?(session_id: @session.id)
+      flash[:alert] = "You are already attending this session."
+    elsif @session.attendees.count >= @session.capacity
+      flash[:alert] = "The session has reached its capacity."
+    else
+      @attendee = @session.attendees.build(user: current_user)
+      if @attendee.save
+        flash[:notice] = "RSVP successful"
+      else
+        flash[:alert] = "Failed to RSVP"
+      end
+    end
   end
 
   # POST /sessions or /sessions.json
@@ -34,36 +38,15 @@ class SessionsController < ApplicationController
     end
   end
 
-  def join
-    if @session.started? && @session.users.include?(current_user)
-      # Logic to let user join the session
-      # This could involve redirecting to a page where the session is conducted
-      # or simply rendering a view with session details.
+  def revoke_rsvp
+    @book = Book.find(params[:book_id])
+    @session = @book.sessions.find(params[:session_id])
+    @attendee = @session.attendees.find_by(user_id: current_user.id)
+
+    if @attendee.destroy
+      render json: { message: "RSVP revoked successfully" }, status: :ok
     else
-      redirect_to @session, alert: "You cannot join this session."
-    end
-  end
-
-  # PATCH/PUT /sessions/1 or /sessions/1.json
-  def update
-    respond_to do |format|
-      if @session.update(session_params)
-        format.html { redirect_to session_url(@session), notice: "Session was successfully updated." }
-        format.json { render :show, status: :ok, location: @session }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /sessions/1 or /sessions/1.json
-  def destroy
-    @session.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to sessions_url, notice: "Session was successfully destroyed." }
-      format.json { head :no_content }
+      render json: { error: "Failed to revoke RSVP" }, status: :unprocessable_entity
     end
   end
 

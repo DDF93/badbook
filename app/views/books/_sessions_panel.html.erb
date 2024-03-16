@@ -1,0 +1,28 @@
+<div class="sessions-panel">
+  <p class="sessions-panel-header"><%= @book.title %> Bookclubs</p>
+  <table id="books-sessions-table">
+  <tbody>
+    <% if @book_sessions.any? %>
+    <% @book_sessions.each do |session| %>
+      <tr>
+        <td class="book-session-start-time"><%= session.start_time.strftime("%a %d %b, %l:%M%p") %></td>
+        <td class="book-session-capacity"><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+        <td class="session-capacity">
+          <% if session.attendees.exists?(user_id: current_user.id) %>
+            <%= render "books/revoke_rsvp", session: session, book: @book %>
+          <% elsif session.attendees.count >= session.capacity %>
+            <span class="session-full">Full</span>
+          <% elsif session.start_time <= (Time.now + 15.minutes) %>
+            <%= render "books/join_session", session: session, book: @book %>
+          <% else %>
+            <%= render "books/rsvp", session: session, book: @book %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+    <p>No upcoming sessions.</p>
+  <% end %>
+</table>
+</div>
