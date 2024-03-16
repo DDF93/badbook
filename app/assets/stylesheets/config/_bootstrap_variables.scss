@@ -19,9 +19,14 @@ $danger:     $red;
 $warning:    $mid-cream;
 
 // Buttons & inputs' radius
-$border-radius:    50px;
-$border-radius-lg: 50px;
-$border-radius-sm: 50px;
+$border-radius:    15px;
+$border-radius-lg: 15px;
+$border-radius-sm: 15px;
+$dropdown-bg: $dark-gray;
+$dropdown-link-color: white;
+$dropdown-link-hover-color: $dark-gray;
+$dropdown-link-hover-bg: $light-cream;
+$dropdown-border-radius: 15px;
 
 // Carousel stuff
 $carousel-control-color: $dark-gray;
