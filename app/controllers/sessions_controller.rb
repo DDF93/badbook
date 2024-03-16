@@ -11,13 +11,17 @@ class SessionsController < ApplicationController
   end
 
   def rsvp
-    # Assuming you have current_user method defined by devise
-    @attendee = @session.attendees.build(user: current_user)
-
-    if @attendee.save
-      render json: { message: "RSVP successful" }, status: :ok
+    if current_user.attendees.exists?(session_id: @session.id)
+      flash[:alert] = "You are already attending this session."
+    elsif @session.attendees.count >= @session.capacity
+      flash[:alert] = "The session has reached its capacity."
     else
-      render json: { error: "Failed to RSVP" }, status: :unprocessable_entity
+      @attendee = @session.attendees.build(user: current_user)
+      if @attendee.save
+        flash[:notice] = "RSVP successful"
+      else
+        flash[:alert] = "Failed to RSVP"
+      end
     end
   end
 
