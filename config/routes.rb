@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   end
   resources :reviews, only: [:edit, :update, :show, :destroy]
   resources :sessions, only: [:show] do
+<<<<<<< HEAD
       resources :attendees, only: [:create]
       post 'join', on: :member
+=======
+    resources :attendees, only: [:create]
+    post 'join', on: :member
+>>>>>>> 83cfa35aa8459673cb2fda3befb6bdcf1fb9ee78
   end
   resources :topics
   resources :bookshelf_books

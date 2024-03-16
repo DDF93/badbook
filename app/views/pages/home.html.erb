@@ -3,8 +3,8 @@
     <div>
       <h1 class="display-1 mb-4">Your virtual book club for <br> good <span class="strike-through">and bad</span> books.</h1>
       <p class="lead">
-        <button class="btn btn-primary btn-lg mt-4 me-2 btn-explore">EXPLORE BOOKS</button>
-        <button class="btn btn-success btn-lg mt-4 ms-2 btn-sign-up">SIGN UP</button>
+        <%= link_to "EXPLORE BOOKS", books_path, class: "btn btn-primary btn-lg mt-4 me-2 btn-explore" %>
+        <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-success btn-lg mt-4 ms-2 btn-sign-up" %>
       </p>
     </div>
   </div>
@@ -15,13 +15,11 @@
   <br><br><br>
 </div>
 
-<%= render '/books/bookshelf_dropdown' %>
-
 <div class="cta-box">
   <div class="container">
     <h1>Join the Discussion</h1>
     <p>Review and discuss your latest reads with a like-minded community</p>
-    <button class="btn btn-primary btn-lg mt-4 me-2 btn-login">LOGIN</button>
-    <button class="btn btn-success btn-lg mt-4 ms-2 btn-sign-up">SIGN UP</button>
+    <%= link_to "LOGIN", new_user_session_path, class: "btn btn-primary btn-lg mt-4 me-2 btn-login" %>
+    <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-success btn-lg mt-4 ms-2 btn-sign-up" %>
   </div>
 </div>

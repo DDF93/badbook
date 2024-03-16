@@ -7,7 +7,7 @@
     <div class="book-show-book-info">
       <h1 class="book-show-book-title"><%= @book.title %></h1>
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
-      <div class="book-genre-tag">Sci-Fi</div>
+      <div class="book-genre-tag"><%= @book.genre %></div>
       <div class="book-description">
         <% if @description_longer_than_250 %>
           <p id="description-preview"><%= @preview_description %>...<a href="#" class="read-more">More</a></p>
@@ -46,8 +46,19 @@
   </div>
 </div>
 
+
+
+
 <div class="reviews-section">
-  <h1>Reviews</h1>
+  <div class="reviews-header">
+    <h1>Reviews</h1>
+    <div class="add-review-link-container">
+      <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
+        <i class="fas fa-plus"></i> Add a Review
+      <% end %>
+    </div>
+  </div>
+  </br>
   <ul class="review-list">
     <% @book.reviews.each do |review| %>
       <li class="review-item">
@@ -64,14 +75,18 @@
         <div class="review-description">
           <%= review.description %>
         </div>
+        <div class="actions">
+          <%= link_to "Edit",
+            edit_review_path(review.id),
+            class: "edit-review-link"%>
+          |
+          <%= link_to "Delete",
+            review_path(review),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %>
+        </div>
       </li>
     <% end %>
   </ul>
   </br>
-  <div class="text-center mt-3">
-  <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
-    <i class="fas fa-plus"></i> Add a Review
-  <% end %>
-  </div>
-
 </div>

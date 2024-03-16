@@ -8,13 +8,11 @@
   <button class="read-status-btn <%= 'read' if book_read %>" data-book-id="<%= book[:id]%>" data-toggle="tooltip" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
     <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
   </button>
-  <button class="add-btn" data-toggle="tooltip" title="Add to Bookshelf">
-    <i class="fa fa-plus"></i>
-  </button>
-  <div class="book-info">
 
+  <%= render 'books/bookshelf_dropdown' %>
+
+  <div class="book-info">
     <div class="book-title"><%= book[:title] %></div>
     <div class="book-author"><%= book[:author] %></div>
-
   </div>
 </div>
