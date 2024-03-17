@@ -5,3 +5,4 @@ import "@popperjs/core"
 import "bootstrap"
 import './controllers/navbar.js'
 import './controllers/book_description.js'
+import './controllers/voting_controller.js'

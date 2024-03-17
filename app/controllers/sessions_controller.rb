@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
   end
 
   def show
+    @session = Session.find(params[:id])
+    @attendees = @session.attendees.includes(:user).map(&:user)
+    @session_agendas = @session.agendas.sort_by(&:score).reverse
   end
 
   def rsvp

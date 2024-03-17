@@ -1,0 +1,113 @@
+.agenda-panel {
+  height: calc(100vh - 100px);
+  position: relative;
+  overflow-y: auto;
+}
+
+.submit-agenda-point {
+  position: sticky;
+  bottom: 0;
+  padding: 15px;
+  background-color: $dark-gray;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.submit-agenda-point-input {
+  background-color: white;
+  border-top-left-radius: 20px;;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.submit-agenda-point-btn {
+  border-color: $mid-gray;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.list-group-item {
+  padding: 10px;
+  background-color: white;
+  border-color: $border-gray;
+}
+
+.agenda-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 50px;
+  position: relative;
+}
+
+.agenda-item-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-right: 25px;
+  padding-bottom: 25px;
+}
+
+.agenda-content {
+  font-size: 15px;
+  color: $dark-gray;
+}
+
+.submitted-by {
+  font-size: 12px;
+  color: $light-gray-text;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.agenda-item-votes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circular-button {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upvote-button {
+  background-color: $light-gray-text;
+  border-color: $light-gray-text;
+  border-style: solid;
+}
+
+.downvote-button {
+  background-color: $light-gray-text;
+  border-color: $light-gray-text;
+  border-style: solid;
+  margin-top: 8px;
+}
+
+.upvote-icon,
+.downvote-icon {
+  color: #fff;
+}
+
+.score {
+  font-size: 14px;
+  text-decoration: bold;
+  color: $mid-gray;
+  margin-top: 6px;
+}
