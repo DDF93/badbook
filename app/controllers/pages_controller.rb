@@ -16,4 +16,8 @@ class PagesController < ApplicationController
     @bookshelf = Bookshelf.new(bookshelf_params)
   end
 
+  def my_library
+    @sessions = current_user.sessions
+  end
+
 end
