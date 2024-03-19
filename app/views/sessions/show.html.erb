@@ -1,10 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @session %>
-
-<div>
-  <%= link_to "Edit this session", edit_session_path(@session) %> |
-  <%= link_to "Back to sessions", sessions_path %>
-
-  <%= button_to "Destroy this session", @session, method: :delete %>
+<div class="session-container">
+  <div class="row">
+    <div class="col-md-4 py-md-2">
+      <div class="sessions-page-component-header"><%= @session.book.title %> Bookclub Agenda</div>
+      <%= render partial: 'agenda_panel', locals: { session: @session, attendees: @attendees } %>
+    </div>
+    <div class="col-md-8 py-md-2">
+      <div class="zoom-container">
+        <div class="sessions-page-component-header"><i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38</div>
+        <div class="zoom-placeholder">Zoom Integration Placeholder</div>
+      </div>
+      <div class="attendees-container">
+        <div class="sessions-page-component-header">Participants</div>
+        <ul class="list-unstyled">
+          <% @attendees.each do |attendee| %>
+            <li><span class="counter-pill-light"><%= attendee.email %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+<br><br>

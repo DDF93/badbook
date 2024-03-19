@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_195837) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_134507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agendas", force: :cascade do |t|
+    t.text "content"
+    t.bigint "session_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "upvotes"
+    t.integer "downvotes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_agendas_on_session_id"
+    t.index ["user_id"], name: "index_agendas_on_user_id"
+  end
 
   create_table "attendees", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -98,6 +110,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_195837) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "agendas", "sessions"
+  add_foreign_key "agendas", "users"
   add_foreign_key "attendees", "sessions"
   add_foreign_key "attendees", "users"
   add_foreign_key "bookshelf_books", "books"

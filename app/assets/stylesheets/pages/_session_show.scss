@@ -1,0 +1,29 @@
+.session-container {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.zoom-container {
+  height: 50vh;
+}
+
+.zoom-placeholder {
+  height: 100%;
+  background-color: $light-gray-text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.attendees-container {
+  background-color: #f9f9f9;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.sessions-page-component-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,17 @@
+<div class="agenda-panel">
+  <div class="agenda-points"
+       data-controller="voting"
+       data-voting-book-id-value="<%= @session.book.id %>"
+       data-voting-session-id-value="<%= @session.id %>">
+    <ul class="list-group">
+      <% @session_agendas.each do |agenda| %>
+        <li class="list-group-item">
+          <%= render partial: 'agenda_item', locals: { agenda: agenda } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="submit-agenda-point">
+    <%= render partial: 'agenda_form' %>
+  </div>
+</div>

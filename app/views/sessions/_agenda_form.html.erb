@@ -1,0 +1,10 @@
+<%= form_with(model: [ @session.book, @session, @session.agendas.build ], local: true) do |form| %>
+  <div class="input-group custom-input-group">
+    <%= form.text_field :content, class: "form-control submit-agenda-point-input", placeholder: "Submit an agenda item" %>
+    <div class="input-group-append">
+      <%= form.button type: "submit", class: "btn submit-agenda-point-btn", title: "Submit" do %>
+        <i class="far fa-paper-plane text-white"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
