@@ -10,22 +10,20 @@
           <div class="col-md-4">
             <p class="footer-links-header">BROWSE</p>
             <ul class="list-unstyled footer-links">
-              <li><a href="#">Books</a></li>
-              <li><a href="#">Sessions</a></li>
+              <li><%= link_to "Books", books_path %></li>
+              <li><%= link_to "Bookclubs", sessions_path %></li>
             </ul>
           </div>
           <div class="col-md-4">
             <p class="footer-links-header">JOIN</p>
             <ul class="list-unstyled footer-links">
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">Help</a></li>
+              <li><%= link_to "Sign Up", new_user_session_path %></li>
             </ul>
           </div>
           <div class="col-md-4">
             <p class="footer-links-header">FOLLOW</p>
             <ul class="list-unstyled footer-social">
-              <li><a href="#"><i class="fab fa-github"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="https://github.com/DDF93/badbook"><i class="fab fa-github"></i></a></li>
             </ul>
           </div>
         </div>

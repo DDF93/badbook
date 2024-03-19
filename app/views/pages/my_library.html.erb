@@ -1,6 +1,6 @@
-<h2 class="carousel-header"><i class="fa-regular fa-bookmark"></i> My Library</h2>
+<h2 class="carousel-header">My Library</h2>
 
-<p class="sessions-page-component-header" style="text-align: center;">Your Calendar <span class="counter-pill"><%= current_user.sessions.count %> Bookclubs</span></p>
+<p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-calendar-days" style="padding-right: 8px;"></i> Calendar <span class="counter-pill-pink"><%= current_user.sessions.count %></span></p>
 <table id="sessions-table">
   <tbody>
     <% @sessions.each do |session| %>
@@ -21,4 +21,4 @@
   </tbody>
 </table>
 
-<p class="sessions-page-component-header" style="text-align: center;">Your Bookshelves <span class="counter-pill"><%= current_user.bookshelves.count %></span></p>
+<p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-book" style="padding-right: 8px;"></i> Bookshelves <span class="counter-pill-pink"><%= current_user.bookshelves.count %></span></p>
