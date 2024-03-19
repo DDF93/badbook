@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     post 'join', on: :member
   end
   post '/add_book_to_bookshelf', to: 'bookshelves#add_book_to_bookshelf'
+  post '/remove_book_from_bookshelf', to: 'bookshelves#remove_book_from_bookshelf'
   resources :topics
   resources :bookshelf_books
   resources :bookshelves
