@@ -21,13 +21,15 @@ Rails.application.routes.draw do
     resources :attendees, only: [:create]
     post 'join', on: :member
   end
-
+  post '/add_book_to_bookshelf', to: 'bookshelves#add_book_to_bookshelf'
   resources :topics
   resources :bookshelf_books
   resources :bookshelves
   devise_for :users
 
   get '/my_library', to: 'pages#my_library'
+  post '/bookshelves', to: 'bookshelves#create'
+
 
   root to: "pages#home"
   get "up" => "rails/health#show", as: :rails_health_check
