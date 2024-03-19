@@ -8,7 +8,8 @@
   <div class="dropdown d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center d-none" data-dropdown-target="menu">
     <ul class="dropdown-menu position-static d-grid gap-1 p-2 mx-0 shadow w-220px position-absolute mt-5" data-bs-theme="light">
       <% Bookshelf.where(user_id: current_user).each do |shelf| %>
-        <% if BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
+        <% if shelf.name == "Read Books" %>
+        <% elsif BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
           <!-- Display checkmark only if the book is assigned to this bookshelf -->
           <li class="dropdown-item">
             <%= shelf.name %>
