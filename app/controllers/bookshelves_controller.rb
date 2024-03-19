@@ -39,15 +39,13 @@ class BookshelvesController < ApplicationController
 
   # POST /bookshelves or /bookshelves.json
   def create
-    @bookshelf = Bookshelf.new(bookshelf_params)
+    @bookshelf = current_user.bookshelves.new(bookshelf_params)
 
     respond_to do |format|
       if @bookshelf.save
-        format.html { redirect_to bookshelf_url(@bookshelf), notice: "Bookshelf was successfully created." }
-        format.json { render :show, status: :created, location: @bookshelf }
+        format.json { render json: { message: "Bookshelf was successfully created." }, status: :created }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @bookshelf.errors, status: :unprocessable_entity }
+        format.json { render json: { error: @bookshelf.errors.full_messages.join(", ") }, status: :unprocessable_entity }
       end
     end
   end
