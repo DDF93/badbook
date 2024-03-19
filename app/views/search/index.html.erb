@@ -1,0 +1,13 @@
+<% if @books.any? %>
+  <div class="books-container mt-4 mb-4 mx-auto p-5">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
+      <% @books.each do |book| %>
+        <div class="col mb-4">
+          <%= render 'books/book_tile', book: book %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p>No results found</p>
+<% end %>

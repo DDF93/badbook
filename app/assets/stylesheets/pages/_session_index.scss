@@ -73,6 +73,19 @@
   font-size: 20px;
 }
 
+.book-session-start-time {
+  line-height: 1;
+}
+
+.session-date {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.session-time {
+  font-size: 0.9em;
+}
+
 #books-sessions-table {
   width: 100%;
   border-collapse: separate;
@@ -93,4 +106,10 @@
 
 #book-sessions-table .book-session-start-time, .book-session-capacity {
   font-size: 0.9em;
+}
+
+.session-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

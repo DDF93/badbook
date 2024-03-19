@@ -84,8 +84,6 @@
 #       genre: genre
 #     )
 #   end
-
-
 # end
 
 # get_books_by_genre('Romance')
@@ -99,24 +97,48 @@
 # get_books_by_genre('Thriller')
 # get_books_by_genre('Historical Fiction')
 
-# seed for sessions
-user = User.first
-book1 = Book.find_by(title: 'Dune')
-book2 = Book.find_by(title: 'Twilight')
+# seeding some users and adding them to sessions
+10.times do |i|
+  User.create!(
+    email: "user#{i}@example.com",
+    password: "password"
+  )
+end
 
-Session.create([
-  {
-    book_id: book1.id,
-    user_id: user.id,
-    capacity: 15,
-    start_time: 2.days.from_now,
-    video_link: 'http://example.com/session1'
-  },
-  {
-    book_id: book2.id,
-    user_id: user.id,
-    capacity: 15,
-    start_time: 1.week.from_now,
-    video_link: 'http://example.com/session2'
-  }
-])
+# seeding sessions
+# user = User.first
+# book1 = Book.find_by(title: 'Dune')
+# book2 = Book.find_by(title: 'Twilight')
+
+# start_date = Date.today.beginning_of_week
+# end_date = 2.months.from_now
+
+# (start_date..end_date).select { |d| d.wday.in?([2, 4, 6]) }.each do |date|
+#   Session.create!(
+#     book_id: book1.id,
+#     user_id: user.id,
+#     capacity: 15,
+#     start_time: date.to_time.change(hour: 19),
+#     video_link: 'http://example.com/session_dune'
+#   )
+# end
+
+# (start_date..end_date).select { |d| d.wday == 1 }.each do |date|
+#   Session.create!(
+#     book_id: book2.id,
+#     user_id: user.id,
+#     capacity: 15,
+#     start_time: date.to_time.change(hour: 20),
+#     video_link: 'http://example.com/session_twilight'
+#   )
+# end
+
+# seeding attendees to sessions
+users = User.all
+
+Session.find_each do |session|
+  Attendee.create!(
+    session: session,
+    user: users.sample
+  )
+end

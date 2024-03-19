@@ -1,0 +1,24 @@
+<h2 class="carousel-header"><i class="fa-regular fa-bookmark"></i> My Library</h2>
+
+<p class="sessions-page-component-header" style="text-align: center;">Your Calendar <span class="counter-pill"><%= current_user.sessions.count %> Bookclubs</span></p>
+<table id="sessions-table">
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td>
+          <span class="session-book-name"><%= link_to session.book.title, book_path(session.book) %></span>
+          <br>
+          <span class="book-author"><%= session.book.author %></span>
+        </td>
+        <td class="session-countdown"><%= session_countdown(session.start_time) %></td>
+        <td class="session-start-time">Starts <%= session.start_time.strftime("%a %d %b, %l:%M%p") %></td>
+        <td class="session-capacity"><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+        <td class="session-capacity">
+          <%= render "books/revoke_rsvp", session: session, book: session.book %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="sessions-page-component-header" style="text-align: center;">Your Bookshelves <span class="counter-pill"><%= current_user.bookshelves.count %></span></p>

@@ -43,6 +43,7 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: 'Book was successfully marked as read.' }
       format.json { head :no_content }
     end
+
   end
 
 private
@@ -52,7 +53,8 @@ private
   end
 
   def set_session
-    @session = Session.find(params[:id])
+    @book = Book.find(params[:id])
+    @sessions = @book.sessions
   end
 
 

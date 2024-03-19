@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_session, only: %i[ show rsvp ]
 
   def index
@@ -6,6 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def show
+    @session = Session.find(params[:id])
+    @attendees = @session.attendees.includes(:user).map(&:user)
+    @session_agendas = @session.agendas.sort_by(&:score).reverse
   end
 
   def index
@@ -27,7 +31,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  # POST /sessions or /sessions.json
   def create
     @session = Session.new(session_params)
 
