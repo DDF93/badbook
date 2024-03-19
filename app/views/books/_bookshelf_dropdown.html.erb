@@ -35,13 +35,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="createBookshelfForm">
-          <div class="mb-3">
-            <label for="bookshelfName" class="form-label">Bookshelf Name</label>
-            <input type="text" class="form-control" id="bookshelfName" name="bookshelfName">
-          </div>
-          <button type="submit" class="btn btn-primary" data-action="submit->modal#submit">Create Bookshelf</button>
-        </form>
+<form id="createBookshelfForm" data-action="submit->modal#submit" method="post" action="/bookshelves">
+  <div class="mb-3">
+    <label for="bookshelfName" class="form-label">Bookshelf Name</label>
+    <input type="text" class="form-control" id="bookshelfName" name="bookshelf[name]">
+  </div>
+  <button type="submit" class="btn btn-primary">Create Bookshelf</button>
+</form>
       </div>
     </div>
   </div>
