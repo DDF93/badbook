@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def show
     @session = Session.find(params[:id])
     @attendees = @session.attendees.includes(:user).map(&:user)
-    @session_agendas = @session.agendas.sort_by(&:score).reverse
+    @session_agendas = @session.agendas
   end
 
   def index

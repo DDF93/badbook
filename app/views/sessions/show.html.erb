@@ -1,21 +1,22 @@
 <div class="session-container">
   <div class="row">
-    <div class="col-md-4 py-md-2">
+    <div class="col-md-4 py-md-3 agenda-panel-col">
       <div class="sessions-page-component-header"><%= @session.book.title %> Bookclub Agenda</div>
       <%= render partial: 'agenda_panel', locals: { session: @session, attendees: @attendees } %>
+      <div class="submit-agenda-point">
+        <%= render partial: 'agenda_form' %>
+      </div>
     </div>
-    <div class="col-md-8 py-md-2">
+    <div class="col-md-8 py-md-3 zoom-col">
       <div class="zoom-container">
-        <div class="sessions-page-component-header"><i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38</div>
+        <div class="sessions-page-component-header-white"><i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38</div>
         <div class="zoom-placeholder">Zoom Integration Placeholder</div>
       </div>
       <div class="attendees-container">
         <div class="sessions-page-component-header">Participants</div>
-        <ul class="list-unstyled">
           <% @attendees.each do |attendee| %>
-            <li><span class="counter-pill-light"><%= attendee.email %></span></li>
+            <span class="counter-pill-light"><%= attendee.email %></span>
           <% end %>
-        </ul>
       </div>
     </div>
   </div>

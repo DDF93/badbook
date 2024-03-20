@@ -88,16 +88,22 @@
 }
 
 .upvote-button {
-  background-color: $light-gray-text;
-  border-color: $light-gray-text;
+  background-color: $vote-buttons;
+  border-color: $vote-buttons;
   border-style: solid;
 }
 
 .downvote-button {
-  background-color: $light-gray-text;
-  border-color: $light-gray-text;
+  background-color: $vote-buttons;
+  border-color: $vote-buttons;
   border-style: solid;
   margin-top: 8px;
+}
+
+.selected-vote {
+  background-color: $dark-gray;
+  border-color: $dark-gray;
+  border-style: solid;
 }
 
 .upvote-icon,

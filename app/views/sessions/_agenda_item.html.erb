@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "agenda_#{agenda.id}" do %>
-  <div class="agenda-item">
+  <div id="agenda-<%= agenda.id %>" class="agenda-item" data-score="<%= (agenda.upvotes || 0) - (agenda.downvotes || 0) %>">
     <div class="agenda-item-text">
       <div class="agenda-content">
         <%= agenda.content %>
@@ -9,33 +9,32 @@
       </div>
     </div>
     <div class="agenda-item-votes">
-      <div class="buttons">
-        <button type="submit"
-                formaction="<%= upvote_book_session_agenda_path(@session.book, @session, agenda) %>"
-                formmethod="post"
-                data-controller="voting"
-                data-action="click->voting#upvote"
-                data-voting-agenda-id-value="<%= agenda.id %>"
-                data-voting-book-id-value="<%= @session.book.id %>"
-                data-voting-session-id-value="<%= @session.id %>"
-                class="circular-button upvote-button">
-          <i class="fa-solid fa-arrow-up fa-xs upvote-icon"></i>
-        </button>
-        <button type="submit"
-                formaction="<%= downvote_book_session_agenda_path(@session.book, @session, agenda) %>"
-                formmethod="post"
-                data-controller="voting"
-                data-action="click->voting#downvote"
-                data-voting-agenda-id-value="<%= agenda.id %>"
-                data-voting-book-id-value="<%= @session.book.id %>"
-                data-voting-session-id-value="<%= @session.id %>"
-                class="circular-button downvote-button">
-          <i class="fa-solid fa-arrow-down fa-xs downvote-icon"></i>
-        </button>
-      </div>
-      <div class="score" id="agenda-calculated-score-<%= agenda.id %>">
-        <%= (agenda.upvotes || 0) - (agenda.downvotes || 0) %>
-      </div>
+    <div class="buttons">
+      <button type="submit"
+              formaction="<%= upvote_book_session_agenda_path(@session.book, @session, agenda) %>"
+              formmethod="post"
+              data-controller="voting"
+              data-action="click->voting#upvote" data-vote-button-target="button"
+              data-voting-agenda-id-value="<%= agenda.id %>"
+              data-voting-book-id-value="<%= @session.book.id %>"
+              data-voting-session-id-value="<%= @session.id %>"
+              class="circular-button upvote-button">
+        <i class="fa-solid fa-arrow-up fa-xs upvote-icon"></i>
+      </button>
+      <button type="submit"
+              formaction="<%= downvote_book_session_agenda_path(@session.book, @session, agenda) %>"
+              formmethod="post"
+              data-controller="voting"
+              data-action="click->voting#downvote" data-vote-button-target="button"
+              data-voting-agenda-id-value="<%= agenda.id %>"
+              data-voting-book-id-value="<%= @session.book.id %>"
+              data-voting-session-id-value="<%= @session.id %>"
+              class="circular-button downvote-button">
+        <i class="fa-solid fa-arrow-down fa-xs downvote-icon"></i>
+      </button>
+    </div>
+    <div class="score" id="agenda-calculated-score-<%= agenda.id %>">
+      <%= (agenda.upvotes || 0) - (agenda.downvotes || 0) %>
     </div>
   </div>
 <% end %>

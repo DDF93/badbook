@@ -1,15 +1,23 @@
-.session-container {
-  margin-left: 40px;
-  margin-right: 40px;
+.agenda-panel-col {
+  background-color: $mid-cream;
+  padding-left: 24px;
+  padding-right: 16px;
+  border-right: 1px solid $dark-gray;
+}
+
+.zoom-col {
+  background-color: $dark-gray;
 }
 
 .zoom-container {
-  height: 50vh;
+  height: calc(100vh - 100px);
+  position: relative;
+  overflow-y: auto;
 }
 
 .zoom-placeholder {
-  height: 100%;
-  background-color: $light-gray-text;
+  height: 500px;
+  background-color: #656565;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,12 +26,22 @@
 
 .attendees-container {
   background-color: #f9f9f9;
-  margin-top: 10px;
   padding: 20px;
-  border-radius: 20px;
+  position: sticky;
+  bottom: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 0;
 }
 
 .sessions-page-component-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sessions-page-component-header-white {
+  color: white;
   font-size: 18px;
   margin-bottom: 10px;
 }
