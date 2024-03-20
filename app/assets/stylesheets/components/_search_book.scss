@@ -1,8 +1,19 @@
- .search-input,
-  .search-button {
-    border-radius: 0.25rem;
-    }
+.search-input {
+  border-color: white;
+  background-color: white;
+  margin-left: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
-    .search-input {
-      margin-right: 3px;
-    }
+.search-button {
+  background-color: white;
+  border-color: white;
+  color: $pink;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

@@ -13,7 +13,7 @@
 .transparent-navbar {
   background-color: transparent !important;
   transition: background-color 0.3s ease-in-out;
-  border-bottom: none;
+  border-bottom: 1px solid $dark-gray;
 }
 
 .nav-link {
