@@ -105,7 +105,7 @@ get_books_by_genre('Historical Fiction')
   )
 end
 
-seeding sessions
+# seeding sessions
 user = User.first
 book1 = Book.find_by(title: 'Dune')
 book2 = Book.find_by(title: 'Twilight')

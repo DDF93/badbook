@@ -12,7 +12,9 @@
         <% elsif BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
           <!-- Display checkmark only if the book is assigned to this bookshelf -->
           <li class="dropdown-item">
+          <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#removeFromBookshelf">
             <%= shelf.name %>
+            </a>
             <i class="fa fa-check" style="margin-left: 5px;"></i>
           </li>
         <% else %>
