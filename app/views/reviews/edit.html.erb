@@ -18,9 +18,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update", class: "bold-button" %>
+    <%= link_to "Cancel", book_path(@book), class: "cancel-button" %>
+    <%= f.button :submit, "Save", class: "bold-button" %>
   </div>
-
   <% end %>
- <%= link_to "Back", book_path(@book) %>
 </div>

@@ -1,6 +1,40 @@
+// Containers and header area
+
 .reviews-section {
   margin-top: 20px;
 }
+
+.reviews-section-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviews-header p {
+  margin: 0;
+  font-size: 26px;
+}
+
+.add-review-link-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.btn.btn-primary.btn-sm.add-review-link {
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 0 auto;
+  color: white;
+  border-radius: 50px;
+}
+
+// Reviews list
 
 .review-list {
   list-style-type: none;
@@ -8,28 +42,49 @@
 }
 
 .review-item {
-  border: 0.5px solid #dbdbdb;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 20px;
-  padding: 15px;
-  background-color: $light-cream;
+  padding: 20px;
+  border: 1px solid $light-gray;
 }
 
 .rating-section {
-  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
 }
+
+// Reviews inner content
 
 .rating-stars {
   color: $yellow;
 }
 
 .review-description {
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 30px;
 }
 
-.add-review-link {
-  display: block;
-  margin-top: 20px;
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.user-email {
+  flex-grow: 1;
+  font-size: 14px;
+  color: $light-gray-text;
+}
+
+.actions {
+  align-self: flex-end;
+  font-size: 14px;
+}
+
+// Form
+
+.rating-dropdown  {
+  margin-top: 0.5rem;
 }
 
 .centered-form {
@@ -39,40 +94,29 @@
 
   h1 {
     padding: 20px;
-    margin-bottom: 20px;
     text-align: center;
   }
 }
 
-.bold-button {
-  font-weight: bold;
-  display: block;
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-}
+// Form actions
 
-.btn.btn-primary.btn-sm.add-review-link {
-  font-size: 16px;
-  width: 170px;
-  margin: 0 auto;
-}
-
-.rating-dropdown  {
-    margin-top: 0.5rem;
-}
-
-.actions {
-  text-align: right;
-  margin-top: 10px;
-}
-
-.reviews-header {
+.form-actions {
+  margin-top: 60px;
+  margin-bottom: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.add-review-link-container {
-  margin-left: auto;
+.bold-button {
+  display: block;
+  margin: 20px auto;
+  border-radius: 50px;
+  background-color: $dark-gray;
+  color: white;
+  margin: 0 5px;
+}
+
+.cancel-button {
+  margin: 0 5px;
 }

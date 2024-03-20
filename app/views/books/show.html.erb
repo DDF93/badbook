@@ -6,6 +6,7 @@
 
     <div class="book-show-book-info">
       <h1 class="book-show-book-title"><%= @book.title %></h1>
+
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
       <div class="book-genre-tag"><%= @book.genre %></div>
       <div class="book-description">
@@ -25,45 +26,44 @@
 
 
 <div class="reviews-section">
-  <div class="reviews-header">
-    <h1>Reviews</h1>
-    <div class="add-review-link-container">
-      <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
-        <i class="fas fa-plus"></i> Add a Review
-      <% end %>
+  <div class ="reviews-section-content">
+    <div class="reviews-header">
+      <p>Reviews</p>
+      <div class="add-review-link-container">
+        <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
+          <i class="fas fa-plus" style="padding-right: 4px;"></i> Add a Review
+        <% end %>
+      </div>
     </div>
+    </br>
+    <ul class="review-list">
+      <% @book.reviews.each do |review| %>
+        <li class="review-item">
+          <div class="rating-section">
+            <div class="rating-stars">
+              <% review.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+            </div>
+          </div>
+          <div class="review-description">
+            <%= review.description %>
+          </div>
+          <div class="review-footer">
+            <div class="user-email">
+              <i class="fa-regular fa-user" style="padding-right: 8px;"></i> <%= review.user.email %>
+            </div>
+            <div class="actions">
+              <% if current_user && current_user.id == review.user_id %>
+                <%= link_to "Edit", edit_review_path(review.id), class: "edit-review-link"%>
+                |
+                <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    </br>
   </div>
-  </br>
-  <ul class="review-list">
-    <% @book.reviews.each do |review| %>
-      <li class="review-item">
-        <div class="review-header">
-          <%= review.user.email %>
-        </div>
-        <div class="rating-section">
-          <div class="rating-stars">
-            <% review.rating.times do %>
-              <i class="fas fa-star"></i>
-            <% end %>
-          </div>
-        </div>
-        <div class="review-description">
-          <%= review.description %>
-        </div>
-        <div class="actions">
-          <% if current_user && current_user.id == review.user_id %>
-            <%= link_to "Edit",
-              edit_review_path(review.id),
-              class: "edit-review-link"%>
-            |
-            <%= link_to "Delete",
-              review_path(review),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-            %>
-          <% end %>
-          </div>
-      </li>
-    <% end %>
-  </ul>
-  </br>
 </div>
