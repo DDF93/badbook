@@ -17,7 +17,6 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  color: white;
   border: none;
   display: flex;
   justify-content: center;
@@ -26,18 +25,22 @@
 
 .read-status-btn {
   left: 10px;
-  background-color: rgba(128, 128, 128, 0.7);
-  border: rgb(216, 216, 216) 1.5px solid;
+  background-color: rgba(128, 128, 128, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .read-status-btn.read {
-  background-color: #E4929F;
+  background-color: $green;
+  border-color: $green;
+  border-style: solid;
+  color: white;
 }
 
 .add-btn {
   right: 10px;
   background-color: white;
-  color: #404040;
+  color: $dark-gray;
 }
 
 .book-info {
