@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     @mystery_books = Book.where(genre: 'Mystery')
     @thriller_books = Book.where(genre: 'Thriller')
     @historical_fiction_books = Book.where(genre: 'Historical Fiction')
-    @bookclub_collection = Book.all.limit(15)
+    @bookclub_collection = Book.all.first(15)
     read_books_shelf = current_user.bookshelves.find_by(name: 'Read Books')
     @read_books = read_books_shelf.present? ? read_books_shelf.books.to_a : []
   end
