@@ -1,8 +1,24 @@
-
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["menu"];
+
+  connect() {
+    // Add event listener to close dropdown when clicking outside of it
+    document.addEventListener('click', this.closeDropdownOutside.bind(this));
+  }
+
+  closeDropdownOutside(event) {
+    // Check if the clicked element is within the dropdown menu or the button
+    if (!this.element.contains(event.target) && !event.target.closest('.dropdown')) {
+      this.hideDropdown();
+    }
+  }
+
+  hideDropdown() {
+    // Hide the dropdown menu
+    this.menuTarget.classList.add("d-none");
+  }
 
   toggle() {
     this.menuTarget.classList.toggle("d-none");
@@ -69,6 +85,11 @@ export default class extends Controller {
       console.error('There was a problem with your fetch operation:', error);
       // Handle error
     });
+  }
+
+  disconnect() {
+    // Remove event listener when the controller is disconnected
+    document.removeEventListener('click', this.closeDropdownOutside.bind(this));
   }
 
 }
