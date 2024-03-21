@@ -1,32 +1,33 @@
 <div class="sessions-panel">
   <p class="sessions-panel-header"><%= @book.title %> Bookclubs</p>
   <table id="books-sessions-table">
-  <tbody>
-    <% if @book_sessions.any? %>
-    <% @book_sessions.each do |session| %>
-      <tr>
-        <td class="book-session-start-time">
-          <span class="session-date"><%= session.start_time.strftime("%a %d %b") %></span>
-          <br>
-          <span class="session-time"><%= session.start_time.strftime("%l:%M%p") %></span>
-        </td>
-        <td class="book-session-capacity"><i class="fa-regular fa-user" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
-        <td class="session-action">
-          <% if session.attendees.exists?(user_id: current_user.id) %>
-            <%= render "books/revoke_rsvp", session: session, book: @book %>
-          <% elsif session.attendees.count >= session.capacity %>
-            <span class="session-full">Full</span>
-          <% elsif session.start_time <= (Time.now + 15.minutes) %>
-            <%= render "books/join_session", session: session, book: @book %>
-          <% else %>
-            <%= render "books/rsvp", session: session, book: @book %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-  <% else %>
-    <p>No upcoming sessions.</p>
-  <% end %>
-</table>
+    <tbody>
+      <% if @book_sessions.any? %>
+        <% @book_sessions.each do |session| %>
+          <tr>
+            <td class="book-session-start-time">
+              <span class="session-date"><%= session.start_time.strftime("%a %d %b") %></span>
+              <br>
+              <span class="session-time"><%= session.start_time.strftime("%l:%M%p") %></span>
+            </td>
+            <td class="book-session-capacity"><i class="fa-regular fa-user" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+            <td class="session-action">
+              <% if session.start_time <= (Time.now + 15.minutes) %>
+                <%= render "books/join_session", session: session, book: @book %>
+              <% elsif session.attendees.count >= session.capacity %>
+                <span class="session-full">Full</span>
+                <% elsif session.attendees.exists?(user_id: current_user.id) %>
+                  <%= render "books/revoke_rsvp", session: session, book: @book %>
+                <% else %>
+                  <%= render "books/rsvp", session: session, book: @book %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <p>No upcoming sessions.</p>
+      <% end %>
+    </tbody>
+  </table>
 </div>
