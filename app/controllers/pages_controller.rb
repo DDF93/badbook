@@ -18,6 +18,7 @@ class PagesController < ApplicationController
 
   def my_library
     @sessions = current_user.sessions
+    @bookshelves = Bookshelf.where(user_id: current_user.id)
   end
 
 end

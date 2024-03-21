@@ -20,5 +20,24 @@
     <% end %>
   </tbody>
 </table>
+<br>
 
 <p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-book" style="padding-right: 8px;"></i> Bookshelves <span class="counter-pill-pink"><%= current_user.bookshelves.count %></span></p>
+<table id="sessions-table">
+  <tbody>
+    <% @bookshelves.each do |bookshelf| %>
+      <tr>
+        <td><span class="session-book-name"><%= bookshelf.name %></span></td>
+        <td>
+          <% bookshelf.books.each do |book| %>
+            <%= link_to image_tag(book.image_url, style: "width: 50px; height: 75px; margin-right: 10px;", alt: book.title), book_path(book) if book.image_url.present? %>
+          <% end %>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-bookshelf-id="<%= bookshelf.id %>">
+            Delete
+          </button>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
