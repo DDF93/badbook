@@ -14,12 +14,14 @@
               <li><%= link_to "Bookclubs", sessions_path %></li>
             </ul>
           </div>
+        <% unless user_signed_in? %>
           <div class="col-md-4">
             <p class="footer-links-header">JOIN</p>
             <ul class="list-unstyled footer-links">
-              <li><%= link_to "Sign Up", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
             </ul>
           </div>
+        <% end %>
           <div class="col-md-4">
             <p class="footer-links-header">FOLLOW</p>
             <ul class="list-unstyled footer-social">

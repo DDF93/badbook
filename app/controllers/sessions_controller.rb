@@ -25,8 +25,11 @@ class SessionsController < ApplicationController
       @attendee = @session.attendees.build(user: current_user)
       if @attendee.save
         flash[:notice] = "RSVP successful"
+        spots_left = @session.capacity - @session.attendees.count
+        render json: { spots_left: spots_left}
       else
         flash[:alert] = "Failed to RSVP"
+        render json: { error: "Failed to RSVP" }, status: :unprocessable_entity
       end
     end
   end
@@ -51,6 +54,7 @@ class SessionsController < ApplicationController
     @attendee = @session.attendees.find_by(user_id: current_user.id)
 
     if @attendee.destroy
+      spots_left = @session.capacity - @session.attendees.count
       render json: { message: "RSVP revoked successfully" }, status: :ok
     else
       render json: { error: "Failed to revoke RSVP" }, status: :unprocessable_entity
