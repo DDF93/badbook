@@ -35,6 +35,9 @@ class BooksController < ApplicationController
     @preview_description = preview_characters
     @full_description = sentence_case_description
     @description_longer_than_250 = description_longer_than_250_characters
+
+    # Initialize @review
+    @review = Review.new
   end
 
   def mark_as_read
