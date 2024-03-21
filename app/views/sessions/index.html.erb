@@ -20,7 +20,7 @@
             <%= render "books/revoke_rsvp", session: session, book: session.book %>
           <% elsif session.attendees.count >= session.capacity %>
             <span class="session-full">Full</span>
-          <% elsif session.start_time <= (Time.now + 15.minutes) %>
+          <% elsif session.start_time <= (Time.current + 15.minutes) %>
             <%= render "books/join_session", session: session, book: session.book %>
           <% else %>
             <%= render "books/rsvp", session: session, book: session.book %>
