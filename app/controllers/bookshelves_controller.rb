@@ -81,12 +81,11 @@ class BookshelvesController < ApplicationController
     end
   end
 
-  # DELETE /bookshelves/1 or /bookshelves/1.json
   def destroy
     @bookshelf.destroy!
 
     respond_to do |format|
-      format.html { redirect_to bookshelves_url, notice: "Bookshelf was successfully destroyed." }
+      format.html { redirect_to my_library_path, notice: "Bookshelf deleted." }
       format.json { head :no_content }
     end
   end

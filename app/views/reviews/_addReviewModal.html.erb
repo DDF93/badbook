@@ -1,19 +1,36 @@
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal"> <i class="fas fa-plus" style="padding-right: 4px;"></i>
-        Add a review
-      </button>
+<button type="button" class="btn-rsvp" data-bs-toggle="modal" data-bs-target="#reviewModal"> <i class="fa fa-plus" style="padding-right: 4px;"></i>
+  Add
+</button>
 
-<!-- Modal -->
-      <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="reviewModal">Leave a review below!</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-white-background">
+      <%= simple_form_for([@book, @review]) do |f| %>
+        <div class="modal-header">
+          <p class="modal-title" id="reviewModal">Reviewing <%= @book.title %></p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <div class="rating-input">
+              <%= f.label :rating, "Rating" %>
+              <div class="rating-dropdown">
+                <%= f.select :rating, options_for_select((1..5).map { |num| [raw("#{num} #{'&#9733;' * num}"), num] }), {}, { class: 'form-control' } %>
+              </div>
             </div>
-            <div class="modal-body">
-              <%= render 'reviews/form' %>
-            </div>
+            <br>
+            <%= f.input :description, label: "Review", as: :text, input_html: { class: "review-textarea" } %>
           </div>
         </div>
-      </div>
+
+        <div class="modal-footer">
+          <%= link_to "Cancel", book_path(@book), class: "cancel-button", data: { bs_dismiss: "modal" } %>
+          <%= f.button :submit, "Create Review", class: "bold-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

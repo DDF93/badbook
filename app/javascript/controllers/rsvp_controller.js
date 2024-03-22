@@ -22,24 +22,28 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        console.log("RSVP successful");
-        // Update UI to reflect successful RSVP
-        this.showNotification("RSVP successful");
+        response.json().then(data => {
+          console.log("RSVP successful");
+          window.location.href = data.session_path;
+        });
       } else {
         console.error("Failed to RSVP");
-        // Handle error or update UI accordingly
-        this.showNotification("Failed to RSVP");
+        this.showNotification("Failed to RSVP", false);
+        response.json().then(data => {
+          if(data.error) {
+            console.error("Error message:", data.error);
+            this.showNotification(data.error);
+          }
+        });
       }
     })
     .catch(error => {
       console.error("Error:", error);
-      // Handle error or update UI accordingly
       this.showNotification("An error occurred");
     });
   }
 
   showNotification(message) {
-    // You can implement your own notification system here
-    alert(message); // For simplicity, using JavaScript's alert function
+    alert(message);
   }
 }
