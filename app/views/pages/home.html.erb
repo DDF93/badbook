@@ -10,9 +10,15 @@
       </p>
     </div>
   </div>
-  <div>
+  <div id="homePageBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
     <h2 class="carousel-header">Bookclubs Now in Session</h2>
     <%= render 'books/carousel', books: @books %>
+  <button class="carousel-control-prev" type="button" data-bs-target="#homePageBooksCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#homePageBooksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
   </div>
   <br><br><br>
 </div>
