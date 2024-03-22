@@ -1,6 +1,7 @@
-<%= simple_form_for([@book, @review], html: { class: "full-width-form" }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="centered-form">
+  <%= simple_form_for([@book, @review]) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <div class="rating-input">
@@ -9,12 +10,13 @@
         <%= f.select :rating, options_for_select((1..5).map { |num| [raw("#{num} #{'&#9733;' * num}"), num] }), {}, { class: 'form-control' } %>
       </div>
     </div>
-    <br>
-    <%= f.input :description, label: "Description" %>
+    </br>
+    <%= f.input :description %>
   </div>
 
-  <div class="modal-footer">
-    <%= link_to "Cancel", book_path(@book), class: "btn btn-secondary", data: { bs_dismiss: "modal" } %>
-    <%= f.button :submit, "Create Review", class: "btn btn-primary" %>
+  <div class="form-actions">
+    <%= link_to "Cancel", book_path(@book), class: "cancel-button" %>
+    <%= f.button :submit, "Create Review", class: "bold-button" %>
   </div>
-<% end %>
+  <% end %>
+</div>
