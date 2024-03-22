@@ -26,14 +26,19 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Provides support for working with JSON data in Ruby.
 gem "json"
 
+# Provides a simple way to open and read data from URLs.
 gem "open-uri"
 
+# Generates fake data for testing and development purposes.
 gem "faker"
 
+# Adds advanced search capabilities to PostgreSQL databases.
 gem "pg_search"
 
+# Provides a user-friendly interface for managing the administration of a Rails application.
 gem "rails_admin", "3.0"
 
 # Use Redis adapter to run Action Cable in production
@@ -85,4 +90,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem "sassc-rails"
