@@ -55,6 +55,11 @@ books_by_id("crime_books", crime_books)
 books_by_id("science_fiction_books", science_fiction_books)
 
 
+
+
+Chatroom.create!(name: "to make it work for now")
+
+
 # def get_books_by_genre(genre)
 #   book_ids = []
 #   url = "https://www.googleapis.com/books/v1/volumes?q=subject:#{genre}&maxResults=20"
