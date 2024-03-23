@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
-    @chatroom = Chatroom.find(params[:id])
+    # @chatroom = Chatroom.find(params[:id])
+    @chatroom = Chatroom.first
     @message = Message.new
   end
 
