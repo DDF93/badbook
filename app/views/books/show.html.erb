@@ -18,24 +18,17 @@
         <% end %>
       </div>
     </div>
-        <%= render "books/sessions_panel"  %>
+    <%= render "books/sessions_panel"  %>
   </div>
 </div>
-
-
-
 
 <div class="reviews-section">
   <div class ="reviews-section-content">
     <div class="reviews-header">
-      <p>Reviews</p>
-      <div class="add-review-link-container">
-        <%= link_to new_book_review_path(@book), class: "btn btn-primary btn-sm add-review-link" do %>
-          <i class="fas fa-plus" style="padding-right: 4px;"></i> Add a Review
-        <% end %>
-      </div>
+      <h2>Reviews</h2>
+      <%= render 'reviews/addReviewModal' %>
     </div>
-    </br>
+    <br>
     <ul class="review-list">
       <% @book.reviews.each do |review| %>
         <li class="review-item">
@@ -64,6 +57,6 @@
         </li>
       <% end %>
     </ul>
-    </br>
+    <br>
   </div>
 </div>
