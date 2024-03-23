@@ -12,10 +12,13 @@
           <br>
           <span class="book-author"><%= session.book.author %></span>
         </td>
-        <td class="session-countdown"><%= session_countdown(session.start_time) %></td>
-        <td class="session-start-time">Starts <%= session.start_time.strftime("%a %d %b, %l:%M%p") %></td>
-        <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
-        <td class="session-capacity">
+        <td class="session-countdown">
+          <i class="fa-regular fa-clock" style="padding-right: 4px;"></i> <b><%= session_countdown(session.start_time) %></b>
+          <br>
+          <%= session.start_time.strftime("%a %d %b, %l:%M%p") %>
+        </td>
+                <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+        <td class="session-action">
           <% if session.attendees.exists?(user_id: current_user.id) %>
             <%= render "books/revoke_rsvp", session: session, book: session.book %>
           <% elsif session.attendees.count >= session.capacity %>

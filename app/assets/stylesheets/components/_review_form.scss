@@ -26,14 +26,6 @@
   align-items: center;
 }
 
-.btn.btn-primary.btn-sm.add-review-link {
-  font-size: 16px;
-  padding: 5px 10px;
-  margin: 0 auto;
-  color: white;
-  border-radius: 50px;
-}
-
 // Reviews list
 
 .review-list {
@@ -81,28 +73,9 @@
   font-size: 14px;
 }
 
-// Form
-
-.rating-dropdown  {
-  margin-top: 0.5rem;
-}
-
-.centered-form {
-  width: 50%;
-  margin: 0 auto;
-  padding: 30px;
-
-  h1 {
-    padding: 20px;
-    text-align: center;
-  }
-}
-
 // Form actions
 
 .form-actions {
-  margin-top: 60px;
-  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,10 +86,27 @@
   margin: 20px auto;
   border-radius: 50px;
   background-color: $dark-gray;
+  border-color: $dark-gray;
+  border-style: solid;
   color: white;
   margin: 0 5px;
+
+  &:hover {
+    background-color: $pink;
+    border-color: $pink;
+    border-style: solid;
+    color: white;
+  }
 }
 
 .cancel-button {
   margin: 0 5px;
+}
+
+
+// Modal
+
+.modal-white-background {
+  background-color: white !important;
+  border: none;
 }
