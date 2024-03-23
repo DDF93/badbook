@@ -8,7 +8,6 @@
       <h1 class="book-show-book-title"><%= @book.title %></h1>
 
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
-      <div class="book-genre-tag"><%= @book.genre %></div>
       <div class="book-description">
         <% if @description_longer_than_250 %>
           <p id="description-preview"><%= @preview_description %>...<a href="#" class="read-more">More</a></p>
