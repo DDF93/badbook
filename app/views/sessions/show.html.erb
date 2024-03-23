@@ -8,20 +8,23 @@
       </div>
     </div>
     <div class="col-md-8 py-md-3 zoom-col">
-      <div class="zoom-container">
+      <div class="zoom-container" data-controller="meeting-creation">
         <div data-controller="countdown"
             data-countdown-start-time-value="<%= @session.start_time.iso8601 %>"
             class="session-countdown">
           <i class="fa-regular fa-clock fa-xs" style="padding-right: 4px;"></i> <span data-countdown-target="time">00:00:00</span>
         </div>
-        <%= render "chatrooms/chats" %>
-  <%# <iframe src="https://badbook.whereby.com/demo-d08ac869-1607-4582-ac53-a6aea20204e9" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe> %>
+        <div data-meeting-creation-target="response"></div>
+        <div class="chatroom-target">
+          <%= render "chatrooms/chats"%>
+        </div>
+        <%# <iframe src="https://badbook.whereby.com/demo-d08ac869-1607-4582-ac53-a6aea20204e9" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe> %>
       </div>
       <div class="attendees-container">
         <div class="sessions-page-component-header">Participants</div>
-          <% @attendees.each do |attendee| %>
-            <span class="counter-pill-light"><%= attendee.email %></span>
-          <% end %>
+        <% @attendees.each do |attendee| %>
+          <span class="counter-pill-light"><%= attendee.email %></span>
+        <% end %>
       </div>
     </div>
   </div>

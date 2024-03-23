@@ -6,8 +6,7 @@ User.create!(
   password: "asdfgh"
 )
 
-bookclub_collection = ["I12oPwAACAAJ", "u7XrDwAAQBAJ", "xDtkEAAAQBAJ", "49nUEAAAQBAJ", "hIx4EAAAQBAJ", "tkZFEAAAQBAJ", "Es_PCwAAQBAJ",
-                       "hxL2qWMAgv8C", "jVB1DwAAQBAJ", "nNjTDwAAQBAJ", "wxBbEAAAQBAJ", "cpAREAAAQBAJ", "OyCtDwAAQBAJ", "iBg_EAAAQBAJ", "lGjFtMRqp_YC"]
+bookclub_collection = ["I12oPwAACAAJ", "u7XrDwAAQBAJ", "xDtkEAAAQBAJ", "49nUEAAAQBAJ", "hIx4EAAAQBAJ", "tkZFEAAAQBAJ", "Es_PCwAAQBAJ", "hxL2qWMAgv8C", "jVB1DwAAQBAJ", "nNjTDwAAQBAJ", "wxBbEAAAQBAJ", "cpAREAAAQBAJ", "OyCtDwAAQBAJ", "iBg_EAAAQBAJ", "lGjFtMRqp_YC"]
 
 romance_books = [  "IGkwDwAAQBAJ","1I1xDwAAQBAJ",  "JAzxznMKiq4C",  "Xb2GEAAAQBAJ",  "jwCVEAAAQBAJ",  "crZ1EAAAQBAJ",  "JXW7DwAAQBAJ",  "NlYD0AEACAAJ",  "Ra7tBgAAQBAJ",  "xT44AQAAQBAJ"]
 
