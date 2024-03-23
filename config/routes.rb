@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  devise_for :users
+
+  root to: "pages#home"
+  get '/my_library', to: 'pages#my_library'
+  get '/search', to: 'search#index'
+
   resources :books do
     resources :sessions, only: [:show, :index] do
       resources :attendees, only: [:create]
@@ -16,24 +23,24 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  resources :reviews, only: [:edit, :update, :show, :destroy]
   resources :sessions, only: [:show, :index] do
     resources :attendees, only: [:create]
     post 'join', on: :member
   end
+
+  resources :reviews, only: [:edit, :update, :show, :destroy]
+
   post '/add_book_to_bookshelf', to: 'bookshelves#add_book_to_bookshelf'
   post '/remove_book_from_bookshelf', to: 'bookshelves#remove_book_from_bookshelf'
+
   resources :topics
   resources :bookshelf_books
   resources :bookshelves
-  devise_for :users
+  resources :chatrooms, only: :show
 
-  get '/my_library', to: 'pages#my_library'
-  post '/bookshelves', to: 'bookshelves#create'
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
-
-  root to: "pages#home"
   get "up" => "rails/health#show", as: :rails_health_check
-
-  get '/search', to: 'search#index'
 end

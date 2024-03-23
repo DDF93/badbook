@@ -28,29 +28,29 @@
 <p class="sessions-page-component-header" style="text-align: center;"><i class="fa-regular fa-bookmark" style="padding-right: 8px;"></i> Bookshelves</p>
 <table id="sessions-table">
   <tbody>
-    <% @bookshelves.each do |bookshelf| %>
-      <tr id="<%= dom_id(bookshelf) %>">
-        <td>
-          <span class="bookshelf-name"><%= bookshelf.name %></span>
-          <br>
-          <span class="book-author"><%= bookshelf.books.count %> Books</span>
-        </td>
-        <td>
-          <% bookshelf.books.each do |book| %>
-            <%= link_to image_tag(book.image_url, class:"bookshelf-book-tile", alt: book.title), book_path(book) if book.image_url.present? %>
-          <% end %>
-        </td>
-        <td class="session-action-button">
-          <% unless bookshelf.name == 'Read Books' %>
-            <%= link_to bookshelf_path(bookshelf),
-                  method: :delete,
-                  data: { turbo_confirm: 'Are you sure?' },
+<% @bookshelves.each do |bookshelf| %>
+  <tr id="<%= dom_id(bookshelf) %>">
+    <td>
+      <span class="bookshelf-name"><%= bookshelf.name %></span>
+      <br>
+      <span class="book-author"><%= bookshelf.books.count %> Books</span>
+    </td>
+    <td>
+      <% bookshelf.books.each do |book| %>
+        <%= link_to image_tag(book.image_url, class:"bookshelf-book-tile", alt: book.title), book_path(book) if book.image_url.present? %>
+      <% end %>
+    </td>
+    <td class="session-action-button">
+      <% unless bookshelf.name == 'Read Books' %>
+        <%= link_to bookshelf_path(bookshelf),
+                  data: { turbo_confirm: 'Are you sure?', turbo_method: :delete},
+                  remote: true,
                   class: 'bookshelf-delete' do %>
-              <i class="fa-regular fa-trash-can"></i>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
   </tbody>
 </table>

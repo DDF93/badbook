@@ -82,6 +82,7 @@ class BookshelvesController < ApplicationController
   end
 
   def destroy
+    @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy!
 
     respond_to do |format|
