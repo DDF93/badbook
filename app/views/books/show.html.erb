@@ -9,10 +9,10 @@
 
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
       <div class="book-genre-tag"><%= @book.genre %></div>
-      <div class="book-description">
+      <div data-controller="book-description" class="book-description">
         <% if @description_longer_than_250 %>
-          <p id="description-preview"><%= @preview_description %>...<a href="#" class="read-more">More</a></p>
-          <p id="full-description" style="display: none;"><%= @full_description %></p>
+          <p id="description-preview" data-book-description-target="preview"><%= @preview_description %>...<a href="#" class="read-more" data-book-description-target="link" data-action="click->book-description#toggleDescription">More</a></p>
+          <p id="full-description" data-book-description-target="full" style="display: none;"><%= @full_description %> <a href="#" class="read-more" data-book-description-target="link" data-action="click->book-description#toggleDescription">Show Less</a></p>
         <% else %>
           <p><%= @full_description %></p>
         <% end %>
