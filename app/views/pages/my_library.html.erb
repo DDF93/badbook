@@ -43,9 +43,9 @@
         <td class="session-action-button">
           <% unless bookshelf.name == 'Read Books' %>
             <%= link_to bookshelf_path(bookshelf),
-                        method: :delete,
-                        data: { turbo_confirm: 'Are you sure?' },
-                        class: 'bookshelf-delete' do %>
+                  method: :delete,
+                  data: { turbo_confirm: 'Are you sure?' },
+                  class: 'bookshelf-delete' do %>
               <i class="fa-regular fa-trash-can"></i>
             <% end %>
           <% end %>

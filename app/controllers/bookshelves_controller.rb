@@ -85,10 +85,12 @@ class BookshelvesController < ApplicationController
     @bookshelf.destroy!
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@bookshelf) }
       format.html { redirect_to my_library_path, notice: "Bookshelf deleted." }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
