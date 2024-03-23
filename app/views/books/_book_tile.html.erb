@@ -8,7 +8,10 @@
   <% if user_signed_in? %>
     <% book_read = @read_books.include?(book) %>
     <% needed_shelf = Bookshelf.where(user: current_user, name: "Read Books") %>
-    <button class="read-status-btn <%= 'read' if book_read %>" data-controller="mark" data-mark-target="mark"  data-bookshelf-id="<%= needed_shelf.first.id %>" data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->mark#toggleRead" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+    <button class="read-status-btn <%= 'read' if book_read %>"
+    data-controller="mark" data-mark-target="mark"  data-bookshelf-id="<%= needed_shelf.first.id %>"
+     data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->mark#toggleRead"
+     title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
       <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
     </button>
 

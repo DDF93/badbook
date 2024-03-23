@@ -11,13 +11,10 @@
       <div class="zoom-container" data-controller="meeting-creation">
         <div class="sessions-page-component-header-white">
           <i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38
-          <% if current_user && current_user.attendee.host? %>
+          <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host?%>
             <button data-action="click->meetingCreation#startMeeting">Start Meeting</button>
           <% end %>
         </div>
-        <%# <%= render "chatrooms/chats" %> %><!-- Add this wherever you want to place the start button -->
-        <button data-action="click->meeting-creation#startMeeting">Start Meeting</button>
-
         <div data-meeting-creation-target="response"></div>
         <div class="chatroom-target">
           <%= render "chatrooms/chats"%>
