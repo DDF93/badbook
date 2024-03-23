@@ -136,32 +136,48 @@ Chatroom.create!(name: "to make it work for now")
 end
 
 # seeding sessions
-user = User.first
-book1 = Book.find_by(title: 'Dune')
-book2 = Book.find_by(title: 'Twilight')
+books = Book.all
+users = User.all
 
-start_date = Date.today.beginning_of_week
-end_date = 2.months.from_now
-
-(start_date..end_date).select { |d| d.wday.in?([2, 4, 6]) }.each do |date|
-  Session.create!(
-    book_id: book1.id,
-    user_id: user.id,
-    capacity: 15,
-    start_time: date.to_time.change(hour: 19),
-    video_link: 'http://example.com/session_dune'
-  )
+books.each do |book|
+  rand(1..5).times do
+    start_time = rand(1..14).days.from_now.beginning_of_day + rand(0..24).hours
+    book.sessions.create!(
+      book_id: book.id,
+      user_id: users.sample.id,
+      capacity: 15,
+      start_time: start_time,
+      video_link: 'http://example.com/session_dune',
+      end_time: 2.months.from_now
+    )
+  end
 end
 
-(start_date..end_date).select { |d| d.wday == 1 }.each do |date|
-  Session.create!(
-    book_id: book2.id,
-    user_id: user.id,
-    capacity: 15,
-    start_time: date.to_time.change(hour: 20),
-    video_link: 'http://example.com/session_twilight'
-  )
-end
+
+
+
+# start_date = Date.today.beginning_of_week
+# end_date = 2.months.from_now
+
+# (start_date..end_date).select { |d| d.wday.in?([2, 4, 6]) }.each do |date|
+#   Session.create!(
+#     book_id: book1.id,
+#     user_id: user.id,
+#     capacity: 15,
+#     start_time: date.to_time.change(hour: 19),
+#     video_link: 'http://example.com/session_dune'
+#   )
+# end
+
+# (start_date..end_date).select { |d| d.wday == 1 }.each do |date|
+#   Session.create!(
+#     book_id: book2.id,
+#     user_id: user.id,
+#     capacity: 15,
+#     start_time: date.to_time.change(hour: 20),
+#     video_link: 'http://example.com/session_twilight'
+#   )
+# end
 
 # seeding attendees to sessions
 users = User.all
