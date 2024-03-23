@@ -4,18 +4,16 @@ class SessionsController < ApplicationController
 
   def index
     @sessions = Session.all
+    @upcoming_sessions = Session.where('end_time > ?', Time.current)
   end
 
   def show
     @session = Session.find(params[:id])
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
-    @chatroom = Chatroom.find(params[:id])
+    # @chatroom = Chatroom.find(params[:id])
+    @chatroom = Chatroom.first
     @message = Message.new
-  end
-
-  def index
-    @sessions = Session.all
   end
 
   def rsvp
@@ -37,6 +35,7 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
+    @session.end_time = @session.start_time + 1.hour
 
     respond_to do |format|
       if @session.save
@@ -70,6 +69,6 @@ class SessionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def session_params
-      params.require(:session).permit(:book_id, :user_id, :capacity, :start_time, :video_link)
+      params.require(:session).permit(:book_id, :user_id, :capacity, :start_time, :end_time, :video_link)
     end
 end
