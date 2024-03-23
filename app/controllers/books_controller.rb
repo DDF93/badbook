@@ -10,7 +10,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @book_sessions = @book.sessions.includes(:attendees)
+    @upcoming_sessions = @book.sessions.includes(:attendees).where('end_time > ?', Time.current)
+
 
     clean_description = @book.description
                      .gsub(/\A"|"\Z/, '')
