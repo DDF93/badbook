@@ -3,17 +3,7 @@ class BooksController < ApplicationController
   before_action :set_session, only: [:show]
 
   def index
-    @romance_books = Book.where(genre: 'Romance')
-    @crime_books = Book.where(genre: 'Crime')
-    @vampire_books = Book.where(genre: 'Vampire')
-    @humor_books = Book.where(genre: 'Humor')
-    @horror_books = Book.where(genre: 'Horror')
-    @science_fiction_books = Book.where(genre: 'Science Fiction')
-    @fantasy_books = Book.where(genre: 'Fantasy')
-    @mystery_books = Book.where(genre: 'Mystery')
-    @thriller_books = Book.where(genre: 'Thriller')
-    @historical_fiction_books = Book.where(genre: 'Historical Fiction')
-    @bookclub_collection = Book.all.first(15)
+    @bookshelves = Bookshelf.where(user_id: 1)
     read_books_shelf = current_user.bookshelves.find_by(name: 'Read Books')
     @read_books = read_books_shelf.present? ? read_books_shelf.books.to_a : []
   end

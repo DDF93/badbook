@@ -1,12 +1,28 @@
 require 'json'
 require 'open-uri'
 
+User.create!(
+  email: "admin@admin.com",
+  password: "asdfgh"
+)
+
 bookclub_collection = ["I12oPwAACAAJ", "u7XrDwAAQBAJ", "xDtkEAAAQBAJ", "49nUEAAAQBAJ", "hIx4EAAAQBAJ", "tkZFEAAAQBAJ", "Es_PCwAAQBAJ",
                        "hxL2qWMAgv8C", "jVB1DwAAQBAJ", "nNjTDwAAQBAJ", "wxBbEAAAQBAJ", "cpAREAAAQBAJ", "OyCtDwAAQBAJ", "iBg_EAAAQBAJ", "lGjFtMRqp_YC"]
 
+romance_books = [  "IGkwDwAAQBAJ","1I1xDwAAQBAJ",  "JAzxznMKiq4C",  "Xb2GEAAAQBAJ",  "jwCVEAAAQBAJ",  "crZ1EAAAQBAJ",  "JXW7DwAAQBAJ",  "NlYD0AEACAAJ",  "Ra7tBgAAQBAJ",  "xT44AQAAQBAJ"]
+
+crime_books = ["hxL2qWMAgv8C", "7AiTEAAAQBAJ", "M8h6EAAAQBAJ", "bL6LEAAAQBAJ", "tpZcDwAAQBAJ", "nXrxGCVd9UoC", "z7SnEAAAQBAJ", "3rOaEAAAQBAJ", "gQisEAAAQBAJ", "a6NnDwAAQBAJ"]
+
+science_fiction_books = ["Nv-qDwAAQBAJ", "0OidDwAAQBAJ", "NljT2Bn3Y-wC", "52k6DwAAQBAJ", "TOMDq0vqXIQC", "IGvdhaVC5QwC", "ThS9hnCaNmkC", "uiVHDwAAQBAJ", "eCIFEAAAQBAJ", "iEiHEAAAQBAJ"]
+
+
+
+
 def books_by_id(bookshelf_name, initial_books)
 
-  new_bookshelf = Bookshelf.new(name: bookshelf_name)
+  bookshelf = Bookshelf.new(name: bookshelf_name, user_id: 1)
+  bookshelf.save
+
 
   initial_books.each do |book_id|
 
@@ -18,7 +34,7 @@ def books_by_id(bookshelf_name, initial_books)
       published_date = book_json.dig("volumeInfo", "publishedDate")
       description = book_json.dig("volumeInfo", "description")
 
-      new_book = Book.new(
+      book = Book.new(
         google_id: book_id,
         title: title,
         author: authors,
@@ -26,15 +42,17 @@ def books_by_id(bookshelf_name, initial_books)
         description: description,
         image_url: book_json.dig("volumeInfo", "imageLinks", "thumbnail")
       )
+    book.save
+    BookshelfBook.create(bookshelf_id: bookshelf.id, book_id: book.id)
 
-    BookshelfBook.create(bookshelf_id: new_bookshelf.id, book_id: new_book.id)
-    new_book.save
-    new_bookshelf.save
     end
 end
 
 
 books_by_id("bookclub_collection", bookclub_collection)
+books_by_id("romance_books", romance_books)
+books_by_id("crime_books", crime_books)
+books_by_id("science_fiction_books", science_fiction_books)
 
 
 # def get_books_by_genre(genre)
