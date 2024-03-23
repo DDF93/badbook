@@ -1,4 +1,4 @@
-<div class="book-tile" style="position: relative; width: 200px;">
+<div  class="book-tile" style="position: relative; width: 200px;">
   <% if book[:image_url].present? %>
     <%= link_to image_tag(book[:image_url], class: "img-fluid book-cover", alt: book[:title]), book_path(book[:id]) %>
   <% else %>
@@ -8,9 +8,15 @@
   <% if user_signed_in? %>
     <% book_read = @read_books.include?(book) %>
     <% needed_shelf = Bookshelf.where(user: current_user, name: "Read Books") %>
+    <% if book_read  %>
+    <button class="read-status-btn <%= 'read' if book_read %>" data-controller="mark" data-mark-target="mark"  data-bookshelf-id="<%= needed_shelf.first.id %>" data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->mark#remove" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+      <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
+    </button>
+    <% else  %>
     <button class="read-status-btn <%= 'read' if book_read %>" data-controller="mark" data-mark-target="mark"  data-bookshelf-id="<%= needed_shelf.first.id %>" data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->mark#toggleRead" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
       <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
     </button>
+        <% end  %>
 
     <%= render 'books/bookshelf_dropdown', book: book %>
   <% end %>
