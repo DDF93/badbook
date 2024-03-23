@@ -18,17 +18,16 @@ class SessionsController < ApplicationController
 
   def rsvp
     if current_user.attendees.exists?(session_id: @session.id)
-      flash[:alert] = "You are already attending this session."
+      render json: { error: "You are already attending this session." }, status: :unprocessable_entity
     elsif @session.attendees.count >= @session.capacity
-      flash[:alert] = "The session has reached its capacity."
+      render json: { error: "The session has reached its capacity." }, status: :unprocessable_entity
     else
       @attendee = @session.attendees.build(user: current_user)
       if @attendee.save
-        flash[:notice] = "RSVP successful"
         spots_left = @session.capacity - @session.attendees.count
-        render json: { spots_left: spots_left}
+        session_path = book_session_path(book_id: @session.book.id, id: @session.id)
+        render json: { spots_left: spots_left, session_path: session_path }, status: :created
       else
-        flash[:alert] = "Failed to RSVP"
         render json: { error: "Failed to RSVP" }, status: :unprocessable_entity
       end
     end

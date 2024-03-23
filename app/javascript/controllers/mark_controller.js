@@ -25,10 +25,10 @@ export default class extends Controller {
     .then(response => {
       if (response.ok) {
         // Book added successfully
-        alert("Book removed from bookshelf successfully");
+        alert("Success!");
       } else {
         // Failed to add book
-        alert("Failed to add book to bookshelf");
+        alert("Whoops, action failed. Please try again.");
       }
     })
     .catch(error => {

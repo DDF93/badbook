@@ -12,6 +12,7 @@
 }
 
 #sessions-table {
+  max-width: 60%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
@@ -21,15 +22,19 @@
   border-spacing: 0;
   border-radius: 20px;
   overflow: hidden;
-  background-color: $dark-gray;
+  background-color: $mid-cream;
   padding: 10px;
-  color: white;
+  color: $dark-gray;
 }
 
 #sessions-table th, #sessions-table td {
   text-align: left;
   padding: 8px;
-  border-bottom: 1px solid #505050;
+  border-bottom: 1px solid $light-cream;
+}
+
+#sessions-table .session-action-button {
+  text-align: right;
 }
 
 #sessions-table tbody tr:last-child td {
@@ -39,22 +44,17 @@
 .session-book-name a {
   font-weight: bold;
   font-size: 20px;
-  color: white;
-}
-
-.book-author {
-  display: block;
-  font-size: 16px;
-  color: #d4cdc3;
+  color: $dark-gray;
 }
 
 #sessions-table tbody tr:hover {
-  background-color: #4A4A4A;
+  background-color: #f1e7d9;
+  border-radius: 20px;
 }
 
 #sessions-table .session-countdown, .session-start-time, .session-capacity {
   font-size: 0.9em;
-  color: white;
+  color: $dark-gray;
 }
 
 // books/show stuff:
@@ -112,4 +112,23 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+// Bookshelves show
+
+.bookshelf-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: $dark-gray;
+}
+
+.bookshelf-book-tile {
+  width: 50px;
+  height: 75px;
+  margin-right: 8px;
+  border-radius: 6px;
+}
+
+.bookshelf-delete {
+  color: $mid-gray;
 }

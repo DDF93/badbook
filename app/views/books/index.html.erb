@@ -1,121 +1,16 @@
-<div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Upcoming Bookclubs</h2>
-  <%= render 'carousel', books: @bookclub_collection %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
+<iframe src="https://badbook.whereby.com/demo-d08ac869-1607-4582-ac53-a6aea20204e9" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
 
-<div id="romanceBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Romance Books</h2>
-  <%= render 'carousel', books: @romance_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#romanceBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#romanceBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="crimeBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Crime Books</h2>
-  <%= render 'carousel', books: @crime_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#crimeBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#crimeBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="vampireBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Vampire Books</h2>
-  <%= render 'carousel', books: @vampire_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#vampireBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#vampireBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-
-<div id="humorBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Humor Books</h2>
-  <%= render 'carousel', books: @humor_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#humorBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#humorBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="horrorBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Horror Books</h2>
-  <%= render 'carousel', books: @horror_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#horrorBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#horrorBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="scienceFictionBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Science Fiction Books</h2>
-  <%= render 'carousel', books: @science_fiction_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#scienceFictionBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#scienceFictionBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="fantasyBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Fantasy Books</h2>
-  <%= render 'carousel', books: @fantasy_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#fantasyBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#fantasyBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="mysteryBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Mystery Books</h2>
-  <%= render 'carousel', books: @mystery_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#mysteryBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#mysteryBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="thrillerBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Thriller Books</h2>
-  <%= render 'carousel', books: @thriller_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#thrillerBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#thrillerBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="historicalFictionBooksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
-  <h2 class="carousel-header">Historical Fiction Books</h2>
-  <%= render 'carousel', books: @historical_fiction_books %>
-  <button class="carousel-control-prev" type="button" data-bs-target="#historicalFictionBooksCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#historicalFictionBooksCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
+<% @bookshelves.each do |bookshelf|  %>
+  <% unless bookshelf.name == "Read Books" %>
+    <div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
+      <h2 class="carousel-header"><%= bookshelf.name.gsub("_"," ").titleize %></h2>
+      <%= render 'carousel', books: bookshelf.books %>
+      <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  <% end %>
+<% end %>
