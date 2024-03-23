@@ -9,7 +9,11 @@
     </div>
     <div class="col-md-8 py-md-3 zoom-col">
       <div class="zoom-container">
-        <div class="sessions-page-component-header-white"><i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38</div>
+        <div data-controller="countdown"
+            data-countdown-start-time-value="<%= @session.start_time.iso8601 %>"
+            class="session-countdown">
+          <i class="fa-regular fa-clock fa-xs" style="padding-right: 4px;"></i> <span data-countdown-target="time">00:00:00</span>
+        </div>
         <%= render "chatrooms/chats" %>
   <%# <iframe src="https://badbook.whereby.com/demo-d08ac869-1607-4582-ac53-a6aea20204e9" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe> %>
       </div>
