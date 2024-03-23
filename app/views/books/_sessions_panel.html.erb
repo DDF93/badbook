@@ -2,8 +2,8 @@
   <p class="sessions-panel-header"><%= @book.title %> Bookclubs</p>
   <table id="books-sessions-table">
   <tbody>
-    <% if @book_sessions.any? %>
-    <% @book_sessions.each do |session| %>
+    <% if @upcoming_sessions.any? %>
+    <% @upcoming_sessions.each do |session| %>
       <tr data-controller = "rsvp">
         <td class="book-session-start-time">
           <span class="session-date"><%= session.start_time.strftime("%a %d %b") %></span>

@@ -5,7 +5,7 @@
 
 <table id="sessions-table">
   <tbody>
-    <% @sessions.each do |session| %>
+    <% @upcoming_sessions.each do |session| %>
       <tr data-controller = "rsvp">
         <td>
           <span class="session-book-name"><%= link_to session.book.title, book_path(session.book) %></span>
