@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   def index
     @sessions = Session.all
     @upcoming_sessions = Session.where('end_time > ?', Time.current)
+
   end
 
   def show
