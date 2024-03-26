@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   post '/add_book_to_bookshelf', to: 'bookshelves#add_book_to_bookshelf'
   post '/remove_book_from_bookshelf', to: 'bookshelves#remove_book_from_bookshelf'
+  post '/create_meeting', to: 'meetings#create_meeting'
+
+
 
   resources :topics
   resources :bookshelf_books
