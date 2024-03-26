@@ -1,14 +1,21 @@
 class SessionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_session, only: %i[ show rsvp ]
+  before_action :set_book, only: [:show]
+
+  def new
+    @session = Session.new
+    @session.book_id = params[:book_id] if params[:book_id]
+  end
 
   def index
     @sessions = Session.all
-    @upcoming_sessions = Session.where('end_time > ?', Time.current)
+    @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
 
   end
 
   def show
+    @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
     @session = Session.find(params[:id])
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
@@ -37,15 +44,14 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
     @session.end_time = @session.start_time + 1.hour
-
-    respond_to do |format|
-      if @session.save
-        format.html { redirect_to session_url(@session), notice: "Session was successfully created." }
-        format.json { render :show, status: :created, location: @session }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
-      end
+    @session.user = current_user
+    
+    if @session.save
+      @session.attendees.create(user: current_user, host: true) # This line sets the host boolean to true
+      redirect_to session_url(@session), notice: "Session was successfully created."
+    else
+      logger.debug @session.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -70,6 +76,10 @@ class SessionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def session_params
-      params.require(:session).permit(:book_id, :user_id, :capacity, :start_time, :end_time, :video_link)
+      params.require(:session).permit(:title, :book_id, :capacity, :start_time, :video_link)
+    end
+
+    def set_book
+      @book = Book.find(params[:id])
     end
 end

@@ -1,5 +1,41 @@
 <div class="sessions-panel">
-  <p class="sessions-panel-header"><%= @book.title %> Bookclubs</p>
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <p class="sessions-panel-header mb-0"><%= @book.title %> Bookclubs</p>
+    <% if current_user.host? %>
+      <button class="btn-new-session" data-bs-toggle="modal" data-bs-target="#newSessionModal">
+        <i class="fa fa-plus pe-1"></i>
+        New
+      </button>
+    <% end %>
+  </div>
+
+  <div class="modal fade" id="newSessionModal" tabindex="-1" aria-labelledby="newSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-white-background">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newSessionModalLabel">Create a new session</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= form_with(model: Session.new, url: sessions_path, method: :post) do |form| %>
+            <div class="mb-3">
+              <%= form.label :start_time, 'Date and Time' %>
+              <%= form.datetime_local_field :start_time, required: true, class: 'form-control' %>
+              <%= form.hidden_field :book_id, value: @book.id %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :capacity, 'Number of attendees' %>
+              <%= form.number_field :capacity, required: true, class: 'form-control' %>
+            </div>
+            <div class="modal-footer">
+              <%= form.submit 'Create Session', class: 'bold-button' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <table id="books-sessions-table">
   <tbody>
     <% if @upcoming_sessions.any? %>
@@ -11,19 +47,19 @@
           <span class="session-time"><%= session.start_time.strftime("%l:%M%p") %></span>
         </td>
         <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
-        <td class="session-action">
-          <% if session.attendees.exists?(user_id: current_user.id) %>
-            <%= render "books/revoke_rsvp", session: session, book: @book %>
-          <% elsif session.attendees.count >= session.capacity %>
-            <span class="session-full">Full</span>
-          <% elsif session.start_time <= (Time.now + 15.minutes) %>
-            <%= render "books/join_session", session: session, book: @book %>
-          <% else %>
-            <%= render "books/rsvp", session: session, book: @book %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+          <td class="session-action">
+            <% if session.attendees.exists?(user_id: current_user.id) %>
+              <%= render "books/revoke_rsvp", session: session, book: @book %>
+            <% elsif session.attendees.count >= session.capacity %>
+              <span class="session-full">Full</span>
+            <% elsif session.start_time <= Time.now + 15.minutes %>
+              <%= render "books/join_session", session: session, book: @book %>
+            <% else %>
+              <%= render "books/rsvp", session: session, book: @book %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
   </tbody>
   <% else %>
     <p>No upcoming sessions.</p>

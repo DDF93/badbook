@@ -10,7 +10,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @upcoming_sessions = @book.sessions.includes(:attendees).where('end_time > ?', Time.current)
+    @upcoming_sessions = @book.sessions.includes(:attendees).where('start_time > ?', Time.current).order(start_time: :asc)
+
 
 
     clean_description = @book.description
