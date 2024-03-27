@@ -1,13 +1,12 @@
-
-<% @bookshelves.each do |bookshelf|  %>
+<% @bookshelves.each_with_index do |bookshelf, index| %>
   <% unless bookshelf.name == "Read Books" %>
-    <div id="booksCarousel" class="carousel slide mx-auto" data-bs-ride="false">
+    <div id="booksCarousel<%= index %>" class="carousel slide mx-auto" data-bs-ride="false">
       <h2 class="carousel-header"><%= bookshelf.name.gsub("_"," ").titleize %></h2>
       <%= render 'carousel', books: bookshelf.books %>
-      <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel<%= index %>" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel<%= index %>" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
     </div>
