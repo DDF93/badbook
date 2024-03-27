@@ -77,7 +77,6 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        // Rimuovi il link corrente dal dropdown
         link.outerHTML = `
           <a class="dropdown-item"
           href="#"
