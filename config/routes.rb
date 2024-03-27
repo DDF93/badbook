@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  resources :sessions, only: [:show, :index] do
+  # Add :create here to handle session creation
+  resources :sessions, only: [:show, :index, :create] do
     resources :attendees, only: [:create]
     post 'join', on: :member
   end
