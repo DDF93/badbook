@@ -19,8 +19,7 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
-    # @chatroom = Chatroom.find(params[:id])
-    @chatroom = Chatroom.first
+    @chatroom = Chatroom.find_by(session_id: @session.id) # Find the chatroom associated with the current session
     @message = Message.new
   end
 
@@ -45,7 +44,7 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
     @session.end_time = @session.start_time + 1.hour
     @session.user = current_user
-    
+
     if @session.save
       @session.attendees.create(user: current_user, host: true) # This line sets the host boolean to true
       redirect_to session_url(@session), notice: "Session was successfully created."
