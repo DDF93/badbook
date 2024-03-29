@@ -80,7 +80,7 @@ end
 
 10.times do |i|
   User.create!(
-    email: "user#{i}@example.com",
+    email: Faker::Internet.email,
     password: "password"
   )
 end
@@ -106,8 +106,8 @@ end
 users = User.all
 
 Session.find_each do |session|
-  Attendee.create!(
-    session: session,
-    user: users.sample
-  )
+  user = users.sample
+  unless session.attendees.exists?(user_id: user.id)
+    Attendee.create!(session: session, user: user)
+  end
 end
