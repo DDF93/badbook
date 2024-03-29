@@ -11,7 +11,7 @@ class MeetingsController < ApplicationController
     request.content_type = "application/json"
     request.body = JSON.dump({
       "endDate" => end_time.utc.strftime("%Y-%m-%dT%H:%M:%S.%LZ"),
-      "fields" => "hostRoomUrl,viewerRoomUrl",
+      "fields" => "hostRoomUrl,roomUrl",
       "roomMode" => "group",
       "roomNamePrefix" => "Bookclub",
       "roomNamePattern" => "human-short",
@@ -29,7 +29,7 @@ class MeetingsController < ApplicationController
     session_id = params[:sessionId]
     @session = Session.find(session_id)
     @session.update(host_url: JSON.parse(response.body)["hostRoomUrl"])
-    @session.update(room_url: JSON.parse(response.body)["viewerRoomUrl"])
+    @session.update(room_url: JSON.parse(response.body)["roomUrl"])
 
     render json: JSON.parse(response.body)
 

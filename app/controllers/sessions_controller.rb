@@ -17,9 +17,10 @@ class SessionsController < ApplicationController
   def show
     @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
     @session = Session.find(params[:id])
+    @current_user = current_user
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
-    @current_user_attendee = @attendees.find_by(user_id: current_user.id)
+    @current_user_attendee = @current_user.attendees.find_by(session_id: @session.id)
     @chatroom = Chatroom.find_by(session_id: @session.id) # Find the chatroom associated with the current session
     @message = Message.new
   end
