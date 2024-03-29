@@ -61,7 +61,7 @@ class BookshelvesController < ApplicationController
 
     respond_to do |format|
       if @bookshelf.save
-        format.json { render json: { message: "Bookshelf was successfully created." }, status: :created }
+        format.json { render json: { message: "Bookshelf was successfully created.", bookshelf: @bookshelf }, status: :created }
       else
         format.json { render json: { error: @bookshelf.errors.full_messages.join(", ") }, status: :unprocessable_entity }
       end

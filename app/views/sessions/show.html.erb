@@ -17,16 +17,16 @@
         </div>
         <div data-meeting-creation-target="response"></div>
         <div class="chatroom-target">
-          <%= render "chatrooms/chats"%>
+          <%= render "chatrooms/chats", chatroom: @chatroom %>
         </div>
       </div>
-      <div class="attendees-container">
+      <%# <div class="attendees-container">
         <div class="sessions-page-component-header">Participants</div>
         <% @attendees.each do |attendee| %>
-          <span class="counter-pill-light"><%= attendee.email %></span>
-        <% end %>
-      </div>
-    </div>
+          <%# <span class="counter-pill-light"><%= attendee.email</span> %>
+        <%# <% end %>
+        <%# </div> %>
+      <%# </div> %>
   </div>
 </div>
 <br><br>
