@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
     # @chatroom = Chatroom.find(params[:id])
+    @current_user_attendee = @attendees.find_by(user_id: current_user.id)
     @chatroom = Chatroom.first
     @message = Message.new
   end

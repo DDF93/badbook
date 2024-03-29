@@ -1,7 +1,9 @@
 <div class="session-container">
   <div class="row">
     <div class="col-md-4 py-md-3 agenda-panel-col">
-      <div class="sessions-page-component-header"><%= @session.book.title %> Bookclub Agenda</div>
+      <div class="sessions-page-component-header">
+        <%= @session.book.title %> Bookclub Agenda
+      </div>
       <%= render partial: 'agenda_panel', locals: { session: @session, attendees: @attendees } %>
       <div class="submit-agenda-point">
         <%= render partial: 'agenda_form' %>
@@ -11,13 +13,19 @@
       <div class="zoom-container" data-controller="meeting-creation">
         <div class="sessions-page-component-header-white">
           <i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38
-          <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host?%>
-            <button data-action="click->meeting-creation#startMeeting">Start Meeting</button>
+          <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
+            <button data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
           <% end %>
         </div>
         <div data-meeting-creation-target="response"></div>
-        <div class="chatroom-target">
-          <%= render "chatrooms/chats"%>
+        <div class="chatroom-target" data-target="meeting-creation.chat">
+          <% if  @session.room_url.nil? %>
+          <%= render "chatrooms/chats" %>
+          <% elsif @session.room_url.present? && @current_user_attendee.host == false %>
+            <iframe src="<%= @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
+          <% elsif @session.host_url.present? && @current_user_attendee.host? == true %>
+            <iframe src="<%= @session.host_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
+          <% end %>
         </div>
       </div>
       <div class="attendees-container">
