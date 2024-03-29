@@ -16,17 +16,17 @@
         </div>
         <div data-meeting-creation-target="response"></div>
         <div class="chatroom-target">
-          <%= render "chatrooms/chats"%>
+          <%= render "chatrooms/chats", chatroom: @chatroom %>
         </div>
         <%# <iframe src="https://badbook.whereby.com/demo-d08ac869-1607-4582-ac53-a6aea20204e9" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe> %>
       </div>
-      <div class="attendees-container">
+      <%# <div class="attendees-container">
         <div class="sessions-page-component-header">Participants</div>
         <% @attendees.each do |attendee| %>
-          <span class="counter-pill-light"><%= attendee.email %></span>
-        <% end %>
-      </div>
-    </div>
+          <%# <span class="counter-pill-light"><%= attendee.email</span> %>
+        <%# <% end %>
+        <%# </div> %>
+      <%# </div> %>
   </div>
 </div>
 <br><br>

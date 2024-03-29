@@ -15,4 +15,8 @@ class Book < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def average_rating
+    reviews.average(:rating).to_f.round(1)
+  end
 end

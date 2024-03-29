@@ -1,0 +1,5 @@
+class AddSessionIdToChatrooms < ActiveRecord::Migration[7.1]
+  def change
+    add_reference :chatrooms, :session, null: false, foreign_key: true
+  end
+end
