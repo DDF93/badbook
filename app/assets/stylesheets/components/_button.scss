@@ -87,3 +87,21 @@
     border-color: $pink;
   }
 }
+
+.btn-new-session {
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: $dark-gray;
+  border-color: $dark-gray;
+  border-style: solid;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-color: $pink;
+    border-color: $pink;
+    border-style: solid;
+    color: white;
+  }
+}

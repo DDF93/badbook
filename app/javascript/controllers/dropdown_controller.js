@@ -23,8 +23,9 @@ export default class extends Controller {
 
   addToBookshelf(event) {
     event.preventDefault();
-    let bookId = event.target.dataset.bookId;
-    let bookshelfId = event.target.dataset.bookshelfId || event.target.parentElement.dataset.bookshelfId;
+    const link = event.currentTarget;
+    const bookId = event.target.dataset.bookId;
+    const bookshelfId = event.target.dataset.bookshelfId || event.target.parentElement.dataset.bookshelfId;
 
     fetch("/add_book_to_bookshelf", {
       method: "POST",
@@ -39,7 +40,14 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        alert("Book added to bookshelf successfully");
+        link.outerHTML = `
+          <a class="dropdown-item"
+          href="#"
+          data-bookshelf-id=${bookshelfId}
+          data-book-id=${bookId}
+          data-action="click->dropdown#removeFromBookshelf">
+            ${link.textContent} <i class="fa-solid fa-circle-check" style="margin-left: 4px;"></i>
+          </a>`;
       } else {
         alert("Failed to add book to bookshelf");
       }
@@ -52,8 +60,9 @@ export default class extends Controller {
 
   removeFromBookshelf(event) {
     event.preventDefault();
-    let bookId = event.target.dataset.bookId;
-    let bookshelfId = event.target.dataset.bookshelfId || event.target.parentElement.dataset.bookshelfId;
+    const link = event.currentTarget;
+    const bookId = link.dataset.bookId;
+    const bookshelfId = link.dataset.bookshelfId || link.parentElement.dataset.bookshelfId;
 
     fetch("/remove_book_from_bookshelf", {
       method: "POST",
@@ -68,9 +77,16 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        alert("Book added to bookshelf successfully");
+        link.outerHTML = `
+          <a class="dropdown-item"
+          href="#"
+          data-bookshelf-id=${bookshelfId}
+          data-book-id=${bookId}
+          data-action="click->dropdown#addToBookshelf">
+            ${link.textContent}
+          </a>`;
       } else {
-        alert("Failed to add book to bookshelf");
+        alert("Failed to remove book from bookshelf");
       }
     })
     .catch(error => {

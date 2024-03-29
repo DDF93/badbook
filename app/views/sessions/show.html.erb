@@ -20,21 +20,23 @@
         <div data-meeting-creation-target="response"></div>
         <div class="chatroom-target" data-target="meeting-creation.chat">
           <% if  @session.room_url.nil? %>
-          <%= render "chatrooms/chats" %>
+          <%= render "chatrooms/chats", chatroom: @chatroom %>
           <% elsif @session.room_url.present? && @current_user_attendee.host == false %>
             <iframe src="<%= @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
           <% elsif @session.host_url.present? && @current_user_attendee.host? == true %>
             <iframe src="<%= @session.host_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
           <% end %>
+
         </div>
       </div>
-      <div class="attendees-container">
+      <%# <div class="attendees-container">
         <div class="sessions-page-component-header">Participants</div>
         <% @attendees.each do |attendee| %>
-          <span class="counter-pill-light"><%= attendee.email %></span>
-        <% end %>
-      </div>
-    </div>
+          <%# <span class="counter-pill-light"><%= attendee.email</span> %>
+        <%# <% end %>
+        <%# </div> %>
+      <%# </div> %>
   </div>
 </div>
 <br><br>
+</div>
