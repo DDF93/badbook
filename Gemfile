@@ -37,7 +37,7 @@ gem "pg_search"
 gem "rails_admin", "3.0"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis",
+gem "redis"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -46,7 +46,7 @@ gem "redis",
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+gem "tzinfo-data", platforms: [:mswin, :mswin64, :mingw, :x64_mingw, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -85,4 +85,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
