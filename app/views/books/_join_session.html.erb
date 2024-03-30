@@ -1,10 +1,6 @@
-<%= link_to book_session_path(book, session),
-    data: {
-      controller: "rsvp",
-      action: "click->rsvp#handleClick",
-      book_id: book.id,
-      session_id: session.id
-    },
+<%= button_to book_session_rsvp_path(book, session),
+    method: :post,
+    data: { turbo_frame: "_self" },
     class: "btn-join-show" do %>
   <i class='fa-solid fa-circle fa-xs' style='margin-right: 3px;'></i> Join
 <% end %>

@@ -30,20 +30,23 @@ class SessionsController < ApplicationController
   def rsvp
     @session = @book.sessions.find(params[:id])
     if current_user.attendees.exists?(session_id: @session.id)
-      render json: { error: "You are already attending this session." }, status: :unprocessable_entity
+      flash[:alert] = "You are already attending this session."
+      redirect_to book_session_path(@book, @session)
     elsif @session.attendees.count >= @session.capacity
-      render json: { error: "The session has reached its capacity." }, status: :unprocessable_entity
+      flash[:alert] = "The session is full."
+      redirect_to book_session_path(@book, @session)
     else
       @attendee = @session.attendees.build(user: current_user)
       if @attendee.save
-        spots_left = @session.capacity - @session.attendees.count
-        session_path = book_session_path(book_id: @session.book.id, id: @session.id)
-        render json: { spots_left: spots_left, session_path: session_path }, status: :created
+        flash[:notice] = "You have successfully joined the session."
+        redirect_to book_session_path(@book, @session) # Redirect to the session detail page
       else
-        render json: { error: "Failed to RSVP" }, status: :unprocessable_entity
+        flash[:alert] = "Failed to join the session."
+        redirect_to book_sessions_path(@book)
       end
     end
   end
+
 
   def create
     @session = Session.new(session_params)
