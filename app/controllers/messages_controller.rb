@@ -21,8 +21,8 @@ class MessagesController < ApplicationController
     if @chatroom
       ChatroomChannel.broadcast_to(
         @chatroom,
-        message: 'initiate call',
-        sender_id: current_user.id
+        action: 'execute_function',
+        function_name: 'handleInitiateCall'  # Specify the function name to execute
       )
       head :ok
     else
