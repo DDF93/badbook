@@ -1,28 +1,32 @@
 <h2 class="carousel-header">My Library</h2>
 
 <p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-calendar-days" style="padding-right: 8px;"></i> Calendar <span class="counter-pill-pink"><%= current_user.sessions.count %></span></p>
-<table id="sessions-table">
-  <tbody>
-    <% @sessions.each do |session| %>
-      <tr data-controller = "rsvp">
-        <td>
-          <span class="session-book-name"><%= link_to session.book.title, book_path(session.book) %></span>
-          <br>
-          <span class="book-author"><%= session.book.author %></span>
-        </td>
-        <td class="session-countdown">
-          <i class="fa-regular fa-clock" style="padding-right: 4px;"></i> <b><%= session_countdown(session.start_time) %></b>
-          <br>
-          <%= session.start_time.strftime("%a %d %b, %l:%M%p") %>
-        </td>
-        <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
-        <td class="session-action-button">
-          <%= render "books/revoke_rsvp", session: session, book: session.book %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<% if @sessions.any? %>
+  <table id="sessions-table" data-controller="rsvp"  data-rsvp-target="table" >
+    <tbody>
+      <% @sessions.each do |session| %>
+        <tr data-controller="rsvp" data-rsvp-target="row">
+          <td>
+            <span class="session-book-name"><%= link_to session.book.title, book_path(session.book) %></span>
+            <br>
+            <span class="book-author"><%= session.book.author %></span>
+          </td>
+          <td class="session-countdown">
+            <i class="fa-regular fa-clock" style="padding-right: 4px;"></i> <b><%= session_countdown(session.start_time) %></b>
+            <br>
+            <%= session.start_time.strftime("%a %d %b, %l:%M%p") %>
+          </td>
+          <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+          <td class="session-action-button">
+            <%= render "books/revoke_rsvp", session: session, book: session.book %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <br>
 
 <p class="sessions-page-component-header" style="text-align: center;"><i class="fa-regular fa-bookmark" style="padding-right: 8px;"></i> Bookshelves</p>
