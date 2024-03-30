@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["capacity", "button"];
+  static targets = ["capacity", "button", "table", "row"];
+
   connect() {
     //console.log(this.revokeTarget);
     //console.log(this.acceptTarget);
@@ -44,13 +45,22 @@ export default class extends Controller {
   }
 
   changeUI(event, newText, newAmount) {
+    console.log(event)
     event.target.innerText = newText;
     const newCapacity =
       parseInt(this.capacityTarget.dataset.capacity) + newAmount;
-      this.capacityTarget.outerHTML = `<td class="session-capacity" data-rsvp-target="capacity" data-capacity=${newCapacity}><i class="fa-solid fa-users" style="padding-right: 8px;"></i>${newCapacity} ${
+    this.capacityTarget.outerHTML = `<td class="session-capacity" data-rsvp-target="capacity" data-capacity=${newCapacity}><i class="fa-solid fa-users" style="padding-right: 8px;"></i>${newCapacity} ${
       newCapacity === 0 ? "Full" : "spots left"
     } </td>`;
+
+    // Hide the entire row if capacity becomes 0 after cancellation
     event.target.classList.toggle("btn-rsvp");
     event.target.classList.toggle("btn-rsvp-revoke");
+
+    const row = this.rowTarget;
+    row.outerHTML = "";
+
+    if ((this.tableTarget.innerHTML === "")) this.tableTarget.outerHTML = "";
+    
   }
 }
