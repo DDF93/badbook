@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_sessions_count_today
-    @sessions_count_today = Session.where(start_time: Date.current.beginning_of_day..Date.current.end_of_day).count
+    now = Time.current
+    end_of_day = now.end_of_day
+    @sessions_count_today = Session.where("start_time >= ? AND end_time <= ?", now, end_of_day).count
   end
+
 end
