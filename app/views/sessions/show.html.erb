@@ -11,10 +11,13 @@
     </div>
     <div class="col-md-8 py-md-3 zoom-col">
       <div class="zoom-container" data-controller="meeting-creation">
-        <div class="sessions-page-component-header-white">
-          <i class="fa-regular fa-clock fa-sm"></i> Starting in 00:01:38
+        <div class="sessions-page-component-header-white"
+            data-controller="countdown"
+            data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
+          <i class="fa-regular fa-clock fa-sm"></i>
+          Starting in <span data-countdown-target="time"></span>
           <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
-            <button data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
+            <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
           <% end %>
         </div>
         <div data-meeting-creation-target="response"></div>

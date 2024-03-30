@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_session, only: %i[ show rsvp ]
-  before_action :set_book, only: [:show]
+  before_action :set_book, only: [:show, :rsvp, :revoke_rsvp]
 
   def new
     @session = Session.new
@@ -15,8 +15,10 @@ class SessionsController < ApplicationController
   end
 
   def show
-    @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
     @session = Session.find(params[:id])
+    # Since book_id is passed as a parameter, use it to find the book
+    @book = Book.find(params[:book_id])
+    @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
     @current_user = current_user
     @attendees = @session.attendees.includes(:user).map(&:user)
     @session_agendas = @session.agendas
@@ -26,6 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def rsvp
+    @session = @book.sessions.find(params[:id])
     if current_user.attendees.exists?(session_id: @session.id)
       render json: { error: "You are already attending this session." }, status: :unprocessable_entity
     elsif @session.attendees.count >= @session.capacity
@@ -81,6 +84,6 @@ class SessionsController < ApplicationController
     end
 
     def set_book
-      @book = Book.find(params[:id])
+      @book = Book.find(params[:book_id])
     end
 end
