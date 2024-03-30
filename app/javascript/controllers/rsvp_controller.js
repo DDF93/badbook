@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["capacity", "button", "table", "row"];
+  static targets = ["capacity", "button", "row"];
 
   connect() {
     //console.log(this.revokeTarget);
     //console.log(this.acceptTarget);
+    this.hideIfEmpty();
   }
 
   handleClick(event) {
@@ -58,9 +59,7 @@ export default class extends Controller {
     event.target.classList.toggle("btn-rsvp-revoke");
 
     const row = this.rowTarget;
-    row.outerHTML = "";
-
-    if ((this.tableTarget.innerHTML === "")) this.tableTarget.outerHTML = "";
-    
+    row.remove();
+    window.location.reload();
   }
 }

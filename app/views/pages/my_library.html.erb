@@ -3,7 +3,7 @@
 <p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-calendar-days" style="padding-right: 8px;"></i> Calendar <span class="counter-pill-pink"><%= current_user.sessions.count %></span></p>
 
 <% if @sessions.any? %>
-  <table id="sessions-table" data-controller="rsvp"  data-rsvp-target="table" >
+  <table id="sessions-table" data-controller="rsvp">
     <tbody>
       <% @sessions.each do |session| %>
         <tr data-controller="rsvp" data-rsvp-target="row">
