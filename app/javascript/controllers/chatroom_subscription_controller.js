@@ -25,18 +25,14 @@ export default class extends Controller {
   }
 
   #executeFunction(data) {
-    switch(data.function_name) {
-      case 'handleInitiateCall':
+    if (data.action === "execute_function") {
+      if (data.function_name === 'handleInitiateCall' && this.currentUserIdValue !== data.sender_id) {
         this.handleInitiateCall(data.room_url);
-        break;
+      }
     }
   }
 
   handleInitiateCall(room_url) {
-
-    console.log(room_url);
-    console.log(`<iframe src='${room_url}' allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>`);
-    console.log(this.videoTarget);
     this.videoTarget.innerHTML = `<iframe src='${room_url}' allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>`;
 
 
