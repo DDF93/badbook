@@ -16,6 +16,20 @@ class MessagesController < ApplicationController
     end
   end
 
+  def initiate_call
+    @chatroom = Chatroom.find_by(session_id: params[:sessionId])
+    if @chatroom
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        action: 'initiate call',
+        sender_id: current_user.id
+      )
+      head :ok
+    else
+      render json: { error: 'Chatroom not found' }, status: :not_found
+    end
+  end
+
   private
 
   def message_params

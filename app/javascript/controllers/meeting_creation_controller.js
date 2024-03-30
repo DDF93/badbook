@@ -17,7 +17,7 @@ export default class extends Controller {
           "Content-Type": "application/json",
           "X-CSRF-Token": csrfToken
         },
-        body: JSON.stringify({ sessionId: sessionId }) // Pass session ID in the request body
+        body: JSON.stringify({ sessionId: sessionId })
       });
 
       if (!response.ok) {
@@ -33,5 +33,25 @@ export default class extends Controller {
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
     }
+
+    try {
+      const response = await fetch("/initiate_call", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken
+        },
+        body: JSON.stringify({ sessionId: sessionId })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
   }
+
+
 }
