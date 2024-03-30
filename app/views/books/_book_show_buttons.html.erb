@@ -1,0 +1,63 @@
+<% if user_signed_in? %>
+    <% book_read = @read_books.include?(book) %>
+    <% needed_shelf = Bookshelf.where(user: current_user, name: "Read Books") %>
+    <% if book_read  %>
+    <button class="show-read-status-btn <%= 'read' if book_read %>" data-controller="show-mark" data-mark-target="show-mark"  data-bookshelf-id="<%= needed_shelf.first.id %>" data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->show-mark#remove" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+      <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
+    </button>
+    <% else  %>
+    <button class="show-read-status-btn <%= 'read' if book_read %>" data-controller="show-mark" data-mark-target="show-mark"  data-bookshelf-id="<%= needed_shelf.first.id %>" data-book-id="<%= book[:id] %>" data-toggle="tooltip" data-action="click->show-mark#toggleRead" title="<%= book_read ? 'Mark as unread' : 'Mark as read' %>">
+      <i class="fa <%= book_read ? 'fa-check' : 'fa-check' %>"></i>
+    </button>
+        <% end  %>
+
+    <div data-controller="dropdown">
+    <button class="show-add-btn" data-action="click->dropdown#toggle" data-toggle="tooltip" title="Add to Bookshelf">
+      <i class="fa fa-plus"></i>
+    </button>
+
+    <div class="dropdown d-flex flex-column flex-md-row py-md-5 mt-4 align-items-center justify-content-center d-none" data-dropdown-target="menu">
+      <ul class="dropdown-menu d-grid gap-2 p-2 shadow w-240px position-absolute" data-bs-theme="light" style="max-height: 200px; overflow-y: auto;">
+        <% Bookshelf.where(user_id: current_user).each do |shelf| %>
+          <% if shelf.name == "Read Books" %>
+          <% elsif BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
+            <li>
+            <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#removeFromBookshelf">
+              <%= shelf.name %> <i class="fa-solid fa-circle-check" style="margin-left: 4px;"></i>
+            </a>
+            </li>
+          <% else %>
+            <li>
+              <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#addToBookshelf">
+                <%= shelf.name %>
+              </a>
+            </li>
+          <% end %>
+        <% end %>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item rounded-2" href="#" data-action="click->modal#open" data-target="modal.trigger" data-bs-toggle="modal" data-bs-target="#createBookshelfModal" data-controller="modal"><i class="fa-solid fa-plus" style="margin-right: 4px;"></i> New Bookshelf</a></li>
+      </ul>
+    </div>
+
+    <div class="modal fade" id="createBookshelfModal" tabindex="-1" aria-labelledby="createBookshelfModalLabel" aria-hidden="true" data-controller="modal">
+      <div class="modal-dialog">
+        <div class="modal-content modal-white-background">
+          <div class="modal-header">
+            <p class="modal-title" id="createBookshelfModalLabel">New Bookshelf</p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="createBookshelfForm" data-action="submit->modal#submit" method="post" action="/bookshelves">
+              <div class="mb-3">
+                <label for="bookshelfName" class="form-label">Bookshelf Name</label>
+                <input type="text" class="form-control" id="bookshelfName" name="bookshelf[name]">
+              </div>
+              <button type="submit" class="bold-button">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <% end %>
