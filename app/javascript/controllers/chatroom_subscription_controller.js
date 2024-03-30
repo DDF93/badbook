@@ -27,13 +27,16 @@ export default class extends Controller {
   #executeFunction(data) {
     switch(data.function_name) {
       case 'handleInitiateCall':
-        this.handleInitiateCall();
+        this.handleInitiateCall(data.room_url);
         break;
     }
   }
 
-  handleInitiateCall() {
-    console.log("Initiating call...");
+  handleInitiateCall(room_url) {
+
+    console.log(room_url);
+
+    <iframe src="${room_url}" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
 
   }
 

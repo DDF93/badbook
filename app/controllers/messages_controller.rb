@@ -17,12 +17,14 @@ class MessagesController < ApplicationController
   end
 
   def initiate_call
+    @session = Session.find_by(id: params[:sessionId])
     @chatroom = Chatroom.find_by(session_id: params[:sessionId])
     if @chatroom
       ChatroomChannel.broadcast_to(
         @chatroom,
         action: 'execute_function',
-        function_name: 'handleInitiateCall'  # Specify the function name to execute
+        function_name: 'handleInitiateCall',
+        room_url: @session.room_url,
       )
       head :ok
     else
