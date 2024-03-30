@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def my_library
-    @sessions = current_user.sessions
+    @sessions = current_user.sessions.where("start_time > ?", Time.current).order(:start_time)
     @bookshelves = Bookshelf.where(user_id: current_user.id)
   end
 
