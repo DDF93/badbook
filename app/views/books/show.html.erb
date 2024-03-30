@@ -9,7 +9,7 @@
 
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
 
-      <div class="book-genre-tag"><%= @book.genre %></div>
+      <%# <div class="book-genre-tag"><%= @book.genre</div> %>
       <div data-controller="book-description" class="book-description">
 
         <% if @description_longer_than_250 %>
