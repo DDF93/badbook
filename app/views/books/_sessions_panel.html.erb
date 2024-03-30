@@ -48,12 +48,12 @@
         </td>
         <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
           <td class="session-action">
-            <% if session.attendees.exists?(user_id: current_user.id) %>
+            <% if session.start_time <= Time.now + 15.minutes %>
+              <%= render "books/join_session", book: session.book, session: session %>
+            <% elsif session.attendees.exists?(user_id: current_user.id) %>
               <%= render "books/revoke_rsvp", session: session, book: @book %>
             <% elsif session.attendees.count >= session.capacity %>
               <span class="session-full">Full</span>
-            <% elsif session.start_time <= Time.now + 15.minutes %>
-              <%= render "books/join_session", session: session, book: @book %>
             <% else %>
               <%= render "books/rsvp", session: session, book: @book %>
             <% end %>
