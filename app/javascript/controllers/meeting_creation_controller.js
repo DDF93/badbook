@@ -1,28 +1,23 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="meeting-creation"
 export default class extends Controller {
-  static targets = ["response"];
+  static targets = ["response", "chat"];
 
-  connect() {console.log("MeetingCreationController connected")}
+  connect() {
+    console.log("MeetingCreationController connected");
+  }
 
-  async startMeeting() {
-    const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNzExMTk1NTY4LCJvcmdhbml6YXRpb25JZCI6MjIwMzUzLCJqdGkiOiI5OTI1YjNkNy0zYWEyLTRhNGMtYmNiNC1lZmFmY2YzYjkxYmIifQ.0VogW3uXqlhLFrfjr7cCDULK3BktOXdA-6oAJc4Exh0";
-    const bookId = this.element.dataset.bookId;
-    const data = {
-      endDate: "2099-02-18T14:23:00.000Z",
-      fields: ["hostRoomUrl"],
-      roomMode:["group"],
-    };
-
+  async startMeeting(event) {
+    const sessionId = event.target.dataset.sessionId;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     try {
-      const response = await fetch("https://api.whereby.dev/v1/meetings", {
+      const response = await fetch("/create_meeting", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ sessionId: sessionId }) // Pass session ID in the request body
       });
 
       if (!response.ok) {
@@ -30,7 +25,11 @@ export default class extends Controller {
       }
 
       const responseData = await response.json();
-      this.responseTarget.textContent = `Room URL: ${responseData.roomUrl}, Host room URL: ${responseData.hostRoomUrl}`;
+      const hostRoomUrl = responseData.hostRoomUrl;
+      this.responseTarget.innerHTML = `<iframe src="${hostRoomUrl}" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>`;
+
+
+      this.chatTarget.style.display = "none";
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
     }

@@ -103,6 +103,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_213352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "end_time"
+    t.string "host_url"
+    t.string "room_url"
     t.index ["book_id"], name: "index_sessions_on_book_id"
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
