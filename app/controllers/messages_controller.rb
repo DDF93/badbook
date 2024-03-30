@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
     if @chatroom
       ChatroomChannel.broadcast_to(
         @chatroom,
-        action: 'initiate call',
+        message: 'initiate call',
         sender_id: current_user.id
       )
       head :ok
