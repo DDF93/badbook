@@ -5,11 +5,12 @@
     </div>
 
     <div class="book-show-book-info">
-      <h1 class="book-show-book-title"><%= @book.title %></h1>
+      <div class="title-and-buttons"><h1 class="book-show-book-title"><%= @book.title %></h1><%= render 'books/book_show_buttons', book: @book %></div>
 
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
-
+        
       <%# <div class="book-genre-tag"><%= @book.genre</div> %>
+
       <div data-controller="book-description" class="book-description">
 
         <% if @description_longer_than_250 %>

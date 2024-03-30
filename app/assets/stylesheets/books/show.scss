@@ -73,3 +73,37 @@
   padding-bottom: 20px;
   text-align: center;
 }
+
+.title-and-buttons {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-read-status-btn, .show-add-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  margin-left: 16px;
+  margin-bottom: 4px;
+}
+
+.show-read-status-btn {
+  background-color: $light-cream;
+  border: 1.5px solid $dark-gray;
+  color: $dark-gray;
+}
+
+.show-read-status-btn.read {
+  background-color: $dark-gray;
+  border-color: $dark-gray;
+  border-style: solid;
+  color: white;
+}
+
+.show-add-btn {
+  background-color: $light-cream;
+  border: 1.5px solid $dark-gray;
+  color: $dark-gray;
+}

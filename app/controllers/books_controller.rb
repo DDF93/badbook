@@ -30,6 +30,9 @@ class BooksController < ApplicationController
 
     # Initialize @review
     @review = Review.new
+    @bookshelves = Bookshelf.where(user_id: 1)
+    read_books_shelf = current_user.bookshelves.find_by(name: 'Read Books')
+    @read_books = read_books_shelf.present? ? read_books_shelf.books.to_a : []
   end
 
   def mark_as_read
