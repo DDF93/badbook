@@ -30,7 +30,6 @@ class SessionsController < ApplicationController
   def rsvp
     @session = @book.sessions.find(params[:id])
     if current_user.attendees.exists?(session_id: @session.id)
-      flash[:alert] = "You are already attending this session."
       redirect_to book_session_path(@book, @session)
     elsif @session.attendees.count >= @session.capacity
       flash[:alert] = "The session is full."
@@ -38,7 +37,6 @@ class SessionsController < ApplicationController
     else
       @attendee = @session.attendees.build(user: current_user)
       if @attendee.save
-        flash[:notice] = "You have successfully joined the session."
         redirect_to book_session_path(@book, @session) # Redirect to the session detail page
       else
         flash[:alert] = "Failed to join the session."
@@ -55,7 +53,7 @@ class SessionsController < ApplicationController
 
     if @session.save
       @session.attendees.create(user: current_user, host: true) # This line sets the host boolean to true
-      redirect_to session_url(@session), notice: "Session was successfully created."
+      redirect_to session_url(@session)
     else
       logger.debug @session.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
@@ -69,7 +67,7 @@ class SessionsController < ApplicationController
 
     if @attendee.destroy
       spots_left = @session.capacity - @session.attendees.count
-      render json: { message: "RSVP revoked successfully" }, status: :ok
+      render json: { }, status: :ok
     else
       render json: { error: "Failed to revoke RSVP" }, status: :unprocessable_entity
     end

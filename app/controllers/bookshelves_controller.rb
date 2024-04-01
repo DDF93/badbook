@@ -18,7 +18,7 @@ class BookshelvesController < ApplicationController
     @bookshelf_book = BookshelfBook.new(book_id: book_id, bookshelf_id: bookshelf_id)
     # You might want to check if the book and bookshelf exist and if the current user owns the bookshelf
     if @bookshelf_book.save
-      render json: { message: "Book added to bookshelf successfully" }, status: :ok
+      render json: { }, status: :ok
     else
       render json: { error: "Failed to add book to bookshelf", errors: @bookshelf_book.errors.full_messages }, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class BookshelvesController < ApplicationController
     @bookshelf_book = BookshelfBook.find_by(book_id: book_id, bookshelf_id: bookshelf_id)
     # You might want to check if the book and bookshelf exist and if the current user owns the bookshelf
     if @bookshelf_book.destroy
-      render json: { message: "Book removed from bookshelf successfully" }, status: :ok
+      render json: { }, status: :ok
     else
       render json: { error: "Failed to remove book from bookshelf", errors: @bookshelf_book.errors.full_messages }, status: :unprocessable_entity
     end
@@ -61,7 +61,7 @@ class BookshelvesController < ApplicationController
 
     respond_to do |format|
       if @bookshelf.save
-        format.json { render json: { message: "Bookshelf was successfully created.", bookshelf: @bookshelf }, status: :created }
+        format.json { render json: { bookshelf: @bookshelf }, status: :created }
       else
         format.json { render json: { error: @bookshelf.errors.full_messages.join(", ") }, status: :unprocessable_entity }
       end
@@ -72,7 +72,7 @@ class BookshelvesController < ApplicationController
   def update
     respond_to do |format|
       if @bookshelf.update(bookshelf_params)
-        format.html { redirect_to bookshelf_url(@bookshelf), notice: "Bookshelf was successfully updated." }
+        format.html { redirect_to bookshelf_url(@bookshelf) }
         format.json { render :show, status: :ok, location: @bookshelf }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -87,7 +87,7 @@ class BookshelvesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@bookshelf) }
-      format.html { redirect_to my_library_path, notice: "Bookshelf deleted." }
+      format.html { redirect_to my_library_path }
       format.json { head :no_content }
     end
   end
