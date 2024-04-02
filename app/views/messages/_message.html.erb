@@ -1,7 +1,14 @@
 <div id="message-<%= message.id %>">
-  <small>
-    <strong><%= message.user.email %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-  </small>
-  <p><%= message.content %></p>
+  <p class="message-content"><%= message.content %></p>
+  <small><p class="message-submitted-by"><i class="fa-regular fa-user" style="margin-right: 4px;"></i><%= message.user.email %>
+    <% now = Time.zone.now %>
+    <% if message.created_at > now - 1.minute %>
+      <i style="color: #a7a7a7;">Just now</i>
+    <% elsif message.created_at.today? %>
+      <i style="color: #a7a7a7;">Today, <%= message.created_at.strftime("%l:%M%p").downcase %></i>
+    <% elsif message.created_at.to_date == (now.to_date - 1.day) %>
+      <i style="color: #a7a7a7;">Yesterday, <%= message.created_at.strftime("%l:%M%p").downcase %></i>
+    <% else %>
+      <i style="color: #a7a7a7;"><%= message.created_at.strftime("%d %b, %l:%M%p").downcase %></i>
+    <% end %></p></small>
 </div>

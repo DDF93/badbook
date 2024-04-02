@@ -1,6 +1,6 @@
-<div class="session-container vh-100 overflow-hidden d-flex flex-column">
-  <div class="row h-100">
-    <div class="col-md-4 py-md-3 agenda-panel-col overflow-auto">
+<div class="session-container d-flex flex-column">
+  <div class="row">
+    <div class="col-md-4 py-md-3 agenda-panel-col">
       <div class="sessions-page-component-header">
         <%= @session.book.title %> Bookclub Agenda
       </div>
@@ -9,17 +9,18 @@
         <%= render partial: 'agenda_form' %>
       </div>
     </div>
+
     <div class="col-md-8 py-md-3 zoom-col overflow-hidden">
-      <div class="zoom-container h-100 d-flex flex-column" data-controller="meeting-creation">
-        <div class="sessions-page-component-header-white mb-3"
-            data-controller="countdown"
-            data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
-          <i class="fa-regular fa-clock fa-sm"></i>
-          Starting in <span data-countdown-target="time"></span>
-          <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
-            <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
-          <% end %>
-        </div>
+      <div class="sessions-page-component-header-white mb-3"
+          data-controller="countdown"
+          data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
+        <i class="fa-regular fa-clock fa-sm"></i>
+        Starting in <span data-countdown-target="time"></span>
+        <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
+          <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
+        <% end %>
+      </div>
+      <div class="zoom-container d-flex flex-column" data-controller="meeting-creation">
         <div data-meeting-creation-target="response"></div>
         <div class="chatroom-target flex-grow-1 overflow-hidden" data-target="meeting-creation.chat">
           <% if  @session.room_url.nil? %>
@@ -31,13 +32,6 @@
           <% end %>
         </div>
       </div>
-      <%# <div class="attendees-container">
-        <div class="sessions-page-component-header">Participants</div>
-        <% @attendees.each do |attendee| %>
-          <%# <span class="counter-pill-light"><%= attendee.email</span> %>
-        <%# <% end %>
-        <%# </div> %>
-      <%# </div> %>
   </div>
 </div>
 <br><br>
