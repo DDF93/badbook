@@ -10,13 +10,13 @@
         <% elsif BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
           <li>
           <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#removeFromBookshelf">
-            <%= shelf.name %> <i class="fa-solid fa-circle-check" style="margin-left: 4px;"></i>
+            <%= shelf.name %> <i class="fa-regular fa-circle-check" style="margin-left: 4px;"></i>
           </a>
           </li>
         <% else %>
           <li>
             <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#addToBookshelf">
-              <%= shelf.name %>
+              <%= shelf.name %> <i class="fa-regular fa-circle" style="margin-left: 4px;"></i>
             </a>
           </li>
         <% end %>

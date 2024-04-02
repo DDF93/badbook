@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to book_path(@book), notice: "Review was successfully created." }
+        format.html { redirect_to book_path(@book) }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to book_path(@review.book.id), notice: "Review was successfully updated." }
+        format.html { redirect_to book_path(@review.book.id) }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to book_path(@review.book), notice: "Review was successfully destroyed."
+    redirect_to book_path(@review.book)
   end
 
 
