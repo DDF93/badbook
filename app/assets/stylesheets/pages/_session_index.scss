@@ -96,7 +96,6 @@
 }
 
 #books-sessions-table th, #books-sessions-table td {
-  text-align: left;
   border-bottom: 2px solid $mid-cream;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -111,9 +110,7 @@
 }
 
 .session-action {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  text-align: right;
 }
 
 // Bookshelves show
