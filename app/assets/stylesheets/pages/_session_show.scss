@@ -10,10 +10,15 @@
 }
 
 .zoom-container {
-  height: calc(100vh - 100px);
-  position: relative;
-  overflow-y: auto;
+  height: 20%;
+  // position: relative;
+  // overflow-y: auto;
 }
+
+// .chatroom-target {
+//   height: 20%;
+
+// }
 
 .zoom-placeholder {
   height: 500px;

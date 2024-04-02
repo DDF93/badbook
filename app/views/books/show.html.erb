@@ -5,11 +5,28 @@
     </div>
 
     <div class="book-show-book-info">
-      <div class="title-and-buttons"><h1 class="book-show-book-title"><%= @book.title %></h1><%= render 'books/book_show_buttons', book: @book %></div>
+      <div class="title-and-buttons"><%= render 'books/book_show_buttons', book: @book %></div>
+      <h1 class="book-show-book-title"><%= @book.title %></h1>
 
-      <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br></p>
-        
-      <%# <div class="book-genre-tag"><%= @book.genre</div> %>
+      <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br>
+      Published on <%= @book.date %></p>
+
+      <div class="average-rating d-flex align-items-center">
+          <% average = @book.average_rating %>
+          <% full_stars = average.floor %>
+          <% half_star = average % 0.5 >= 0.25 %>
+          <% empty_stars = 5 - full_stars - (half_star ? 1 : 0) %>
+
+          <% full_stars.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% if half_star %>
+            <i class="fas fa-star-half-alt"></i>
+          <% end %>
+          <% empty_stars.times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        </div>
 
       <div data-controller="book-description" class="book-description">
 
@@ -31,23 +48,7 @@
     <div class="reviews-header d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center"> <!-- This will align the title and stars horizontally -->
         <p class="mb-0">Reviews</p> <!-- mb-0 removes the bottom margin from the paragraph -->
-        <div class="average-rating d-flex align-items-center ms-2"> <!-- ms-2 adds some left margin -->
-          <% average = @book.average_rating %>
-          <% full_stars = average.floor %>
-          <% half_star = average % 0.5 >= 0.25 %>
-          <% empty_stars = 5 - full_stars - (half_star ? 1 : 0) %>
-
-          <% full_stars.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% if half_star %>
-            <i class="fas fa-star-half-alt"></i>
-          <% end %>
-          <% empty_stars.times do %>
-            <i class="far fa-star"></i> <!-- Assuming you're using regular style for empty stars -->
-          <% end %>
-          <span>(<%= average %>)</span>
-        </div>
+        <span style="margin-left: 10px; margin-top: 3px;"><%= average %>/5 Rating</span>
       </div>
       <%= render 'reviews/addReviewModal' %> <!-- This will be aligned to the right -->
     </div>

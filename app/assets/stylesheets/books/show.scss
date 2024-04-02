@@ -1,6 +1,7 @@
 .book-show-page-container {
   margin: 0 auto;
   padding: 40px;
+  max-width: 90%;
 }
 
 .book-show-content-container {
@@ -31,11 +32,17 @@
 .book-show-book-title {
   font-weight: bold;
   font-size: 38px;
-  margin-bottom: 5px;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 
 .book-show-book-author {
   font-size: 20px;
+}
+
+.book-show-book-date {
+  font-size: 16px;
+  color: $light-gray-text;
 }
 
 .book-genre-tag {
@@ -47,7 +54,8 @@
 }
 
 .book-description {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-right: 100px;
 }
 
 .book-description p {
@@ -56,15 +64,14 @@
 }
 
 .read-more {
-  color: $blue;
+  color: $pink;
   cursor: pointer;
   margin-left: 8px;
   font-size: 15px;
+  text-decoration: underline;
 }
 
 .reviews-section {
-  background-color: white;
-  border-top: 1px solid $dark-gray;
   padding: 60px 100px 60px 100px;
   margin-top: 20px;
 }
@@ -75,6 +82,7 @@
 }
 
 .title-and-buttons {
+  margin-top: 10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +93,7 @@
   height: 30px;
   border-radius: 50%;
   border: none;
-  margin-left: 16px;
+  margin-right: 10px;
   margin-bottom: 4px;
 }
 

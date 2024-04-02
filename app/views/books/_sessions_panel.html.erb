@@ -1,6 +1,6 @@
 <div class="sessions-panel">
   <div class="d-flex justify-content-between align-items-center mb-2">
-    <p class="sessions-panel-header mb-0"><%= @book.title %> Bookclubs</p>
+    <p class="sessions-panel-header mb-0">Upcoming Bookclubs</p>
     <% if current_user.host? %>
       <button class="btn-new-session" data-bs-toggle="modal" data-bs-target="#newSessionModal">
         <i class="fa fa-plus pe-1"></i>
@@ -46,7 +46,7 @@
           <br>
           <span class="session-time"><%= session.start_time.strftime("%l:%M%p") %></span>
         </td>
-        <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+        <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-regular fa-user" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
           <td class="session-action">
             <% if session.start_time <= Time.now + 15.minutes %>
               <%= render "books/join_session", book: session.book, session: session %>
