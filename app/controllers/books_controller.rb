@@ -21,8 +21,8 @@ class BooksController < ApplicationController
                      .strip
 
     sentence_case_description = clean_description.downcase.capitalize
-    preview_characters = sentence_case_description[0...230]
-    description_longer_than_250_characters = sentence_case_description.length > 230
+    preview_characters = sentence_case_description[0...350]
+    description_longer_than_250_characters = sentence_case_description.length > 350
 
     @preview_description = preview_characters
     @full_description = sentence_case_description

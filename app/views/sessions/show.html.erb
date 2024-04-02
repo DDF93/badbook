@@ -25,9 +25,9 @@
           <% if  @session.room_url.nil? %>
           <%= render "chatrooms/chats", chatroom: @chatroom %>
           <% elsif @session.room_url.present? && @current_user_attendee.host == false %>
-            <iframe src="<%= @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
+            <iframe src="<%= @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"></iframe>
           <% elsif @session.host_url.present? && @current_user_attendee.host? == true %>
-            <iframe src="<%= @session.host_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style="height: 700px; width: 100%"></iframe>
+            <iframe src="<%= @session.host_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"></iframe>
           <% end %>
 
         </div>

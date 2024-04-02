@@ -17,7 +17,7 @@
             <br>
             <%= session.start_time.strftime("%a %d %b, %l:%M%p") %>
           </td>
-          <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-solid fa-users" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
+          <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-regular fa-user" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
           <td class="session-action-button">
             <%= render "books/revoke_rsvp", session: session, book: session.book %>
           </td>

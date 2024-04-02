@@ -22,7 +22,9 @@
   border-spacing: 0;
   border-radius: 20px;
   overflow: hidden;
-  background-color: $mid-cream;
+  background-color: $other-cream;
+  border-radius: 20px;
+  border: 1px solid $mid-cream;
   padding: 10px;
   color: $dark-gray;
 }
@@ -30,7 +32,7 @@
 #sessions-table th, #sessions-table td {
   text-align: left;
   padding: 8px;
-  border-bottom: 1px solid $light-cream;
+  border-bottom: 1px solid $mid-cream;
 }
 
 #sessions-table .session-action-button {
@@ -60,12 +62,12 @@
 // books/show stuff:
 
 .sessions-panel {
-  margin-left: 40px;
-  min-width: 450px;
+  min-width: 425px;
   height: 450px;
   overflow: auto;
-  background-color: $mid-cream;
+  background-color: $other-cream;
   border-radius: 20px;
+  border: 1px solid $mid-cream;
   padding: 20px;
 }
 
@@ -95,9 +97,9 @@
 
 #books-sessions-table th, #books-sessions-table td {
   text-align: left;
-  border-bottom: 1px solid #e0d1c0;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  border-bottom: 2px solid $mid-cream;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 #books-sessions-table tbody tr:last-child td {
