@@ -1,6 +1,6 @@
-<div class="session-container vh-100 overflow-hidden">
-  <div class="row h-100">
-    <div class="col-md-4 py-md-3 agenda-panel-col overflow-auto">
+<div class="session-container">
+  <div class="row">
+    <div class="col-md-4 py-md-3 agenda-panel-col">
       <div class="sessions-page-component-header">
         <%= @session.book.title %> Bookclub Agenda
       </div>
@@ -9,9 +9,9 @@
         <%= render partial: 'agenda_form' %>
       </div>
     </div>
-    <div class="col-md-8 py-md-3 zoom-col overflow-hidden">
-      <div class="zoom-container h-100 d-flex flex-column" data-controller="meeting-creation">
-        <div class="sessions-page-component-header-white mb-3"
+    <div class="col-md-8 py-md-3 zoom-col">
+      <div class="zoom-container" data-controller="meeting-creation">
+        <div class="sessions-page-component-header-white"
             data-controller="countdown"
             data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
           <i class="fa-regular fa-clock fa-sm"></i>
@@ -28,14 +28,18 @@
             <iframe src="<%= @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"></iframe>
           <% elsif @session.host_url.present? && @current_user_attendee.host? == true %>
             <iframe src="<%= @session.host_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"></iframe>
-        <div class="flex-grow-1 overflow-hidden">
-          <% if @session.room_url.nil? %>
-            <%= render "chatrooms/chats", chatroom: @chatroom %>
-          <% else %>
-            <iframe class="w-100 h-100" src="<%= @current_user_attendee.host? ? @session.host_url : @session.room_url %>" allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"></iframe>
           <% end %>
+
         </div>
       </div>
-    </div>
+      <%# <div class="attendees-container">
+        <div class="sessions-page-component-header">Participants</div>
+        <% @attendees.each do |attendee| %>
+          <%# <span class="counter-pill-light"><%= attendee.email</span> %>
+        <%# <% end %>
+        <%# </div> %>
+      <%# </div> %>
   </div>
+</div>
+<br><br>
 </div>
