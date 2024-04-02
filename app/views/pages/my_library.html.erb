@@ -1,8 +1,10 @@
 <h2 class="carousel-header">My Library</h2>
 
-<p class="sessions-page-component-header" style="text-align: center;"><i class="fa-solid fa-calendar-days" style="padding-right: 8px;"></i> Calendar <span class="counter-pill-pink"><%= current_user.sessions.count %></span></p>
-
 <% if @sessions.any? %>
+  <p class="sessions-page-component-header" style="text-align: center;">
+    <i class="fa-solid fa-calendar-days" style="padding-right: 8px;"></i> Calendar
+    <span class="counter-pill-pink"><%= @sessions.count %></span>
+  </p>
   <table id="sessions-table" data-controller="rsvp">
     <tbody>
       <% @sessions.each do |session| %>
@@ -26,6 +28,7 @@
     </tbody>
   </table>
 <% end %>
+
 
 <br>
 

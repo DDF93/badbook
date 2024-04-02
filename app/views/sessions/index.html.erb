@@ -13,19 +13,30 @@
           <span class="book-author"><%= session.book.author %></span>
         </td>
         <td class="session-countdown">
-          <i class="fa-regular fa-clock" style="padding-right: 4px;"></i> <b><%= session_countdown(session.start_time) %></b>
+          <i class="fa-regular fa-clock" style="padding-right: 4px;"></i>
+          <b><%= session_countdown(session.start_time) %></b>
           <br>
           <%= session.start_time.strftime("%a %d %b, %l:%M%p") %>
         </td>
         <td class="session-capacity" data-rsvp-target="capacity" data-capacity=<%= session_capacity_text(session)%>><i class="fa-regular fa-user" style="padding-right: 8px;"></i><%= session_capacity_text(session) %></td>
         <td class="session-action">
+          <% session_in_progress = session.start_time.past? && Time.current <= session.start_time + 15.minutes %>
+          <% session_starting_soon = session.start_time.future? && Time.current >= session.start_time - 15.minutes %>
           <% if session.attendees.exists?(user_id: current_user.id) %>
-            <%= render "books/revoke_rsvp", session: session, book: session.book %>
+            <% if session_in_progress || session_starting_soon %>
+              <!-- Render the 'Join' button if the session has started within the last 15 minutes or is starting within the next 15 minutes -->
+              <%= render "books/join_session", session: session, book: session.book %>
+            <% else %>
+              <!-- Render the 'Cancel' button otherwise -->
+              <%= render "books/revoke_rsvp", session: session, book: session.book %>
+            <% end %>
           <% elsif session.attendees.count >= session.capacity %>
             <span class="session-full">Full</span>
-          <% elsif session.start_time <= (Time.current + 15.minutes) %>
+          <% elsif session_in_progress || session_starting_soon %>
+            <!-- Render the 'Join' button for sessions that have started within the last 15 minutes or are starting soon -->
             <%= render "books/join_session", session: session, book: session.book %>
           <% else %>
+            <!-- Render the 'RSVP' button for sessions that are not full and are starting in more than 15 minutes -->
             <%= render "books/rsvp", session: session, book: session.book %>
           <% end %>
         </td>
