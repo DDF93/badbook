@@ -10,8 +10,11 @@ class SessionsController < ApplicationController
 
   def index
     @sessions = Session.all
-    @upcoming_sessions = Session.where('start_time > ?', Time.current).order(start_time: :asc)
-
+    @upcoming_sessions = Session.where('start_time > ? OR start_time BETWEEN ? AND ?',
+    Time.current,
+    Time.current - 15.minutes,
+    Time.current)
+    .order(start_time: :asc)
   end
 
   def show
@@ -28,23 +31,30 @@ class SessionsController < ApplicationController
   end
 
   def rsvp
-    @session = @book.sessions.find(params[:id])
-    if current_user.attendees.exists?(session_id: @session.id)
-      redirect_to book_session_path(@book, @session)
-    elsif @session.attendees.count >= @session.capacity
-      flash[:alert] = "The session is full."
-      redirect_to book_session_path(@book, @session)
-    else
-      @attendee = @session.attendees.build(user: current_user)
-      if @attendee.save
-        redirect_to book_session_path(@book, @session) # Redirect to the session detail page
+    @session = Session.find(params[:id])
+    unless @session.attendees.exists?(user_id: current_user.id)
+      if @session.attendees.count < @session.capacity
+        @attendee = @session.attendees.build(user: current_user)
+        if @attendee.save
+          # Redirect to the session's detail page after successful join
+          flash[:notice] = "You have successfully joined the session."
+          redirect_to book_session_path(@session.book, @session)
+        else
+          # Redirect to the sessions list page if there was a problem joining
+          flash[:alert] = "There was a problem joining the session."
+          redirect_to sessions_path
+        end
       else
-        flash[:alert] = "Failed to join the session."
-        redirect_to book_sessions_path(@book)
+        # Redirect to the sessions list page if the session is full
+        flash[:alert] = "The session is full."
+        redirect_to sessions_path
       end
+    else
+      # If the user is already an attendee, perhaps redirect them to the session's chatroom or the session's detail page
+      flash[:notice] = "You are already an attendee of this session."
+      redirect_to book_session_path(@session.book, @session)
     end
   end
-
 
   def create
     @session = Session.new(session_params)
