@@ -72,6 +72,7 @@ export default class extends Controller {
             btn.classList.remove('selected-vote');
         });
         button.classList.add('selected-vote');
+        this.element.dataset.voted = "true";
 
         console.log("Vote registered");
         this.broadcastVote();
