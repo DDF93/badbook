@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["menu"];
+  static targets = ["menu", "info"];
 
   connect() {
     document.addEventListener("click", this.closeDropdownOutside.bind(this));
@@ -22,6 +22,7 @@ export default class extends Controller {
 
   toggle() {
     this.menuTarget.classList.toggle("d-none");
+    this.infoTarget.classList.toggle("d-none");
   }
 
   addToBookshelf(event) {
