@@ -4,6 +4,7 @@ class BookshelvesController < ApplicationController
   # GET /bookshelves or /bookshelves.json
   def index
     @bookshelves = Bookshelf.where(user_id: current_user.id)
+    @sessions = current_user.sessions.where("start_time > ?", Time.now)
   end
 
   def add_book_to_bookshelf
