@@ -1,4 +1,4 @@
-<div  class="book-tile" style="position: relative; width: 200px;">
+<div  class="book-tile" style="position: relative; width: 200px;" data-controller="dropdown">
   <% if book[:image_url].present? %>
     <%= link_to image_tag(book[:image_url], class: "img-fluid book-cover", alt: book[:title]), book_path(book[:id]) %>
   <% else %>
@@ -18,14 +18,63 @@
     </button>
         <% end  %>
 
-    <%= render 'books/bookshelf_dropdown', book: book %>
-  <% end %>
+  <button class="add-btn" data-action="click->dropdown#toggle" data-toggle="tooltip" title="Add to Bookshelf">
+    <i class="fa fa-plus"></i>
+  </button>
 
-  <div class="book-info">
-    <%= link_to book_path(book) do %>
-      <div class="book-title"><%= book[:title] %></div>
-    <% end %>
-
-    <div class="book-author"><%= book[:author] %></div>
+  <div class="dropdown d-flex flex-column flex-md-row mt-1 align-items-center justify-content-center d-none" data-dropdown-target="menu">
+    <ul class="dropdown-menu d-grid gap-2 p-2 shadow w-240px position-relative" data-bs-theme="light" style="max-height: none; max-width: none;" overflow-y: auto;">
+      <% Bookshelf.where(user_id: current_user).each do |shelf| %>
+        <% if shelf.name == "Read Books" %>
+        <% elsif BookshelfBook.where(book_id: book.id, bookshelf_id: shelf.id).exists? %>
+          <li>
+            <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#removeFromBookshelf">
+              <%= shelf.name %> <i class="fa-regular fa-circle-check" style="margin-left: 4px;"></i>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+        <% else %>
+          <li>
+            <a class="dropdown-item" href="#" data-bookshelf-id="<%= shelf.id %>" data-book-id="<%= book.id %>" data-action="click->dropdown#addToBookshelf">
+              <%= shelf.name %> <i class="fa-regular fa-circle" style="margin-left: 4px;"></i>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+        <% end %>
+      <% end %>
+      <li>
+        <a class="dropdown-item rounded-2" href="#" data-action="click->modal#open" data-target="modal.trigger" data-bs-toggle="modal" data-bs-target="#createBookshelfModal" data-controller="modal">
+          <i class="fa-solid fa-plus" style="margin-right: 4px;"></i> New Bookshelf
+        </a>
+      </li>
+    </ul>
   </div>
+
+  <div class="modal fade" id="createBookshelfModal" tabindex="-1" aria-labelledby="createBookshelfModalLabel" aria-hidden="true" data-controller="modal">
+    <div class="modal-dialog">
+      <div class="modal-content modal-white-background">
+        <div class="modal-header">
+          <p class="modal-title" id="createBookshelfModalLabel">New Bookshelf</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createBookshelfForm" data-action="submit->modal#submit" method="post" action="/bookshelves">
+            <div class="mb-3">
+              <label for="bookshelfName" class="form-label">Bookshelf Name</label>
+              <input type="text" class="form-control" id="bookshelfName" name="bookshelf[name]">
+            </div>
+            <button type="submit" class="bold-button">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+    <div class="book-info" data-dropdown-target="info">
+      <%= link_to book_path(book) do %>
+        <div class="book-title"><%= book[:title] %></div>
+      <% end %>
+
+      <div class="book-author"><%= book[:author] %></div>
+    </div>
 </div>

@@ -5,7 +5,6 @@
     </div>
 
     <div class="book-show-book-info">
-      <div class="title-and-buttons"><%= render 'books/book_show_buttons', book: @book %></div>
       <h1 class="book-show-book-title"><%= @book.title %></h1>
 
       <p class="book-show-book-author"><strong>Author:</strong> <%= @book.author %><br>
@@ -36,6 +35,7 @@
         <% else %>
           <p><%= @full_description %></p>
         <% end %>
+        <div class="title-and-buttons"><%= render 'books/book_show_buttons', book: @book %></div>
       </div>
     </div>
     <%= render "books/sessions_panel"  %>
