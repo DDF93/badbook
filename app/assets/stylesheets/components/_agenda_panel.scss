@@ -27,6 +27,12 @@
   border-bottom-left-radius: 0;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  color: $light-cream;
+
+  &:hover {
+    background-color: #515151;
+    color: $light-cream;
+  }
 }
 
 .list-group-item {

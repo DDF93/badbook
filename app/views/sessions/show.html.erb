@@ -15,13 +15,14 @@
           data-controller="countdown"
           data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
         <i class="fa-regular fa-clock fa-sm"></i>
-        Starting in <span data-countdown-target="time"></span>
-        <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
-          <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
-        <% end %>
+        <span data-countdown-target="time"></span>
       </div>
       <div class="zoom-container d-flex flex-column" data-controller="meeting-creation">
-        <div data-meeting-creation-target="response"></div>
+        <div data-meeting-creation-target="response">
+          <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
+          <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
+          <% end %>
+        </div>
         <div class="chatroom-target flex-grow-1 overflow-hidden" data-target="meeting-creation.chat">
           <% if  @session.room_url.nil? %>
           <%= render "chatrooms/chats", chatroom: @chatroom %>
