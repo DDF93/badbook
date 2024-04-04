@@ -1,7 +1,7 @@
 .agenda-panel-col {
   background-color: $mid-cream;
-  padding-left: 24px;
-  padding-right: 16px;
+  padding-left: 30px;
+  padding-right: 18px;
   border-right: 1px solid $dark-gray;
 }
 
@@ -10,39 +10,14 @@
 }
 
 .zoom-container {
-  height: 20%;
-  // position: relative;
-  // overflow-y: auto;
-}
-
-// .chatroom-target {
-//   height: 20%;
-
-// }
-
-.zoom-placeholder {
-  height: 500px;
-  background-color: #656565;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
+  max-width: 700px;
+  margin: auto;
+  display: block;
 }
 
 .session-countdown {
   font-size: 18px;
   color: white;
-}
-
-.attendees-container {
-  background-color: #f9f9f9;
-  padding: 20px;
-  position: sticky;
-  bottom: 0;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 0;
 }
 
 .sessions-page-component-header {
@@ -54,4 +29,11 @@
   color: white;
   font-size: 18px;
   margin-bottom: 10px;
+}
+
+.sessions-page-component-info-white {
+  color: $mid-gray;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
 }
