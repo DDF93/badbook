@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 py-md-3 agenda-panel-col">
       <div class="sessions-page-component-header">
-        <%= @session.book.title %> Bookclub Agenda
+        <%= @session.book.title %>: Bookclub Agenda
       </div>
       <%= render partial: 'agenda_panel', locals: { session: @session, attendees: @attendees } %>
       <div class="submit-agenda-point">
@@ -14,8 +14,8 @@
       <div class="sessions-page-component-header-white mb-3"
           data-controller="countdown"
           data-countdown-start-time-value="<%= @session.start_time.iso8601 %>">
-        <i class="fa-regular fa-clock fa-sm"></i>
-        Starting in <span data-countdown-target="time"></span>
+        <i class="fa-regular fa-clock fa-sm" style="margin-left: 15px;"></i>
+        <span data-countdown-target="time"></span>
         <% if current_user && current_user.attendees.find_by(session_id: @session.id)&.host? %>
           <button class="btn-rsvp" data-session-id="<%= @session.id %>" data-action="click->meeting-creation#startMeeting">Start Meeting</button>
         <% end %>
